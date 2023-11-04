@@ -15,7 +15,6 @@
  if(isset($_REQUEST['submit'])){
 
     $error_message = '';
-
     $username = $_REQUEST['username'];
     $password = $_REQUEST['password'];
 
@@ -73,11 +72,11 @@
         <td><a href="index.php"><h2>MedioSoft</h2></a></td>
         <td colspan="2">
             <a href="index.php">Home</a>
-             | <a href="view/medicines.php">Medicines</a> 
-             | <a href="view/blog.php">Blog</a> 
-             | <a href="view/contact.php">Contact</a> 
-             | <a href="view/registration.php">Register</a> 
-             | <a href="view/login.php">Login</a>
+             | <a href="medicines.php">Medicines</a> 
+             | <a href="blog.php">Blog</a> 
+             | <a href="contact.php">Contact</a> 
+             | <a href="registration.php">Register</a> 
+             | <a href="login.php">Login</a>
         </td>
     </tr>
 
