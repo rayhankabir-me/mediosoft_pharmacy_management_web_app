@@ -4,13 +4,6 @@
  include_once('../controller/functions.php');
  require_once('../model/usersModel.php');
 
- session_start();
-
- if(isset($_SESSION['user_login'])){
-     header('location: profile.php');
- }
-
-
 
  if(isset($_REQUEST['submit'])){
 
@@ -39,7 +32,14 @@
                 $cookie_expire = time() + 30 * 24 * 60 * 60;
                 setcookie($cookie_name, $cookie_value, $cookie_expire, "/");
             }
-            header('location: profile.php');
+            if($user_type['user_type'] == 'Admin'){
+                header('location: admin_dashboard.php');
+            }elseif ($user_type['user_type'] == 'Pharmacist') {
+                header('location: pharmacist_dashboard.php');
+            }elseif ($user_type['user_type'] == 'Customer') {
+                header('location: customer_dashboard.php');
+
+            }
 
         }else{
                 $invalid_login = "Invalid login details! Try Again!";
