@@ -40,7 +40,14 @@ function delete_user($id){
 
 
 }
-
+//get user type by user name
+function get_user_type($username){
+    $conneciton = get_connection();
+    $sql = "SELECT user_type FROM users WHERE user_name = '{$username}'";
+    $result = mysqli_query($conneciton, $sql);
+    return $result;
+    
+}
 //check whether username already exists
 function user_name_exists($username){
 

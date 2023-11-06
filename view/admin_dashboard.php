@@ -26,53 +26,33 @@
     <tr>
         <td>
             <ul>
-                <li><a href="">Add Medicine</a></li>
-                <li><a href="">Add User</a></li>
-                <li><a href="">Add Medicine</a></li>
-                <li><a href="">Add Medicine</a></li>
-                <li><a href="">Add Medicine</a></li>
-                <li><a href="">Add Medicine</a></li>
-                <li><a href="">Add Medicine</a></li>
-                <li><a href="">Add Medicine</a></li>
-                <li><a href="">Add Medicine</a></li>
+                <li><a href="">Manage Medicines</a></li>
+                <li><a href="">Manage Medicines Category</a></li>
+                <li><a href="">Manage Medicines Company</a></li>
+                <li><a href="">Manage Posts</a></li>
+                <li><a href="">Manage Posts Category</a></li>
+                <li><a href="">View Requested Medicines</a></li>
+                <li><a href="">Manage Orders</a></li>
+                <li><a href="">Contacts</a></li>
+                <li><a href="">Pages Options</a></li>
+                <li><a href="">View Profile</a></li>
+                <li><a href="">Edit Profile</a></li>
+                <li><a href="">Change Profile Photo</a></li>
+                <li><a href="">Change Password</a></li>
             </ul>
         </td>
         <td colspan="2">
             <br>
             <br>
-                <h3>Total Medicines</h3>
-                <form action="#" method="post">
+                <h3>Total Medicines - 20</h3>
+                <h3>Medicines Category - 20</h3>
+                <h3>Medicines Company - 20</h3>
+                <h3>Orders - 20</h3>
+                <h3>Posts - 20</h3>
+                <h3>Users - 20</h3>
+                <h3>Pharmacists - 20</h3>
+                <h3>Customers - 20</h3>
 
-
-                <label for="">User Name: </label><input type="text" name="username" id="">
-                <hr>
-                <label for="">Email: </label><input type="email" name="email" id="">
-                <hr>
-                <label for="">Full Name: </label><input type="text" name="full_name" id="">
-                <hr>
-                <label for="">Password: </label><input type="password" name="password" id="">
-                <hr>
-                <label for="">Confirm Password: </label><input type="password" name="c_password" id="">
-                <hr>
-                <fieldset>
-                <legend>Gender</legend>
-                <input type="radio" name="gender" value="male" id=""><label for=""> Male</label>
-                <input type="radio" name="gender" value="female" id=""><label for=""> Female</label>
-                <input type="radio" name="gender" value="other" id=""><label for=""> Other</label>
-                </fieldset>
-                <br>
-                <fieldset>
-                <legend>Date of Birth</legend>
-                <input type="date" name="date_of_birth" id="">
-                </fieldset>
-
-                <p><?php if(isset($error_message)){echo $error_message;} ?></p>
-                <p><?php if(isset($success_message)){echo $success_message;} ?></p>
-
-                <br>
-                <input type="submit" value="Submit" name="submit">
-                <input type="submit" value="Reset" name="reset">
-                </form>
             <br>
             <br>
 

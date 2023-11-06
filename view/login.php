@@ -21,7 +21,8 @@
     if($error_message === ''){
 
         $login = user_login($username, $password);
-
+        $user_data = get_user_type($username);
+        $user_type = $user_data->fetch_assoc();
         if ($login == true){
             session_start();
             $_SESSION["user_login"] = $username;
