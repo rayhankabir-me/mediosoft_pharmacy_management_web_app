@@ -40,6 +40,29 @@ function delete_user($id){
 
 
 }
+//update token for password reset
+function update_token($email, $token){
+    $conneciton = get_connection();
+    $sql = "UPDATE users SET reset_token = ".$token." WHERE email = '{$email}'";
+    $result = mysqli_query($conneciton, $sql);
+    if($result){
+        return true; 
+    }else{
+        return false;
+    }
+}
+//check whether email exists or not
+function check_user_email($email){
+    $conneciton = get_connection();
+    $sql = "SELECT email FROM users WHERE email = '{$email}'";
+    $result = mysqli_query($conneciton, $sql);
+    $count = mysqli_num_rows($result);
+    if($count == 1){
+        return true;
+    }else{
+        return false;
+    }
+}
 //get user type by user name
 function get_user_type($username){
     $conneciton = get_connection();

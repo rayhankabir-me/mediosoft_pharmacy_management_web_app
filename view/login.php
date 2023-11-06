@@ -98,7 +98,7 @@
                         <br>
                         <br>
                         <input type="submit" value="Submit" name="submit">
-                        <a href="#">Forgor Password?</a>
+                        <a href="forgot_password.php">Forgor Password?</a>
                         <br>
                         <p><?php if(isset($error_message)){echo $error_message;} ?></p>
                         <p><?php if(isset($invalid_login)){echo $invalid_login;} ?></p>
