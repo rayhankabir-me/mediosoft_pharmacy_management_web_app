@@ -3,6 +3,7 @@
 
  include_once('../controller/functions.php');
  require_once('../model/usersModel.php');
+ require_once('../controller/send_mail.php');
 
 
  if(isset($_REQUEST['submit'])){
@@ -26,15 +27,17 @@
             if($update_token == true){
 
                 //$send_mail = mail($email, "Reset Password - MedioSoft", "Use this code to reset your password: ".$token);
-                $to = "rayhankabir.wp@gmail.com";
+                
                 $subject = "Password Reset from MedioSoft";
-                $txt = "Hello world!";
-                $headers = "From: admin@mediosoft.com";
+                $message = "Use this code to reset your password: ".$token;
 
-                $send_mail = mail($to,$subject,$txt,$headers);
-                if($send_mail){
+                $send_mail = send_mail($email, $subject, $message);
+                if($send_mail == true){
                     session_start();
                     $_SESSION['reset_password'] = 'We have sent you a reset code. Please check your email!';
+                    header('location: reset_password.php');
+                }elseif ($send_mail == false) {
+                    $_SESSION['reset_password'] .= "Something is wrong in the mail setup!";
                     header('location: reset_password.php');
                 }
             }
