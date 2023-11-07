@@ -4,6 +4,12 @@ require_once('../model/postCategoryModel.php');
 require_once('../model/usersModel.php');
 
 
+$category_id = '';
+if(isset($_GET['id'])){
+    $category_id = $_GET['id'];
+}
+
+$category_data = get_category_data($category_id);
 
 if(isset($_REQUEST['submit'])){
    $error_message = '';
@@ -25,17 +31,16 @@ if(isset($_REQUEST['submit'])){
    $data = [
     'category_name' => $category_name,
     'short_description' => $short_description,
-    'user_id'   => $user_id
 
     ];
 
    if($error_message === ''){
-    $result = add_category($data);
+    $result = update_category($category_id, $data);
 
     if($result){
-        $success_message .= "Category added successfully!";
+        $success_message .= "Category updated successfully!";
     }else{
-        $error_message .= "Category add failed! try again!";
+        $error_message .= "Category update failed! try again!";
     }
     
    }
@@ -75,13 +80,13 @@ if(isset($_REQUEST['submit'])){
         <td colspan="2">
             <br>
             <br>
-                <h3>Add Post Category</h3>
+                <h3>Update Post Category</h3>
                 <form action="#" method="post">
 
 
-                <label for="">Category Name </label><input type="text" name="category_name" id="">
+                <label for="">Category Name </label><input type="text" name="category_name" id="" value="<?php if($category_data){echo $category_data['category_name']; }?>">
                 <hr>
-                <label for="">Short Description </label><textarea name="short_description" id="" cols="30" rows="10"></textarea>
+                <label for="">Short Description </label><textarea name="short_description" id="" cols="30" rows="10"><?php if($category_data){echo $category_data['short_description']; }?></textarea>
                 <hr>
                 <p><?php if(isset($error_message)){echo $error_message;} ?></p>
                 <p><?php if(isset($success_message)){echo $success_message;} ?></p>

@@ -9,12 +9,30 @@ function add_category($data){
     return $result;
 }
 //update category
-function update_category($data){
+function update_category($id, $data){
+    $conneciton = get_connection();
+    $sql = "UPDATE posts_category SET category_name='{$data['category_name']}', short_description='{$data['short_description']}' WHERE id = $id";
+    $result = mysqli_query($conneciton, $sql);
+    if($result){
+        return true;
+    }else{
+        return false;
+    }
 
 }
 
 //delete category
 function delete_category(){
 
+}
+
+
+//get category data by id
+function get_category_data($id){
+    $conneciton = get_connection();
+    $sql = "SELECT * FROM posts_category WHERE id = {$id}";
+    $result = mysqli_query($conneciton, $sql);
+    $data = $result->fetch_assoc();
+    return $data;
 }
 ?>
