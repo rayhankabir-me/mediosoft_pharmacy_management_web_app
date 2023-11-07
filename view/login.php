@@ -26,12 +26,14 @@
         if ($login == true){
             session_start();
             $_SESSION["user_login"] = $username;
+            $_SESSION["user_type"] = $user_type['user_type'];
 
             if (isset($_POST["remember_me"])) {
                 $cookie_name = "remember_user";
                 $cookie_value = $username;
                 $cookie_expire = time() + 30 * 24 * 60 * 60;
                 setcookie($cookie_name, $cookie_value, $cookie_expire, "/");
+                setcookie("user_type", $user_type['user_type'], $cookie_expire, "/");
             }
             if($user_type['user_type'] == 'Admin'){
                 header('location: admin_dashboard.php');

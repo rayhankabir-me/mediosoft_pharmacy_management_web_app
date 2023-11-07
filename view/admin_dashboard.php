@@ -1,6 +1,6 @@
 <?php
-require_once('../controller/check_session_cookie.php');
-check_session_cookie();
+require_once('../controller/page_protection.php');
+admin_protection();
 
 ?>
 

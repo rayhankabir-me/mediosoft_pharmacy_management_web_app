@@ -1,6 +1,6 @@
 <?php
 require_once('../controller/page_protection.php');
-customer_protection();
+pharmacist_protection();
 
 ?>
 
