@@ -16,7 +16,7 @@ function admin_protection(){
 function customer_protection(){
     session_start();
     if (!isset($_SESSION["user_login"]) || $_SESSION["user_type"] !== 'Customer') {
-        if (!isset($_COOKIE['remember_user']) && $_COOKIE['user_type'] !== 'Customer') {
+        if (!isset($_COOKIE['remember_user']) || $_COOKIE['user_type'] !== 'Customer') {
             header("Location: ../controller/logout.php");
             exit();
         }
