@@ -1,36 +1,36 @@
 <?php
-
-
  include_once('../controller/functions.php');
  require_once('../model/usersModel.php');
+ session_start();
 
+ $token = $_SESSION['new_pass'];
 
  if(isset($_REQUEST['submit'])){
 
     $error_message = '';
-    $reset_token = $_REQUEST['reset_token'];
+    $new_password = $_REQUEST['new_password'];
+    $c_password = $_REQUEST['c_password'];
 
-    if($reset_token == ''){
-        $error_message .= "Your must fill the reset Code! <br>";
-
+    if($new_password == ''){
+        $error_message .= "Your must fill Password! <br>";
+    }elseif (password_validation($new_password) === false) {
+        $error_message .= "Wrong Password Format! <br>";
+    }elseif ($c_password !== $new_password) {
+        $error_message .= "Password Doesn't Match! <br>";
     }
-
 
     if($error_message === ''){
 
-        $check_token = check_reset_token($reset_token);
+        $update_password = update_password_by_token($new_password, $token);
 
-        if ($check_token == true){
+        if ($update_password == true){
 
-            session_start();
-            unset($_SESSION['reset_password']);
-            $_SESSION['new_pass'] = $reset_token;
-            header('location: new_password.php');
-
-
+            unset($_SESSION['new_pass']);
+            $_SESSION['success_message'] = "Your password has been changed!";
+            header('location: login.php');
 
         }else{
-                $invalid_login = "Invalid reset code! try again!";
+                $invalid_login = "password update failed! try again!";
             } 
     }
 
@@ -40,7 +40,6 @@
 
     
  }
-
 
 ?>
 
@@ -69,18 +68,12 @@
         <td colspan="2">
             <br>
             <br>
-            <?php
-            session_start();
-            if(isset($_SESSION['reset_password'])){
-            echo $_SESSION['reset_password'];
-            }
-            ?>
-            <br>
-            <br>
                 <form action="#" method="post">
                     <fieldset>
-                        <legend>Reset Code</legend>
-                        <label for="">Enter Code </label><input type="text" name="reset_token" id="">
+                        <legend>Reset Password</legend>
+                        <label for="">New Password </label><input type="password" name="new_password" id="">
+                        <hr>
+                        <label for="">Confirm Password </label><input type="password" name="c_password" id="">
                         <hr>
                         <br>
                         <input type="submit" value="Submit" name="submit">

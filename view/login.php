@@ -86,6 +86,11 @@
         <td colspan="2">
             <br>
             <br>
+            <?php 
+            if(isset($_SESSION['success_message'])){
+                echo $_SESSION['success_message']."<br><br>";
+            }
+            ?>
                 <h3>User Login</h3>
                 <form action="#" method="post">
                     <fieldset>

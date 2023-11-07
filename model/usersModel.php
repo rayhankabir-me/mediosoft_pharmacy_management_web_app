@@ -40,6 +40,17 @@ function delete_user($id){
 
 
 }
+//update using token
+function update_password_by_token($new_password, $token){
+    $conneciton = get_connection();
+    $sql = "UPDATE users SET password = '{$new_password}' WHERE reset_token = $token";
+    $result = mysqli_query($conneciton, $sql);
+    if($result){
+        return true; 
+    }else{
+        return false;
+    }
+}
 //update token for password reset
 function update_token($email, $token){
     $conneciton = get_connection();
@@ -47,6 +58,18 @@ function update_token($email, $token){
     $result = mysqli_query($conneciton, $sql);
     if($result){
         return true; 
+    }else{
+        return false;
+    }
+}
+//check reset token
+function check_reset_token($token){
+    $conneciton = get_connection();
+    $sql = "SELECT reset_token FROM users WHERE reset_token = $token";
+    $result = mysqli_query($conneciton, $sql);
+    $count = mysqli_num_rows($result);
+    if($count == 1){
+        return true;
     }else{
         return false;
     }

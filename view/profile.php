@@ -1,8 +1,4 @@
-<?php
-require_once('../controller/check_session_cookie.php');
-check_session_cookie();
 
-?>
 
 
 <!DOCTYPE html>

@@ -26,32 +26,20 @@ check_session_cookie();
     <tr>
         <td>
             <ul>
-                <li><a href="">Manage Medicines</a></li>
-                <li><a href="">Manage Medicines Category</a></li>
-                <li><a href="">Manage Medicines Company</a></li>
-                <li><a href="">Manage Posts</a></li>
-                <li><a href="">Manage Posts Category</a></li>
-                <li><a href="">View Requested Medicines</a></li>
-                <li><a href="">Manage Orders</a></li>
-                <li><a href="">Contacts</a></li>
-                <li><a href="">Pages Options</a></li>
+                <li><a href="">Dashboard</a></li>
+                <li><a href="">Orders History</a></li>
+                <li><a href="">Contact History</a></li>
                 <li><a href="">View Profile</a></li>
                 <li><a href="">Edit Profile</a></li>
                 <li><a href="">Change Profile Photo</a></li>
                 <li><a href="">Change Password</a></li>
+  
             </ul>
         </td>
         <td colspan="2">
             <br>
             <br>
-                <h3>Total Medicines - 20</h3>
-                <h3>Medicines Category - 20</h3>
-                <h3>Medicines Company - 20</h3>
-                <h3>Orders - 20</h3>
-                <h3>Posts - 20</h3>
-                <h3>Users - 20</h3>
-                <h3>Pharmacists - 20</h3>
-                <h3>Customers - 20</h3>
+                <h3>Total Order - 20</h3>
 
             <br>
             <br>
