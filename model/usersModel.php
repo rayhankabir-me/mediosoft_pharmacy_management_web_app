@@ -13,6 +13,23 @@ function user_login($username, $password){
         return false;
     }
 }
+//get current user
+function get_current_user_id(){
+    session_start();
+    $session_username = '';
+    $user_id = '';
+    if(isset($_SESSION['user_login'])){
+        $session_username = $_SESSION['user_login'];
+    }
+
+    $conneciton = get_connection();
+    $sql = "SELECT id FROM users WHERE user_name = '{$session_username}'";
+    $result = mysqli_query($conneciton, $sql);
+    $data = $result->fetch_assoc();
+    return $data['id'];
+}
+
+
 function get_all_users(){
 
 
