@@ -1,12 +1,16 @@
 <?php
 include_once('../controller/functions.php');
 require_once('../model/postCategoryModel.php');
-require_once('../model/usersModel.php');
+
 
 
 $category_id = '';
 if(isset($_GET['id'])){
     $category_id = $_GET['id'];
+}
+
+if(isset($_SESSION['notify_status'])){
+    echo $_SESSION['notify_status'];
 }
 
 $category_data = get_category_data($category_id);
@@ -25,8 +29,8 @@ if(isset($_REQUEST['submit'])){
        $error_message .= "Your must add Description! <br>";
    }
 
-   //get current user id
-   $user_id = get_current_user_id();
+
+
    //data array
    $data = [
     'category_name' => $category_name,

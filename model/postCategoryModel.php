@@ -22,8 +22,15 @@ function update_category($id, $data){
 }
 
 //delete category
-function delete_category(){
-
+function delete_category($id){
+    $conneciton = get_connection();
+    $sql = "DELETE FROM posts_category WHERE id={$id}";
+    $result = mysqli_query($conneciton, $sql);
+    if($result){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 
