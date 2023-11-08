@@ -1,7 +1,8 @@
 <?php
 include_once('../controller/functions.php');
-require_once('../model/postCategoryModel.php');
+require_once('../model/postsModel.php');
 require_once('../model/usersModel.php');
+require_once('../model/postCategoryModel.php');
 
 $category_data = get_all_category_data();
 
@@ -10,8 +11,9 @@ if(isset($_REQUEST['submit'])){
    $error_message = '';
    $success_message = '';
 
-   $image = $_REQUEST['category_name'];
-   $title = $_REQUEST['short_description'];
+   $image = $_FILES['image'];
+   $title = $_REQUEST['title'];
+   $description = $_REQUEST['description'];
    $category = '';
    if(isset($_REQUEST['category'])){
     $category = $_REQUEST['category'];
@@ -27,29 +29,52 @@ if(isset($_REQUEST['submit'])){
    if($category == ''){
        $error_message .= "Your must select a category! <br>";
    }
+   if($description == ''){
+       $error_message .= "Your must fill description! <br>";
+   }
+
+   // file info
+   $source = $image['tmp_name'];
+   $destination = '../assets/image/posts/'.$image['name'];
+
 
    //get current user id
    $user_id = get_current_user_id();
    //data array
    $data = [
     'title' => $title,
-    'image' => $image,
+    'image' => $destination,
+    'description' => $description,
     'category'   => $category,
     'added_by'   => $user_id,
-    'date'       => date("Y m d")
+    'date'       => date("Y-m-d")
 
     ];
 
-   if($error_message === ''){
-    $result = add_category($data);
+    if($error_message === ''){
 
-    if($result){
-        $success_message .= "Category added successfully!";
-    }else{
-        $error_message .= "Category add failed! try again!";
-    }
+        $result = add_post($data);
     
-   }
+        if($result === true){
+            
+            if (!file_exists($destination)) {
+                if(move_uploaded_file($source, $destination)){
+                }
+            }
+            $success_message .= "Post added successfully!";
+        }elseif ($result === false) {
+            $success_message .= "Post add failed!";
+        }
+        
+       }
+
+
+
+
+
+
+
+
 
 
 
@@ -83,7 +108,7 @@ if(isset($_REQUEST['submit'])){
             <br>
             <br>
                 <h3>Add Post</h3>
-                <form action="#" method="post">
+                <form action="#" method="post" enctype="multipart/form-data">
 
                 <label for="">Upload Image  </label><input type="file" name="image" id="">
                 <hr>
@@ -123,5 +148,3 @@ if(isset($_REQUEST['submit'])){
     
 </body>
 </html>
-
-id, image, title, description, category, added_by, date
