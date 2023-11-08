@@ -26,17 +26,17 @@ function update_post($id, $data){
 
 }
 
-// //delete category
-// function delete_category($id){
-//     $conneciton = get_connection();
-//     $sql = "DELETE FROM posts_category WHERE id={$id}";
-//     $result = mysqli_query($conneciton, $sql);
-//     if($result){
-//         return true;
-//     }else{
-//         return false;
-//     }
-// }
+//delete post
+function delete_post($id){
+    $conneciton = get_connection();
+    $sql = "DELETE FROM posts WHERE id={$id}";
+    $result = mysqli_query($conneciton, $sql);
+    if($result){
+        return true;
+    }else{
+        return false;
+    }
+}
 
 
 //get post data by id
