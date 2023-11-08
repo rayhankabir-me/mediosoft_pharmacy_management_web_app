@@ -107,6 +107,7 @@ if(isset($_REQUEST['submit'])){
             <br>
             <br>
                 <h3>Edit Post</h3>
+                <img src="<?php echo $post_data['image']; ?>" width="200">
                 <form action="#" method="post" enctype="multipart/form-data">
 
                 <label for="">Upload Image  </label><input type="file" name="image" id="">
@@ -120,7 +121,7 @@ if(isset($_REQUEST['submit'])){
                     <?php 
                     foreach($category_data as $data){
                         ?>
-                            <option value="<?php echo $data['id']; ?>" ><?php echo $data['category_name']; ?></option>
+                            <option value="<?php echo $data['id']; ?>" <?php if ($data['id'] == $post_data['category']){echo 'selected';}  ?>><?php echo $data['category_name']; ?></option>
                         <?php
                     }
                     ?>
