@@ -10,7 +10,9 @@ function add_post($data){
     return $result;
 }
 	
-	
+function get_all_posts(){
+    
+}	
 	
 
 //update posts
@@ -25,6 +27,7 @@ function update_post($id, $data){
     }
 
 }
+
 
 //delete post
 function delete_post($id){

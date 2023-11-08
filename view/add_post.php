@@ -51,6 +51,10 @@ if(isset($_REQUEST['submit'])){
 
     ];
 
+
+
+
+
     if($error_message === ''){
 
         $result = add_post($data);
