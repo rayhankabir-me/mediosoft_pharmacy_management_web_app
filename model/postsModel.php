@@ -13,18 +13,18 @@ function add_post($data){
 	
 	
 
-// //update category
-// function update_category($id, $data){
-//     $conneciton = get_connection();
-//     $sql = "UPDATE posts_category SET category_name='{$data['category_name']}', short_description='{$data['short_description']}' WHERE id = $id";
-//     $result = mysqli_query($conneciton, $sql);
-//     if($result){
-//         return true;
-//     }else{
-//         return false;
-//     }
+//update posts
+function update_post($id, $data){
+    $conneciton = get_connection();
+    $sql = "UPDATE posts SET image='{$data['image']}', title='{$data['title']}', description='{$data['description']}', category={$data['category']} WHERE id = $id";
+    $result = mysqli_query($conneciton, $sql);
+    if($result){
+        return true;
+    }else{
+        return false;
+    }
 
-// }
+}
 
 // //delete category
 // function delete_category($id){
@@ -42,7 +42,7 @@ function add_post($data){
 //get post data by id
 function get_post_data($id){
     $conneciton = get_connection();
-    $sql = "SELECT * FROM posts WHERE id = {$id}";
+    $sql = "select * from posts where id = {$id}";;
     $result = mysqli_query($conneciton, $sql);
     $data = $result->fetch_assoc();
     return $data;

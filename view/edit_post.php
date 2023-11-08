@@ -4,13 +4,20 @@ require_once('../model/postsModel.php');
 require_once('../model/usersModel.php');
 require_once('../model/postCategoryModel.php');
 
+require_once('../model/db.php');
+
 
 $post_id = '';
 if(isset($_GET['id'])){
     $post_id = $_GET['id'];
 }
-$post_data = get_post_data($id);
+
 $category_data = get_all_category_data();
+//get post data
+$post_data = get_post_data($post_id);
+
+
+
 
 if(isset($_REQUEST['submit'])){
    $error_message = '';
@@ -42,23 +49,18 @@ if(isset($_REQUEST['submit'])){
    $source = $image['tmp_name'];
    $destination = '../assets/image/posts/'.$image['name'];
 
-
-   //get current user id
-   $user_id = get_current_user_id();
    //data array
    $data = [
     'title' => $title,
     'image' => $destination,
     'description' => $description,
     'category'   => $category,
-    'added_by'   => $user_id,
-    'date'       => date("Y-m-d")
 
     ];
 
     if($error_message === ''){
 
-        $result = add_post($data);
+        $result = update_post($post_id, $data);
     
         if($result === true){
             
@@ -66,9 +68,9 @@ if(isset($_REQUEST['submit'])){
                 if(move_uploaded_file($source, $destination)){
                 }
             }
-            $success_message .= "Post added successfully!";
+            $success_message .= "Post update successfully!";
         }elseif ($result === false) {
-            $success_message .= "Post add failed!";
+            $success_message .= "Post update failed!";
         }
         
        }
@@ -109,16 +111,16 @@ if(isset($_REQUEST['submit'])){
 
                 <label for="">Upload Image  </label><input type="file" name="image" id="">
                 <hr>
-                <label for="">Title </label><input type="text" name="title" id="">
+                <label for="">Title </label><input type="text" name="title" id="" value="<?php echo $post_data['title']; ?>">
                 <hr>
-                <label for="">Description </label><textarea name="description" id=""></textarea>
+                <label for="">Description </label><textarea name="description" id=""><?php echo $post_data['description']; ?></textarea>
                 <hr>
                 <label for="">Category </label>
                 <select name="category" id="">
                     <?php 
                     foreach($category_data as $data){
                         ?>
-                            <option value="<?php echo $data['id']; ?>"><?php echo $data['category_name']; ?></option>
+                            <option value="<?php echo $data['id']; ?>" ><?php echo $data['category_name']; ?></option>
                         <?php
                     }
                     ?>
