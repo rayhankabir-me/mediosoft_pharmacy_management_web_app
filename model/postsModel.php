@@ -39,26 +39,26 @@ function add_post($data){
 // }
 
 
-// //get category data by id
-// function get_category_data($id){
-//     $conneciton = get_connection();
-//     $sql = "SELECT * FROM posts_category WHERE id = {$id}";
-//     $result = mysqli_query($conneciton, $sql);
-//     $data = $result->fetch_assoc();
-//     return $data;
-// }
+//get post data by id
+function get_post_data($id){
+    $conneciton = get_connection();
+    $sql = "SELECT * FROM posts WHERE id = {$id}";
+    $result = mysqli_query($conneciton, $sql);
+    $data = $result->fetch_assoc();
+    return $data;
+}
 
-// //get all category data
-// function get_all_category_data(){
-//     $conneciton = get_connection();
-//     $sql = "SELECT * FROM posts_category";
-//     $result = mysqli_query($conneciton, $sql);
-//     $data = [];
-//     while($row = mysqli_fetch_assoc($result)){
-//         array_push($data, $row);
-//     }
+//get all post data
+function get_all_post_data(){
+    $conneciton = get_connection();
+    $sql = "SELECT * FROM posts";
+    $result = mysqli_query($conneciton, $sql);
+    $data = [];
+    while($row = mysqli_fetch_assoc($result)){
+        array_push($data, $row);
+    }
 
-//     return $data;
+    return $data;
 
-// }
+}
 ?>
