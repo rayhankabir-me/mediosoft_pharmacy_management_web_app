@@ -9,10 +9,24 @@ function add_post($data){
     $result = mysqli_query($conneciton, $sql);
     return $result;
 }
-	
-function get_all_posts(){
-    
-}	
+
+//get all posts data
+function get_all_posts_data(){
+    $conneciton = get_connection();
+    $sql = "select * from posts";
+    $result = mysqli_query($conneciton, $sql);
+    $data = [];
+    while($row = mysqli_fetch_assoc($result)){
+        array_push($data, $row);
+    }
+
+    return $data;
+}
+
+//get all posts by author
+function get_all_posts_by_author($username){
+
+}
 	
 
 //update posts

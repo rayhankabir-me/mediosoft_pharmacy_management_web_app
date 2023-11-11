@@ -1,4 +1,15 @@
 <?php
+//auth
+include_once('../view/component/dashboard_sidebar.php');
+require_once('../controller/check_login_status.php');
+if(!check_login_status()){
+    header('location: login.php');
+}
+include_once('../model/usersModel.php');
+$get_current_user_info = get_current_user_info();
+
+
+
 include_once('../controller/functions.php');
 require_once('../model/postCategoryModel.php');
 require_once('../model/usersModel.php');
@@ -41,12 +52,6 @@ if(isset($_REQUEST['submit'])){
     
    }
 
-
-   
-
-
-   
-
    
 }
 ?>
@@ -63,16 +68,17 @@ if(isset($_REQUEST['submit'])){
     <tr>
         <td><a href="index.php"><h2>MedioSoft</h2></a></td>
         <td colspan="2">
-            <a href="index.php">Home</a>
-             | <a href="medicines.php">Medicines</a> 
-             | <a href="blog.php">Blog</a> 
-             | <a href="contact.php">Contact</a> 
+            Welcome back! <strong><?php echo $get_current_user_info['full_name']; ?></strong>
+             | Notifications 
+             | <a href="blog.php">Visit Site</a>  
              | <a href="../controller/logout.php">Logout</a>
         </td>
     </tr>
 
     <tr>
-        <td></td>
+        <td>
+        <?php echo get_sidebar();?>
+        </td>
         <td colspan="2">
             <br>
             <br>
