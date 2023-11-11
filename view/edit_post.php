@@ -1,7 +1,20 @@
 <?php
+//auth
+include_once('../view/component/dashboard_sidebar.php');
+require_once('../controller/check_login_status.php');
+if(!check_login_status()){
+    header('location: login.php');
+}
+include_once('../model/usersModel.php');
+$get_current_user_info = get_current_user_info();
+
+
+
+
+
 include_once('../controller/functions.php');
 require_once('../model/postsModel.php');
-require_once('../model/usersModel.php');
+
 require_once('../model/postCategoryModel.php');
 
 require_once('../model/db.php');
@@ -85,7 +98,7 @@ if(isset($_REQUEST['submit'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Add Post</title>
+    <title>Edit Post</title>
 </head>
 <body>
 
@@ -102,7 +115,9 @@ if(isset($_REQUEST['submit'])){
     </tr>
 
     <tr>
-        <td></td>
+        <td>
+        <?php echo get_sidebar();?>
+        </td>
         <td colspan="2">
             <br>
             <br>

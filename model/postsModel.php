@@ -11,17 +11,29 @@ function add_post($data){
 }
 
 //get all posts data
-function get_all_posts_data(){
-    $conneciton = get_connection();
-    $sql = "select * from posts";
-    $result = mysqli_query($conneciton, $sql);
+function get_all_posts_data() {
+    $connection = get_connection();
+    $sql = "SELECT p.id, p.image, p.title, p.description, c.category_name, p.added_by, p.date FROM posts p JOIN posts_category c ON p.category = c.id";
+    $result = mysqli_query($connection, $sql);
     $data = [];
-    while($row = mysqli_fetch_assoc($result)){
-        array_push($data, $row);
+    while ($row = mysqli_fetch_assoc($result)) {
+        $post = [
+            'id'    => $row['id'],
+            'image' => $row['image'],
+            'title' => $row['title'],
+            'description' => $row['description'],
+            'category_name' => $row['category_name'],
+            'added_by' => $row['added_by'],
+            'date' => $row['date']
+        ];
+        array_push($data, $post);
     }
 
     return $data;
 }
+
+
+
 
 //get all posts by author
 function get_all_posts_by_author($username){

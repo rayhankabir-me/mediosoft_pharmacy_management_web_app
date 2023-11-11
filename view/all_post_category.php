@@ -5,16 +5,17 @@ if(!check_login_status()){
     header('location: login.php');
 }
 include_once('../model/usersModel.php');
-include_once('../model/postsModel.php');
+include_once('../model/postCategoryModel.php');
 $get_current_user_info = get_current_user_info();
-$posts = get_all_posts_data();
+
+$categories = get_all_category_data();
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>All Posts</title>
+    <title>All Post Category</title>
 </head>
 <body>
 
@@ -41,22 +42,19 @@ $posts = get_all_posts_data();
             <br>
                 <table border="1" width="100%">
                     <tr>
-                        <td>Post Image</td>
-                        <td>Post Title</td>
-                        <td>Category</td>
-                        <td>Date</td>
+                        <td>Category Name</td>
+                        <td>Short Description</td>
                         <td>Action</td>
                     </tr>
 
                     <?php
-                        foreach ($posts as $data) {
+
+                        foreach ($categories as $category) {
                            ?>
                             <tr>
-                                <td><img width="120px" src="<?php echo $data['image']; ?>" alt=""></td>
-                                <td><?php echo $data['title']; ?></td>
-                                <td><?php echo $data['category_name']; ?></td>
-                                <td><?php echo $data['date']; ?></td>
-                                <td><a href="../view/edit_post.php?id=<?php echo $data['id']; ?>">Edit</a> | <a href="../view/delete_post.php?id=<?php echo $data['id']; ?>">Delete</a></td>
+                                <td><?php echo $category['category_name']; ?></td>
+                                <td><?php echo $category['short_description']; ?></td>
+                                <td><a href="../view/update_post_category.php?id=<?php echo $category['id']; ?>">Edit</a> | <a href="../view/delete_post_category.php?id=<?php echo $category['id']; ?>">Delete</a></td>
                             </tr>
                            <?php
                         }

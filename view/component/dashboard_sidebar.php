@@ -24,7 +24,7 @@ function get_sidebar(){
                 </ul>
             </li>
             <li>
-                <a href="../view/all_posts.php">Manage Posts Category</a>
+                <a href="../view/all_post_category.php">Manage Posts Category</a>
                 <ul>
                     <li><a href="../view/add_post_category.php">Add Category</a></li>
                 </ul>
