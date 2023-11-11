@@ -1,11 +1,12 @@
 <?php
+include_once('../view/component/dashboard_sidebar.php');
 require_once('../controller/check_login_status.php');
 if(!check_login_status()){
     header('location: login.php');
 }
 include_once('../model/usersModel.php');
 $get_current_user_type = get_current_user_type();
-echo $get_current_user_type;
+$get_current_user_info = get_current_user_info();
 
 ?>
 
@@ -20,34 +21,20 @@ echo $get_current_user_type;
     <tr>
         <td><a href="index.php"><h2>MedioSoft</h2></a></td>
         <td colspan="2">
-            <a href="index.php">Home</a>
-             | <a href="medicines.php">Medicines</a> 
-             | <a href="blog.php">Blog</a> 
-             | <a href="contact.php">Contact</a> 
+            Welcome back! <strong><?php echo $get_current_user_info['full_name']; ?></strong>
+             | Notifications 
+             | <a href="blog.php">Visit Site</a>  
              | <a href="../controller/logout.php">Logout</a>
         </td>
     </tr>
 
     <tr>
+
         <td>
-            <ul>
-
-                <li><a href="">Manage Medicines</a></li>
-                <li><a href="">Manage Medicines Category</a></li>
-                <li><a href="">Manage Medicines Company</a></li>
-                <li><a href="">Manage Posts</a></li>
-                <li><a href="">Manage Posts Category</a></li>
-                <li><a href="">View Requested Medicines</a></li>
-                <li><a href="">Manage Orders</a></li>
-                <li><a href="">Contacts</a></li>
-                <li><a href="">Pages Options</a></li>
-                <li><a href="">View Profile</a></li>
-                <li><a href="">Edit Profile</a></li>
-                <li><a href="">Change Profile Photo</a></li>
-                <li><a href="">Change Password</a></li>
-
-            </ul>
+        <?php echo get_sidebar();?>
         </td>
+
+
         <td colspan="2">
             <br>
             <br>

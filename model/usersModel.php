@@ -141,5 +141,18 @@ function user_name_exists($username){
     }
 
 }
+//get user data by username
+function get_current_user_info(){
+    session_start();
+    $session_username = '';
 
+    if(isset($_SESSION['user_login'])){
+        $session_username = $_SESSION['user_login'];
+    }
+    $conneciton = get_connection();
+    $sql = "SELECT * FROM users WHERE user_name = '{$session_username}'";
+    $result = mysqli_query($conneciton, $sql);
+    $user_data = $result->fetch_assoc();
+    return $user_data;
+}
 ?>
