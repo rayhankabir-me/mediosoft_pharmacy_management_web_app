@@ -5,7 +5,6 @@ if(!check_login_status()){
     header('location: login.php');
 }
 include_once('../model/usersModel.php');
-$get_current_user_type = get_current_user_type();
 $get_current_user_info = get_current_user_info();
 
 ?>
