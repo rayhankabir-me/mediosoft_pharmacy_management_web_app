@@ -17,7 +17,7 @@ function user_login($username, $password){
 function get_current_user_id(){
     session_start();
     $session_username = '';
-    $user_id = '';
+
     if(isset($_SESSION['user_login'])){
         $session_username = $_SESSION['user_login'];
     }
@@ -27,6 +27,22 @@ function get_current_user_id(){
     $result = mysqli_query($conneciton, $sql);
     $data = $result->fetch_assoc();
     return $data['id'];
+}
+
+//get current user type
+function get_current_user_type(){
+    session_start();
+    $session_username = '';
+
+    if(isset($_SESSION['user_login'])){
+        $session_username = $_SESSION['user_login'];
+    }
+
+    $conneciton = get_connection();
+    $sql = "SELECT user_type FROM users WHERE user_name = '{$session_username}'";
+    $result = mysqli_query($conneciton, $sql);
+    $data = $result->fetch_assoc();
+    return $data['user_type'];
 }
 
 
