@@ -3,6 +3,9 @@ require_once('../controller/check_login_status.php');
 if(!check_login_status()){
     header('location: login.php');
 }
+include_once('../model/usersModel.php');
+$get_current_user_type = get_current_user_type();
+echo $get_current_user_type;
 
 ?>
 
@@ -28,6 +31,7 @@ if(!check_login_status()){
     <tr>
         <td>
             <ul>
+
                 <li><a href="">Manage Medicines</a></li>
                 <li><a href="">Manage Medicines Category</a></li>
                 <li><a href="">Manage Medicines Company</a></li>
@@ -41,6 +45,7 @@ if(!check_login_status()){
                 <li><a href="">Edit Profile</a></li>
                 <li><a href="">Change Profile Photo</a></li>
                 <li><a href="">Change Password</a></li>
+
             </ul>
         </td>
         <td colspan="2">
