@@ -1,18 +1,21 @@
 <?php
+//auth
 include_once('../view/component/dashboard_sidebar.php');
 require_once('../controller/check_login_status.php');
 if(!check_login_status()){
     header('location: login.php');
 }
 include_once('../model/usersModel.php');
+
 $get_current_user_info = get_current_user_info();
+
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Dashboard - MedioSoft</title>
+    <title>Change Password</title>
 </head>
 <body>
 
@@ -37,14 +40,24 @@ $get_current_user_info = get_current_user_info();
         <td colspan="2">
             <br>
             <br>
-                <h3>Total Medicines - 20</h3>
-                <h3>Medicines Category - 20</h3>
-                <h3>Medicines Company - 20</h3>
-                <h3>Orders - 20</h3>
-                <h3>Posts - 20</h3>
-                <h3>Users - 20</h3>
-                <h3>Pharmacists - 20</h3>
-                <h3>Customers - 20</h3>
+                <h3>Change Password</h3>
+
+                <form action="#" method="post">
+
+                <label for="">Current Password: </label><input type="password" name="password" id="">
+                <hr>
+                <label for="">New Password: </label><input type="password" name="new_password" id="">
+                <hr>
+                <label for="">Confirm Password: </label><input type="password" name="c_password" id="">
+                <hr>
+
+                <p><?php if(isset($error_message)){echo $error_message;} ?></p>
+                <p><?php if(isset($success_message)){echo $success_message;} ?></p>
+
+                <br>
+                <input type="submit" value="Change Password" name="submit">
+                <input type="submit" value="Reset">
+                </form>
 
             <br>
             <br>

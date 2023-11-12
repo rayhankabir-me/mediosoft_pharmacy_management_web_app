@@ -1,18 +1,21 @@
 <?php
+//auth
 include_once('../view/component/dashboard_sidebar.php');
 require_once('../controller/check_login_status.php');
 if(!check_login_status()){
     header('location: login.php');
 }
 include_once('../model/usersModel.php');
+
 $get_current_user_info = get_current_user_info();
+
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Dashboard - MedioSoft</title>
+    <title>Change Profile Photo</title>
 </head>
 <body>
 
@@ -37,14 +40,20 @@ $get_current_user_info = get_current_user_info();
         <td colspan="2">
             <br>
             <br>
-                <h3>Total Medicines - 20</h3>
-                <h3>Medicines Category - 20</h3>
-                <h3>Medicines Company - 20</h3>
-                <h3>Orders - 20</h3>
-                <h3>Posts - 20</h3>
-                <h3>Users - 20</h3>
-                <h3>Pharmacists - 20</h3>
-                <h3>Customers - 20</h3>
+                <h3>Current Photo</h3>
+                <img width="200px" src="<?php echo $get_current_user_info['profile_photo'];?>" alt="">
+
+                <form action="#" method="post">
+
+                <label for="">Upload Photo: </label><input type="file" name="profile_photo" id="">
+                <hr>
+
+                <p><?php if(isset($error_message)){echo $error_message;} ?></p>
+                <p><?php if(isset($success_message)){echo $success_message;} ?></p>
+
+                <br>
+                <input type="submit" value="Change Photo" name="submit">
+                </form>
 
             <br>
             <br>

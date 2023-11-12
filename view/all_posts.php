@@ -24,7 +24,7 @@ $posts = get_all_posts_data();
         <td colspan="2">
             Welcome back! <strong><?php echo $get_current_user_info['full_name']; ?></strong>
              | Notifications 
-             | <a href="index.php">Visit Site</a>  
+             | <a href="../index.php">Visit Site</a>  
              | <a href="../controller/logout.php">Logout</a>
         </td>
     </tr>

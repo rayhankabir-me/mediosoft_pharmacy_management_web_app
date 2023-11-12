@@ -62,6 +62,7 @@ function get_sidebar(){
                     <li><a href="../view/add_post_category.php">Add Category</a></li>
                 </ul>
             </li>
+            <li><a href="../view/view_all_tickets.php">View Support Tickets</a></li>
         </ul>
 
         <?php

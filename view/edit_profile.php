@@ -6,61 +6,16 @@ if(!check_login_status()){
     header('location: login.php');
 }
 include_once('../model/usersModel.php');
+
 $get_current_user_info = get_current_user_info();
 
 
-
-include_once('../controller/functions.php');
-require_once('../model/postCategoryModel.php');
-require_once('../model/usersModel.php');
-
-
-
-
-if(isset($_REQUEST['submit'])){
-   $error_message = '';
-   $success_message = '';
-
-   $category_name = $_REQUEST['category_name'];
-   $short_description = $_REQUEST['short_description'];
-
-   if($category_name == ''){
-       $error_message .= "Your must fill Category Name! <br>";
-   }
-   if($short_description == ''){
-       $error_message .= "Your must add Description! <br>";
-   }
-
-   //get current user id
-   $user_id = get_current_user_id();
-   //data array
-   $data = [
-    'category_name' => $category_name,
-    'short_description' => $short_description,
-    'user_id'   => $user_id
-
-    ];
-
-   if($error_message === ''){
-    $result = add_category($data);
-
-    if($result){
-        $success_message .= "Category added successfully!";
-    }else{
-        $error_message .= "Category add failed! try again!";
-    }
-    
-   }
-
-   
-}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Add Post Category</title>
+    <title>Edit Profile</title>
 </head>
 <body>
 
@@ -76,20 +31,40 @@ if(isset($_REQUEST['submit'])){
     </tr>
 
     <tr>
+
         <td>
         <?php echo get_sidebar();?>
         </td>
+
+
         <td colspan="2">
             <br>
             <br>
-                <h3>Add Post Category</h3>
+                <h3>Profile Photo</h3>
+                <img width="200px" src="<?php echo $get_current_user_info['profile_photo'];?>" alt="">
+
                 <form action="#" method="post">
 
+                <label for="">Email: </label><input type="email" name="email" id="" value="<?php echo $get_current_user_info['email'];?>">
+                <hr>
+                <label for="">Full Name: </label><input type="text" name="full_name" id="" value="<?php echo $get_current_user_info['full_name'];?>">
+                <hr>
+                <label for="">Password: </label><input type="password" name="password" id="">
+                <hr>
+                <label for="">Confirm Password: </label><input type="password" name="c_password" id="">
+                <hr>
+                <fieldset>
+                <legend>Gender</legend>
+                <input type="radio" name="gender" value="male" id=""><label for=""> Male</label>
+                <input type="radio" name="gender" value="female" id=""><label for=""> Female</label>
+                <input type="radio" name="gender" value="other" id=""><label for=""> Other</label>
+                </fieldset>
+                <br>
+                <fieldset>
+                <legend>Date of Birth</legend>
+                <input type="date" name="date_of_birth" id="">
+                </fieldset>
 
-                <label for="">Category Name </label><input type="text" name="category_name" id="">
-                <hr>
-                <label for="">Short Description </label><textarea name="short_description" id="" cols="30" rows="10"></textarea>
-                <hr>
                 <p><?php if(isset($error_message)){echo $error_message;} ?></p>
                 <p><?php if(isset($success_message)){echo $success_message;} ?></p>
 
@@ -97,6 +72,7 @@ if(isset($_REQUEST['submit'])){
                 <input type="submit" value="Submit" name="submit">
                 <input type="submit" value="Reset" name="reset">
                 </form>
+
             <br>
             <br>
 

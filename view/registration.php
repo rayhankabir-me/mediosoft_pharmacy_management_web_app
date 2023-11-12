@@ -92,9 +92,9 @@ if(isset($_REQUEST['submit'])){
 
     <table border="1" width="100%">
     <tr>
-        <td><a href="index.php"><h2>MedioSoft</h2></a></td>
+        <td><a href="../index.php"><h2>MedioSoft</h2></a></td>
         <td colspan="2">
-            <a href="index.php">Home</a>
+            <a href="../index.php">Home</a>
              | <a href="medicines.php">Medicines</a> 
              | <a href="blog.php">Blog</a> 
              | <a href="contact.php">Contact</a> 

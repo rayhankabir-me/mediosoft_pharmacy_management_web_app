@@ -16,7 +16,8 @@
             <a href="index.php">Home</a>
              | <a href="view/medicines.php">Medicines</a> 
              | <a href="view/blog.php">Blog</a> 
-             | <a href="view/contact.php">Contact</a> 
+             | <a href="view/contact.php">Contact</a>
+             | <a href="view/request_support_ticket.php">Request Ticket</a> 
              | <a href="view/registration.php">Register</a> 
              | <a href="view/login.php">Login</a>
         </td>

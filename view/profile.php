@@ -1,18 +1,21 @@
 <?php
+//auth
 include_once('../view/component/dashboard_sidebar.php');
 require_once('../controller/check_login_status.php');
 if(!check_login_status()){
     header('location: login.php');
 }
 include_once('../model/usersModel.php');
+
 $get_current_user_info = get_current_user_info();
+
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Dashboard - MedioSoft</title>
+    <title>Profile</title>
 </head>
 <body>
 
@@ -37,14 +40,13 @@ $get_current_user_info = get_current_user_info();
         <td colspan="2">
             <br>
             <br>
-                <h3>Total Medicines - 20</h3>
-                <h3>Medicines Category - 20</h3>
-                <h3>Medicines Company - 20</h3>
-                <h3>Orders - 20</h3>
-                <h3>Posts - 20</h3>
-                <h3>Users - 20</h3>
-                <h3>Pharmacists - 20</h3>
-                <h3>Customers - 20</h3>
+                <h3>Profile Photo</h3>
+                <img width="200px" src="<?php echo $get_current_user_info['profile_photo'];?>" alt="">
+                <p>Username: <strong><?php echo $get_current_user_info['user_name'];?></strong></p>
+                <p>Full Name: <strong><?php echo $get_current_user_info['full_name'];?></strong></p>
+                <p>Email Address: <strong><?php echo $get_current_user_info['email'];?></strong></p>
+                <p>Gender: <strong><?php echo $get_current_user_info['gender'];?></strong></p>
+                <p>Date Of Birth: <strong><?php echo $get_current_user_info['date_of_birth'];?></strong></p>
 
             <br>
             <br>
