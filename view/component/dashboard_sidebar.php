@@ -38,6 +38,35 @@ function get_sidebar(){
         <?php
     }
 
+    //showing pharmacists menu
+    if($get_current_user_type == "Pharmacist"){
+        ?>
+
+        <ul>
+
+            <li>
+                <a href="../view/all_medicines.php">Manage Medicines</a>
+                <ul><li><a href="../view/add_medicine.php">Add Medicine</a></li></ul>
+            </li>
+            <li><a href="">Manage Medicines Category</a></li>
+            <li><a href="">Manage Medicines Company</a></li>
+            <li>
+                <a href="../view/all_posts.php">Manage Posts</a>
+                <ul>
+                    <li><a href="../view/add_post.php">Add Post</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="../view/all_post_category.php">Manage Posts Category</a>
+                <ul>
+                    <li><a href="../view/add_post_category.php">Add Category</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <?php
+    }
+
     //showing menu for all users
     ?>
         <ul>
