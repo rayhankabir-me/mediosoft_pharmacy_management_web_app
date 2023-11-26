@@ -14,84 +14,60 @@ function add_ticket($data){
     }
 }
 
-//get all posts data
-function get_all_posts_data() {
+//get tickets data based on current user and medicine author
+function get_all_tickets_data_for_pharmacists($user_id) {
     $connection = get_connection();
-    $sql = "SELECT p.id, p.image, p.title, p.description, c.category_name, p.added_by, p.date FROM posts p JOIN posts_category c ON p.category = c.id";
+    //$sql = "SELECT s.id AS ticket_id, m.medicine_title, s.ticket_subject, u.full_name AS requested_by_name FROM support_tickets s JOIN medicines m ON s.medicine_id = m.id JOIN users u ON s.requested_by = u.id WHERE m.added_by = {$user_id}";
+    $sql = "SELECT s.id AS ticket_id, m.medicine_title, s.ticket_subject, u.full_name AS requested_by_name FROM support_tickets s JOIN medicines m ON s.medicine_id = m.id JOIN users u ON s.requested_by = u.id WHERE m.added_by = {$user_id}";
+
     $result = mysqli_query($connection, $sql);
     $data = [];
     while ($row = mysqli_fetch_assoc($result)) {
-        $post = [
-            'id'    => $row['id'],
-            'image' => $row['image'],
-            'title' => $row['title'],
-            'description' => $row['description'],
-            'category_name' => $row['category_name'],
-            'added_by' => $row['added_by'],
-            'date' => $row['date']
+        $ticket = [
+            'ticket_id' => $row['ticket_id'],
+            'medicine_title' => $row['medicine_title'],
+            'ticket_subject' => $row['ticket_subject'],
+            'requested_by_name' => $row['requested_by_name']
         ];
-        array_push($data, $post);
+        array_push($data, $ticket);
     }
 
     return $data;
 }
 
-
-
-
-//get all posts by author
-function get_all_posts_by_author($username){
-
-}
-	
-
-//update posts
-function update_post($id, $data){
-    $conneciton = get_connection();
-    $sql = "UPDATE posts SET image='{$data['image']}', title='{$data['title']}', description='{$data['description']}', category={$data['category']} WHERE id = $id";
-    $result = mysqli_query($conneciton, $sql);
-    if($result){
-        return true;
-    }else{
-        return false;
-    }
-
+//get ticket data by tikcet id
+function get_ticket_data($ticket_id){
+    $connection = get_connection();
+    $sql = "SELECT s.id AS ticket_id, m.medicine_title, s.ticket_subject, u.full_name AS requested_by_name FROM support_tickets s JOIN medicines m ON s.medicine_id = m.id JOIN users u ON s.requested_by = u.id WHERE s.id = {$ticket_id}";
+    $result = mysqli_query($connection, $sql);
+    $ticket = mysqli_fetch_assoc($result);
+    return $ticket;
 }
 
+//get replies fot ticket
+function get_replies_by_ticket_id($ticket_id){
 
-//delete post
-function delete_post($id){
-    $conneciton = get_connection();
-    $sql = "DELETE FROM posts WHERE id={$id}";
-    $result = mysqli_query($conneciton, $sql);
-    if($result){
-        return true;
-    }else{
-        return false;
-    }
-}
-
-
-//get post data by id
-function get_post_data($id){
-    $conneciton = get_connection();
-    $sql = "select * from posts where id = {$id}";;
-    $result = mysqli_query($conneciton, $sql);
-    $data = $result->fetch_assoc();
-    return $data;
-}
-
-//get all post data
-function get_all_post_data(){
-    $conneciton = get_connection();
-    $sql = "SELECT * FROM posts";
-    $result = mysqli_query($conneciton, $sql);
+    $connection = get_connection();
+    $sql = "SELECT r.reply_id, r.reply_message, r.created_at, u.full_name AS sender_name
+            FROM replies_ticket r
+            JOIN users u ON r.sender_id = u.id
+            WHERE r.ticket_id = {$ticket_id}
+            ORDER BY r.created_at ASC";
+    $result = mysqli_query($connection, $sql);
     $data = [];
-    while($row = mysqli_fetch_assoc($result)){
-        array_push($data, $row);
+    while ($row = mysqli_fetch_assoc($result)) {
+        $reply = [
+            'reply_id' => $row['reply_id'],
+            'reply_message' => $row['reply_message'],
+            'created_at' => $row['created_at'],
+            'sender_name' => $row['sender_name']
+        ];
+        array_push($data, $reply);
     }
-
     return $data;
-
 }
+
+
+
+
 ?>

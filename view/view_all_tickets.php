@@ -6,9 +6,9 @@ if(!check_login_status()){
     header('location: login.php');
 }
 include_once('../model/usersModel.php');
+require_once('../model/supportTicketsModel.php');
 
 $get_current_user_info = get_current_user_info();
-
 
 ?>
 
@@ -49,30 +49,18 @@ $get_current_user_info = get_current_user_info();
                         <td>Action</td>
     
                     </tr>
-                    <tr>
-                        <td>Napa Extra</td>
-                        <td>Need a information regarding this medicine</td>
-                        <td>Shakil Khan</td>
-                        <td><a href="">Reply Ticket</a></td>
-                    </tr>
-                    <tr>
-                        <td>Napa Extra</td>
-                        <td>Need a information regarding this medicine</td>
-                        <td>Shakil Khan</td>
-                        <td><a href="">Reply Ticket</a></td>
-                    </tr>
-                    <tr>
-                        <td>Napa Extra</td>
-                        <td>Need a information regarding this medicine</td>
-                        <td>Shakil Khan</td>
-                        <td><a href="">Reply Ticket</a></td>
-                    </tr>
-                    <tr>
-                        <td>Napa Extra</td>
-                        <td>Need a information regarding this medicine</td>
-                        <td>Shakil Khan</td>
-                        <td><a href="">Reply Ticket</a></td>
-                    </tr>
+                    <?php
+                    //get all tickets data
+                    $tickets = get_all_tickets_data_for_pharmacists($get_current_user_info['id']);
+                    
+                    foreach ($tickets as $ticket): ?>
+                        <tr>
+                            <td><?php echo $ticket['medicine_title']; ?></td>
+                            <td><?php echo $ticket['ticket_subject']; ?></td>
+                            <td><?php echo $ticket['requested_by_name']; ?></td>
+                            <td><a href="../view/ticket_page.php?ticket_id=<?php echo $ticket['ticket_id']; ?>">Reply Ticket</a></td>
+                        </tr>
+                    <?php endforeach; ?>
                 </table>
 
             <br>
@@ -85,6 +73,7 @@ $get_current_user_info = get_current_user_info();
     </tr>
 
     </table>
+
     
 </body>
 </html>
