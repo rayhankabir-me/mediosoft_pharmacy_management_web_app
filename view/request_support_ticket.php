@@ -93,7 +93,7 @@ $medicines = get_all_medicines_data();
 
                 let action = 'add_ticket';
                 let xhttp = new XMLHttpRequest();
-                xhttp.open('POST', 'support_ticket_process.php', true);
+                xhttp.open('POST', '../controller/support_ticket_process.php', true);
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xhttp.send('action=' + action + '&select_medicine='+select_medicine + '&ticket_subject='+ticket_subject + '&support_message='+support_message);
                 xhttp.onreadystatechange = function(){
