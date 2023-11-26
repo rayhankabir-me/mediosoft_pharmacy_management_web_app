@@ -1,4 +1,14 @@
 <?php
+include_once('../view/component/dashboard_sidebar.php');
+require_once('../controller/check_login_status.php');
+if(!check_login_status()){
+    header('location: login.php');
+}
+include_once('../model/usersModel.php');
+$get_current_user_info = get_current_user_info();
+
+include_once('../model/medicinesModel.php');
+$medicines = get_all_medicines_data();
 
 ?>
 
@@ -29,10 +39,17 @@
             <br>
             <form action="#">
                 <select name="ticket" id="">
-                    <option value="">Medicine One</option>
-                    <option value="">Medicine Two</option>
-                    <option value="">Medicine Three</option>
-                    <option value="">Medicine Four</option>
+
+                    <?php
+                        foreach($medicines as $medicine){
+                            
+                            ?>
+                                <option value="<?php echo $medicine['id']; ?>"><?php echo $medicine['medicine_title']; ?></option>
+                            <?php
+                        }
+                    ?>
+
+                    
                 </select>
                 <br>
                 <hr>

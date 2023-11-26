@@ -29,5 +29,8 @@ function get_all_medicines_data(){
 
     return $data;
 }
+
+
+
 ?>
 
