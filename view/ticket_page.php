@@ -18,7 +18,16 @@ if(isset($_GET['ticket_id'])){
     $ticket_data = get_ticket_data($ticket_id);
 
     //get replies data by ticket id
-    $ticket_replies = get_replies_by_ticket_id($ticket_id);
+    // $ticket_replies = get_replies_by_ticket_id($ticket_id);
+    // foreach ($ticket_replies as $reply){
+    //     echo $reply['sender_name'];
+    //     echo $reply['reply_message'];
+    //     echo $reply['created_at'];
+    // }
+
+
+
+   
 }
 
 
@@ -51,30 +60,36 @@ if(isset($_GET['ticket_id'])){
 
 
         <td colspan="2">
-            <br>
+
             <br>
                 <div class="ticket_details">
-                <h3>Ticket Details</h3>
-                <p>Ticket Subject: <strong><?php echo $ticket_data['ticket_subject']; ?></strong></p>
-                <p>Medicine Title: <strong><?php echo $ticket_data['medicine_title']; ?></strong></p>
-                <p>Requested By: <strong><?php echo $ticket_data['requested_by_name']; ?></strong></p>
+                    <h3>Ticket Details</h3>
+                    <p>Ticket Subject: <strong><?php echo $ticket_data['ticket_subject']; ?></strong></p>
+                    <p>Medicine Title: <strong><?php echo $ticket_data['medicine_title']; ?></strong></p>
+                    <p>Ticket Description: <strong><?php echo $ticket_data['ticket_message']; ?></strong></p>
+                    <p>Requested By: <strong><?php echo $ticket_data['requested_by_name']; ?></strong></p>
                 </div>
-                <h3>Ticket Replies....</h3>
-                    <div id="message-container" class="message-container">
-                        <?php foreach ($replies as $reply): ?>
-                            <div class="message">
-                                <strong><?php echo $reply['sender_name']; ?>:</strong>
-                                <p><?php echo $reply['reply_message']; ?></p>
-                                <small><?php echo $reply['created_at']; ?></small>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
 
-                    <form id="reply-form">
-                        <textarea id="reply-message" placeholder="Type your reply"></textarea>
-                        <br>
-                        <button type="button" onclick="sendReply()">Send Reply</button>
-                    </form>
+                <div class="message_details">
+                    <h3>Ticket Message....</h3>
+
+                        <div id="message_box" class="message_box">
+
+                        </div>
+
+                        <form id="reply_form" action="#" method="post" onsubmit="sendReply()">
+                            <textarea name="reply_message" id="reply_message" placeholder="Type your reply..." cols="30" rows="10"></textarea>
+                            <br>
+                            <input type="submit" value="Send Reply">
+
+                            <div id="status_messages"></div>
+
+                            
+                    
+                        </form>
+                        
+                </div>
+
 
             <br>
             <br>
@@ -90,39 +105,72 @@ if(isset($_GET['ticket_id'])){
         
         <script>
             function sendReply() {
-                var replyMessage = document.getElementById('reply-message').value;
+                event.preventDefault();
+                let reply_message = document.getElementById('reply_message').value;
+                if(reply_message === ""){
+                    document.getElementById('status_messages').innerHTML = '<p id="error_message">you must type something...!</p>';
+                }else{
 
-                if (replyMessage.trim() === "") {
-                    alert("Please enter a reply message.");
-                    return;
+                    let action = 'add_reply';
+                    let ticketId = <?php echo $ticket_id; ?>;
+                    let senderId = <?php echo $get_current_user_info['id']; ?>;
+                    let xhttp = new XMLHttpRequest();
+                    xhttp.open('POST', '../controller/ticket_reply_process.php', true);
+                    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    xhttp.send('action=' + action + '&reply_message='+reply_message + '&ticket_id='+ticketId + '&sender_id='+senderId);
+                    xhttp.onreadystatechange = function(){
+
+                        if(this.readyState == 4 && this.status == 200){
+                            document.getElementById('status_messages').innerHTML = this.responseText;
+                            document.getElementById('reply_message').value = '';
+                            showData();
+                        }
+                    }
+                }
+            }
+
+            //setInterval(showData, 2000);
+            showData();
+            //fetching reply data using ajax
+            function showData(){
+                let ticketId = <?php echo $ticket_id; ?>;
+                let action = 'get_data';
+                let xhttp = new XMLHttpRequest();
+                xhttp.open('GET', '../controller/ticket_reply_process.php?ticket_id='+ticketId+'&action='+action, true);
+
+                xhttp.send();
+                xhttp.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200){
+                        document.getElementById('message_box').innerHTML = this.responseText;
+                    }
                 }
 
-                var ticketId = <?php echo $ticket_id; ?>;
-                var senderId = <?php echo $get_current_user_info['id']; ?>;
-
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', 'process_reply.php', true);
-                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState == 4 && xhr.status == 200) {
-                        // Reload the page or update the message container
-                        // based on your requirement
-                        window.location.reload();
-                    }
-                };
-                xhr.send('ticket_id=' + ticketId + '&sender_id=' + senderId + '&reply_message=' + replyMessage);
             }
+
+
+
         </script>
         <style>
-            .message-container {
+            .message_box {
                 max-width: 600px;
-                margin: 20px auto;
+                max-height: 600px;
+                overflow-y: scroll;
             }
 
             .message {
+                margin: 10px;
                 padding: 10px;
-                margin-bottom: 10px;
                 border: 1px solid #ccc;
+            }
+
+            .current-user {
+                background-color: rgba(255, 87, 5, 0.2);
+                text-align: right;
+            }
+
+            .other-user {
+                background-color: rgba(141, 2, 207, 0.2);
+                text-align: left;
             }
         </style>
 </body>
