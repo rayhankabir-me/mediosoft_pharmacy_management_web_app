@@ -78,7 +78,7 @@ if(isset($_GET['ticket_id'])){
                         </div>
 
                         <form id="reply_form" action="#" method="post" onsubmit="sendReply()">
-                            <textarea name="reply_message" id="reply_message" placeholder="Type your reply..." cols="30" rows="10"></textarea>
+                            <textarea name="reply_message" id="reply_message" placeholder="Type your reply..." cols="60" rows="4"></textarea>
                             <br>
                             <input type="submit" value="Send Reply">
 
