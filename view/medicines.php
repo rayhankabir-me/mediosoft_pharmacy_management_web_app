@@ -38,9 +38,10 @@ $medicine_company_data = get_all_medicine_company_data();
         <!-- sidebar -->
         <td>
             <h3>Search Medicine</h3>
-            <form action="">
-                <input type="text" name="" id="" placeholder="Medicine Name">
+            <form action="#" method="GET" onsubmit="searchMedicine()">
+                <input type="text" name="medicine_name" id="medicine_name" placeholder="Medicine Name">
                 <input type="submit" value="Search Medicine">
+                <div id="status_messages"></div>
             </form>
 
             <h3>Filter By Category</h3>
@@ -109,6 +110,27 @@ $medicine_company_data = get_all_medicine_company_data();
                     if(this.readyState == 4 && this.status == 200){
                         document.getElementById('all_medicines_box').innerHTML = this.responseText;
                     }
+                }
+
+            }
+
+            //search medicines
+            function searchMedicine(){
+                event.preventDefault();
+                let action = 'search_medicine';
+                let medicine_name = document.getElementById('medicine_name').value;
+                if(medicine_name == ""){
+                    document.getElementById('status_messages').innerHTML = '<p id="error_message">you must type something...!</p>';
+                }else{
+                let xhttp = new XMLHttpRequest();
+                xhttp.open('GET', '../controller/medicines_process.php?action='+action+'&medicine_name='+medicine_name, true);
+                xhttp.send();
+                xhttp.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200){
+                        document.getElementById('all_medicines_box').innerHTML = this.responseText;
+                        document.getElementById('status_messages').innerHTML = '';
+                    }
+                }
                 }
 
             }
