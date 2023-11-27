@@ -76,31 +76,12 @@ $medicine_company_data = get_all_medicine_company_data();
         <td colspan="2">
             <br>
             <br>
-                <table border="1">
+
+                    <div id="all_medicines_box">
+
+                    </div>
 
 
-                    <?php
-                        foreach($medicines as $medicine){
-                            
-                            ?>
-                                <tr>
-                                    <td><img width="120px" src="<?php echo $medicine['image_url']; ?>" alt=""></td>
-                                    <td><h2><a href="single_medicines.php?id=<?php echo $medicine['id']; ?>"><?php echo $medicine['medicine_title']; ?></a></h2></td>
-                                    
-                                    <td><p>Category: <strong><?php echo $medicine['category_title']; ?></strong></p></td>   
-                                    <td><p>Company: <strong><?php echo $medicine['company_name']; ?></strong></p></td>
-                                    <td><p>Price: <strong><?php echo $medicine['medicine_price']; ?></strong></p></td>
-                                    <td><a href="single_medicines.php?id=<?php echo $medicine['id']; ?>">Details</a></td>
-
-
-                                </tr>
-                            <?php
-                        }
-                    ?>
-
-
-
-                </table>
             <br>
             <br>
 
@@ -111,6 +92,27 @@ $medicine_company_data = get_all_medicine_company_data();
     </tr>
 
     </table>
+
+
+    <script>
+
+            showMedicines();
+            //fetching medicines data using ajax
+            function showMedicines(){
+
+                let action = 'get_data';
+                let xhttp = new XMLHttpRequest();
+                xhttp.open('GET', '../controller/medicines_process.php?action='+action, true);
+
+                xhttp.send();
+                xhttp.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200){
+                        document.getElementById('all_medicines_box').innerHTML = this.responseText;
+                    }
+                }
+
+            }
+    </script>
 </body>
 </html>
 
