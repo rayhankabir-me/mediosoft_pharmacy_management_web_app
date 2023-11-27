@@ -94,5 +94,35 @@ $action = $_REQUEST['action'];
     }
  }
 
+ //filter by medicine company
+ if($action == "company_filter"){
+
+    $company_id = $_REQUEST['company_id'];
+
+    //get all medicines data by company id
+    $medicines = get_medicine_data_by_company_id($company_id);
+
+    if(isset($medicines['no_item'])){
+        echo "<p>".$medicines['no_item']."</p>";
+    }else{
+        foreach($medicines as $medicine){
+                            
+            ?>
+                <div class="medicine_box">
+                    <a href="single_medicines.php?id=<?php echo $medicine['id']; ?>"><img width="200px" src="<?php echo $medicine['image_url']; ?>" alt=""></a>
+                    <h2><a href="single_medicines.php?id=<?php echo $medicine['id']; ?>"><?php echo $medicine['medicine_title']; ?></a></h2>
+                    
+                    <p>Category: <strong><?php echo $medicine['category_title']; ?></strong></p>   
+                    <p>Company: <strong><?php echo $medicine['company_name']; ?></strong></p>
+                    <p>Price: <strong><?php echo $medicine['medicine_price']; ?></strong></p>
+                    <a href="single_medicines.php?id=<?php echo $medicine['id']; ?>">Details</a>
+    
+    
+                </div>
+            <?php
+        }
+    }
+ }
+
 
 ?>

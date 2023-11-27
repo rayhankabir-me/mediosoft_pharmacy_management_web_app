@@ -60,8 +60,8 @@ $medicine_company_data = get_all_medicine_company_data();
 
                 </form>
             <h3>Filter By Company</h3>
-                <form action="">
-                <select name="medicine_company" id="">
+                <form action="#" method="GET" onsubmit="filterByCompany()">
+                <select name="medicine_company" id="medicine_company">
                     <?php 
                     foreach($medicine_company_data as $data){
                         ?>
@@ -151,6 +151,25 @@ $medicine_company_data = get_all_medicine_company_data();
                         document.getElementById('status_messages').innerHTML = '';
                     }
                 }
+
+            }
+
+            //filter medicine by company
+            function filterByCompany(){
+
+            event.preventDefault();
+            let action = 'company_filter';
+            let company_id = document.getElementById('medicine_company').value;
+            company_id = parseInt(company_id);
+            let xhttp = new XMLHttpRequest();
+            xhttp.open('GET', '../controller/medicines_process.php?action='+action + '&company_id='+company_id, true);
+            xhttp.send();
+            xhttp.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    document.getElementById('all_medicines_box').innerHTML = this.responseText;
+                    document.getElementById('status_messages').innerHTML = '';
+                }
+            }
 
             }
     </script>
