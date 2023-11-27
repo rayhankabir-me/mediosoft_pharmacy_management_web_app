@@ -1,7 +1,11 @@
 <?php
 //requring files
 require_once('../model/medicinesModel.php');
+require_once('../model/medicineCategoryModel.php');
+require_once('../model/medicineCompanyModel.php');
 $medicines = get_all_medicines_data();
+$medicine_category_data = get_all_medicine_category_data();
+$medicine_company_data = get_all_medicine_company_data();
 
 
 
@@ -41,20 +45,30 @@ $medicines = get_all_medicines_data();
 
             <h3>Filter By Category</h3>
                 <form action="">
-                    <select name="category" id="">
-                        <option value="">Category One</option>
-                        <option value="">Category Two</option>
-                        <option value="">Category Three</option>
-                    </select>
+                <select name="medicine_category" id="">
+                    <?php 
+                    foreach($medicine_category_data as $data){
+                        ?>
+                            <option value="<?php echo $data['id']; ?>"><?php echo $data['category_title']; ?></option>
+                        <?php
+                    }
+                    ?>
+
+                </select>
                     <input type="submit" value="Filter">
 
                 </form>
             <h3>Filter By Company</h3>
                 <form action="">
-                <select name="company" id="">
-                    <option value="">Company One</option>
-                    <option value="">Company Two</option>
-                    <option value="">Category Three</option>
+                <select name="medicine_company" id="">
+                    <?php 
+                    foreach($medicine_company_data as $data){
+                        ?>
+                            <option value="<?php echo $data['id']; ?>"><?php echo $data['company_name']; ?></option>
+                        <?php
+                    }
+                    ?>
+
                 </select>
                 <input type="submit" value="Filter">
                 </form>
