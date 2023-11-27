@@ -45,8 +45,8 @@ $medicine_company_data = get_all_medicine_company_data();
             </form>
 
             <h3>Filter By Category</h3>
-                <form action="">
-                <select name="medicine_category" id="">
+                <form action="#" method="GET" onsubmit="filterByCategory()">
+                <select name="medicine_category" id="medicine_category">
                     <?php 
                     foreach($medicine_category_data as $data){
                         ?>
@@ -137,14 +137,13 @@ $medicine_company_data = get_all_medicine_company_data();
 
             //filter medicine by category
             function filterByCategory(){
+
                 event.preventDefault();
                 let action = 'category_filter';
-                let medicine_name = document.getElementById('medicine_name').value;
-                if(medicine_name == ""){
-                    document.getElementById('status_messages').innerHTML = '<p id="error_message">you must type something...!</p>';
-                }else{
+                let category_id = document.getElementById('medicine_category').value;
+                category_id = parseInt(category_id);
                 let xhttp = new XMLHttpRequest();
-                xhttp.open('GET', '../controller/medicines_process.php?action='+action+'&medicine_name='+medicine_name, true);
+                xhttp.open('GET', '../controller/medicines_process.php?action='+action + '&category_id='+category_id, true);
                 xhttp.send();
                 xhttp.onreadystatechange = function(){
                     if(this.readyState == 4 && this.status == 200){
@@ -152,7 +151,7 @@ $medicine_company_data = get_all_medicine_company_data();
                         document.getElementById('status_messages').innerHTML = '';
                     }
                 }
-                }
+
             }
     </script>
 </body>
