@@ -71,7 +71,7 @@ $medicines = get_all_medicines_data();
                             ?>
                                 <tr>
                                     <td><img width="120px" src="<?php echo $medicine['image_url']; ?>" alt=""></td>
-                                    <td><h2><a href="single_medicines.php?id=<?php echo $medicine['id']; ?>">Napa Extra 500mg 1 Box</a></h2></td>
+                                    <td><h2><a href="single_medicines.php?id=<?php echo $medicine['id']; ?>"><?php echo $medicine['medicine_title']; ?></a></h2></td>
                                     
                                     <td><p>Category: <strong><?php echo $medicine['category_title']; ?></strong></p></td>   
                                     <td><p>Company: <strong><?php echo $medicine['company_name']; ?></strong></p></td>
