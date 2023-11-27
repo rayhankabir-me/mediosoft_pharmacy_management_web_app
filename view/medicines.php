@@ -134,6 +134,26 @@ $medicine_company_data = get_all_medicine_company_data();
                 }
 
             }
+
+            //filter medicine by category
+            function filterByCategory(){
+                event.preventDefault();
+                let action = 'category_filter';
+                let medicine_name = document.getElementById('medicine_name').value;
+                if(medicine_name == ""){
+                    document.getElementById('status_messages').innerHTML = '<p id="error_message">you must type something...!</p>';
+                }else{
+                let xhttp = new XMLHttpRequest();
+                xhttp.open('GET', '../controller/medicines_process.php?action='+action+'&medicine_name='+medicine_name, true);
+                xhttp.send();
+                xhttp.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200){
+                        document.getElementById('all_medicines_box').innerHTML = this.responseText;
+                        document.getElementById('status_messages').innerHTML = '';
+                    }
+                }
+                }
+            }
     </script>
 </body>
 </html>
