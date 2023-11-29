@@ -15,4 +15,14 @@ function get_all_medicine_category_data(){
 
 }
 
+
+//add category
+function add_category($data){
+    $conneciton = get_connection();
+    $sql = "INSERT INTO medicines_category (category_title, description, added_by)
+    VALUES ('{$data['category_title']}', '{$data['description']}', {$data['added_by']})";
+    $result = mysqli_query($conneciton, $sql);
+    return $result;
+}
+
 ?>

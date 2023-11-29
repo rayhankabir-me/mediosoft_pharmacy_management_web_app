@@ -15,8 +15,18 @@ function get_sidebar(){
                 <a href="../view/all_medicines.php">Manage Medicines</a>
                 <ul><li><a href="../view/add_medicine.php">Add Medicine</a></li></ul>
             </li>
-            <li><a href="">Manage Medicines Category</a></li>
-            <li><a href="">Manage Medicines Company</a></li>
+            <li>
+                <a href="../view/all_medicine_category.php">Manage Medicines Category</a>
+                <ul>
+                    <li><a href="../view/add_medicine_company.php">Add Category</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="../view/all_medicine_company.php">Manage Medicines Company</a>
+                <ul>
+                    <li><a href="../view/add_medicine_category.php">Add Company</a></li>
+                </ul>
+            </li>
             <li>
                 <a href="../view/all_posts.php">Manage Posts</a>
                 <ul>
@@ -44,12 +54,22 @@ function get_sidebar(){
 
         <ul>
 
-            <li>
+        <li>
                 <a href="../view/all_medicines.php">Manage Medicines</a>
                 <ul><li><a href="../view/add_medicine.php">Add Medicine</a></li></ul>
             </li>
-            <li><a href="">Manage Medicines Category</a></li>
-            <li><a href="">Manage Medicines Company</a></li>
+            <li>
+                <a href="../view/all_medicine_category.php">Manage Medicines Category</a>
+                <ul>
+                    <li><a href="../view/add_medicine_company.php">Add Category</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="../view/all_medicine_company.php">Manage Medicines Company</a>
+                <ul>
+                    <li><a href="../view/add_medicine_category.php">Add Company</a></li>
+                </ul>
+            </li>
             <li>
                 <a href="../view/all_posts.php">Manage Posts</a>
                 <ul>
