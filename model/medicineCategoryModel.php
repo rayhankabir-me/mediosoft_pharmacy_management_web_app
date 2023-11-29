@@ -52,4 +52,27 @@ function delete_category($id){
     }
 }
 
+//get category data by id
+function get_category_data($id){
+    $conneciton = get_connection();
+    $sql = "SELECT * FROM medicines_category WHERE id = {$id}";
+    $result = mysqli_query($conneciton, $sql);
+    $data = $result->fetch_assoc();
+    return $data;
+}
+
+
+//update category
+function update_category($id, $data){
+    $conneciton = get_connection();
+    $sql = "UPDATE medicines_category SET category_title='{$data['category_title']}', description='{$data['description']}' WHERE id = $id";
+    $result = mysqli_query($conneciton, $sql);
+    if($result){
+        return true;
+    }else{
+        return false;
+    }
+
+}
+
 ?>

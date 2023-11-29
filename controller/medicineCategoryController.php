@@ -69,11 +69,6 @@ if($action == 'add_category'){
  }
 
 
-
-
-
-
-
  //delete operations
  if($action == 'delete_category'){
     $category_id = $_REQUEST['category_id'];
@@ -85,6 +80,60 @@ if($action == 'add_category'){
     }
 
  }
+
+
+ //current data in udpate field
+if($action == 'current_data'){
+    $category_id=  $_REQUEST['category_id'];
+    $category_data = get_category_data($category_id);
+
+    echo json_encode($category_data);
+}
+
+
+
+
+//update operations
+if($action == 'update_category'){
+
+    $error_message = '';
+
+    $category_id = $_REQUEST['category_id'];
+    $category_title = $_REQUEST['category_title'];
+    $description = $_REQUEST['description'];
+ 
+    if($category_title == ''){
+        $error_message .= '<p id="error_message">you must fill category title...!</p>';
+    }
+    if($description == ''){
+        $error_message .= '<p id="error_message">you must fill category description..!</p>';
+    }
+ 
+    //data array
+    $data = [
+     'category_title' => $category_title,
+     'description' => $description,
+ 
+     ];
+ 
+     if($error_message === ''){
+ 
+         $result = update_category($category_id, $data);
+ 
+         if($result === true){
+             echo '<p id="success_message">Category udated successfully!</p>';
+         }elseif ($result === false) {
+             echo '<p id="error_message">Category updatd failed... try again!</p>';
+         }
+         
+     }else{
+         echo $error_message;
+         }
+
+   
+
+}
+
 
 
 ?>
