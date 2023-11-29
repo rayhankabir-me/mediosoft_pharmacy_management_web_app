@@ -44,9 +44,46 @@ if($action == 'add_category'){
         echo $error_message;
     }
  
- 
- 
     
+ }
+
+ //show all category operations
+ if($action == 'get_category'){
+    $categories = get_all_category_data();
+
+    echo "<tr>";
+    echo "<td>Category Name</td>";
+    echo "<td>Short Description</td>";
+    echo "<td>Action</td>";
+    echo "</tr>";
+
+    foreach ($categories as $category) {
+        ?>
+         <tr>
+             <td><?php echo $category['category_title']; ?></td>
+             <td><?php echo $category['description']; ?></td>
+             <td><a href="../view/update_medicine_category.php?id=<?php echo $category['id']; ?>">Edit</a> | <a id="delete_btn" data-category-id="<?php echo $category['id']; ?>" onclick="deleteCategory(event)" href="#">Delete</a></td>
+         </tr>
+        <?php
+     }
+ }
+
+
+
+
+
+
+
+ //delete operations
+ if($action == 'delete_category'){
+    $category_id = $_REQUEST['category_id'];
+    $delete_category = delete_category($category_id);
+    if($delete_category == true){
+        echo '<p id="success_message">category deleted successfully!</p>';
+    }elseif ($delete_category == false) {
+        echo '<p id="error_message">category delete failed... try again!</p>';
+    }
+
  }
 
 

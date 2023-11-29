@@ -25,4 +25,31 @@ function add_category($data){
     return $result;
 }
 
+
+//get all category data
+function get_all_category_data(){
+    $conneciton = get_connection();
+    $sql = "SELECT * FROM medicines_category";
+    $result = mysqli_query($conneciton, $sql);
+    $data = [];
+    while($row = mysqli_fetch_assoc($result)){
+        array_push($data, $row);
+    }
+
+    return $data;
+
+}
+
+//delete category
+function delete_category($id){
+    $conneciton = get_connection();
+    $sql = "DELETE FROM medicines_category WHERE id={$id}";
+    $result = mysqli_query($conneciton, $sql);
+    if($result){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 ?>
