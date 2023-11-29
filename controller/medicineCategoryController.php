@@ -7,6 +7,8 @@ if(!check_login_status()){
 }
 require_once('../model/medicineCategoryModel.php');
 $action = $_REQUEST['action'];
+
+//adding medicine category crud
 if($action == 'add_category'){
 
     $error_message = '';
