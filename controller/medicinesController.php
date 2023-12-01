@@ -7,7 +7,8 @@ if(!check_login_status()){
 }
 require_once('../model/medicinesModel.php');
 
-$action = $_POST['action'];
+
+$action = $_REQUEST['action'];
 
 if($action == 'add_medicine'){
 
@@ -91,18 +92,54 @@ if($action == 'add_medicine'){
         }else{
             echo $error_message;
         }
-
-    // echo $image_url;
-    // echo $medicine_title."<br>";
-    // echo $description."<br>";
-    // echo $category_id."<br>";
-    // echo $company_id."<br>";
-    // echo $medicine_price. "<br>";
-    // echo $medicine_quantity."<br>";
-    // echo $manufacturing_date."<br>";
-    // echo $expire_date."<br>";
-    // echo $added_by."<br>";
 }
+
+//for get data action, show medicines by ajax
+if($action == 'get_data'){
+
+    //get all medicines data
+    $medicines = get_all_medicines_data();
+    echo "<tr>";
+    echo "<td>Image</td>";
+    echo "<td>Medicine Name</td>";
+    echo "<td>Category</td>";
+    echo "<td>Company</td>";
+    echo "<td>Price</td>";
+    echo "<td>Quantity</td>";
+    echo "<td>Expire Date</td>";
+    echo "<td>Added By</td>";
+    echo "<td>Action</td>";
+    echo "</tr>";
+
+    foreach ($medicines as $medicine) {
+        ?>
+         <tr>
+             <td><img width="100px" src="<?php echo $medicine['image_url']; ?>" alt=""></td>
+             <td><?php echo $medicine['medicine_title']; ?></td>
+             <td><?php echo $medicine['category_title']; ?></td>
+             <td><?php echo $medicine['company_name']; ?></td>
+             <td><?php echo $medicine['medicine_price']; ?></td>
+             <td><?php echo $medicine['medicine_quanity']; ?></td>
+             <td><?php echo $medicine['expire_date']; ?></td>
+             <td><?php echo $medicine['full_name']; ?></td>
+             <td><a href="../view/update_medicine.php?id=<?php echo $medicine['id']; ?>">Edit</a> | <a id="delete_btn" data-medicine-id="<?php echo $medicine['id']; ?>" onclick="deleteMedicine(event)" href="#">Delete</a></td>
+         </tr>
+        <?php
+     }
+
+ }
+
+  //delete operations
+  if($action == 'delete_medicine'){
+    $medicine_id = $_REQUEST['medicine_id'];
+    $delete_medicine = delete_medicine($medicine_id);
+    if($delete_medicine == true){
+        echo '<p id="success_message">medicine deleted successfully!</p>';
+    }elseif ($delete_medicine == false) {
+        echo '<p id="error_message">medicine delete failed... try again!</p>';
+    }
+
+ }
 
 
 
