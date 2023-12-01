@@ -133,5 +133,15 @@ function get_medicine_data_by_company_id($company_id){
 
 
 
+//add medicine
+function add_medicine($data){
+    $conneciton = get_connection();
+    $sql = "INSERT INTO medicines (image_url, medicine_title, description, category_id, company_id, medicine_price, medicine_quanity, added_by, manufacturing_date, expire_date) VALUES ('{$data['image_url']}', '{$data['medicine_title']}', '{$data['description']}', {$data['category_id']}, {$data['company_id']}, {$data['medicine_price']}, {$data['medicine_quanity']}, {$data['added_by']}, '{$data['manufacturing_date']}', '{$data['expire_date']}')";
+    $result = mysqli_query($conneciton, $sql);
+    return $result;
+}
+
+
+
 ?>
 
