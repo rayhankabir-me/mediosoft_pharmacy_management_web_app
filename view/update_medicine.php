@@ -52,7 +52,7 @@ if(isset($_GET['id'])){
             <br>
                 <h3>Update Medicine Category</h3>
                 <img id="current_image" width="200px" src="" alt="">
-                <form id="medicine_form" action="#" method="POST" enctype="multipart/form-data" onsubmit="addMedicine()">
+                <form id="medicine_form" action="#" method="POST" enctype="multipart/form-data" onsubmit="updateMedicine()">
 
                 <label for="">Upload New Image</label><br>
                 <input type="file" name="image_url" id="image_url"><br>
@@ -105,8 +105,8 @@ if(isset($_GET['id'])){
                 <input type="date" name="expire_date" id="expire_date">
                 <br>
 
-                <input type="submit" value="Submit" name="submit">
-                <input type="submit" value="Reset" name="reset">
+                <input type="submit" value="Update" name="submit">
+
                 </form>
 
                 <div id="status_messages"></div>
@@ -175,36 +175,63 @@ if(isset($_GET['id'])){
         }
 
 
-        // //update category data by ajax
-        // function updateCategory(){
-        //     event.preventDefault();
-        //     let category_id = <?php //echo $category_id; ?>;
-        //     let category_title = document.getElementById('category_title').value;
-        //     let description = document.getElementById('description').value;
+        //update medicine data by ajax
+        function updateMedicine(){
+            event.preventDefault();
+            let medicine_id = <?php echo $medicine_id; ?>;
 
-        //     if(category_title == ''){
-        //         document.getElementById('status_messages').innerHTML = "<p id='error_message'>you must fill category title..!</p>";
-        //     }else if(description == ''){
-        //         document.getElementById('status_messages').innerHTML = "<p id='error_message'>you must fill description..!</p>";
-        //     }else{
+            let image_url = document.getElementById('image_url').value;
+            let medicine_title = document.getElementById('medicine_title').value;
+            let description = document.getElementById('description').value;
+            let category_id = document.getElementById('category_id').value;
+            let company_id = document.getElementById('company_id').value;
+            let medicine_price = document.getElementById('medicine_price').value;
+            let medicine_quanity = document.getElementById('medicine_quanity').value;
+            let manufacturing_date = document.getElementById('manufacturing_date').value;
+            let expire_date = document.getElementById('expire_date').value;
 
-        //         let action = 'update_category';
+            if(image_url === ''){
+                document.getElementById('status_messages').innerHTML = '<p id="error_message">You must select an image!</p>';
+            }else if(medicine_title === ''){
+                document.getElementById('status_messages').innerHTML = '<p id="error_message">You must fill medicine title!</p>';
+            }else if(description === ''){
+                document.getElementById('status_messages').innerHTML = '<p id="error_message">You must fill medicine description!</p>';
+            }else if(category_id === ''){
+                document.getElementById('status_messages').innerHTML = '<p id="error_message">You must select medicine category!</p>';
+            }else if(company_id === ''){
+                document.getElementById('status_messages').innerHTML = '<p id="error_message">You must select medicine company!</p>';
+            }else if(medicine_price === ''){
+                document.getElementById('status_messages').innerHTML = '<p id="error_message">You must fill medicine price!</p>';
+            }else if(medicine_quanity===''){
+                document.getElementById('status_messages').innerHTML = '<p id="error_message">You must fill medicine quantity!</p>';
+            }else if(manufacturing_date === ''){
+                document.getElementById('status_messages').innerHTML = '<p id="error_message">You must provide manufacturing date!</p>';
+            }else if(expire_date === ''){
+                document.getElementById('status_messages').innerHTML = '<p id="error_message">You must fill expire date!</p>';
+            }else{
 
-        //         let xhttp = new XMLHttpRequest();
-        //         xhttp.open('POST', '../controller/medicineCategoryController.php', true);
-        //         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        //         xhttp.send('action=' + action + '&category_title='+category_title + '&description='+description + '&category_id='+category_id);
-        //         xhttp.onreadystatechange = function(){
-        //             if(this.readyState == 4 && this.status == 200){
-        //                 document.getElementById('status_messages').innerHTML = this.responseText;
-        //                 showData();
-        //             }
-        //         }
+                let formData = new FormData(document.getElementById('medicine_form'));
 
-        //     }
+                formData.append('action', 'update_medicine');
+                formData.append('medicine_id', <?php echo $medicine_id; ?>);
+
+                let xhttp = new XMLHttpRequest();
+                xhttp.open('POST', '../controller/medicinesController.php', true);
+
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById('status_messages').innerHTML = this.responseText;
+                        showData();
+
+                    }
+                }
+
+                xhttp.send(formData);
+                }
 
 
-        // }
+
+        }
 
 
 

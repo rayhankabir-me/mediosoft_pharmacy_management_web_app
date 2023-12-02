@@ -187,6 +187,22 @@ function delete_medicine($id){
 }
 
 
+//updating medicines
+//update posts
+function update_medicine($id, $data){
+    $conneciton = get_connection();
+    $sql = "UPDATE medicines SET image_url='{$data['image_url']}', medicine_title='{$data['medicine_title']}', description='{$data['description']}', category_id={$data['category_id']}, company_id={$data['company_id']}, medicine_price={$data['medicine_price']}, medicine_quanity={$data['medicine_quanity']}, manufacturing_date='{$data['manufacturing_date']}', expire_date='{$data['expire_date']}' WHERE id = $id";
+    $result = mysqli_query($conneciton, $sql);
+    if($result){
+        return true;
+    }else{
+        return false;
+    }
+
+}
+
+
+
 
 ?>
 
