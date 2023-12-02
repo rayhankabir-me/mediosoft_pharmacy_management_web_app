@@ -1,4 +1,5 @@
 <?php
+$page_title = 'Add Medicine Category';
 //auth
 include_once('../view/component/dashboard_sidebar.php');
 require_once('../controller/check_login_status.php');
@@ -14,28 +15,13 @@ $user_id = get_current_user_id();
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Add Medicine Category</title>
-</head>
-<body>
+<!-- including header -->
+<?php include_once('../view/component/dashboard_header.php'); ?>
+        <tr>
+            <td>
+            <?php echo get_sidebar();?>
+            </td>
 
-    <table border="1" width="100%">
-    <tr>
-        <td><a href="index.php"><h2>MedioSoft</h2></a></td>
-        <td colspan="2">
-            Welcome back! <strong><?php echo $get_current_user_info['full_name']; ?></strong>
-             | Notifications 
-             | <a href="../index.php">Visit Site</a>  
-             | <a href="../controller/logout.php">Logout</a>
-        </td>
-    </tr>
-
-    <tr>
-        <td>
-        <?php echo get_sidebar();?>
-        </td>
         <td colspan="2">
             <br>
             <br>
@@ -93,5 +79,6 @@ $user_id = get_current_user_id();
             }
         }
     </script>
-</body>
-</html>
+
+<!-- including footer -->
+<?php include_once('../view/component/footer.php'); ?>

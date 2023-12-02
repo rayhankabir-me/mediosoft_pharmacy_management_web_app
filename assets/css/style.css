@@ -1,0 +1,114 @@
+*{
+    box-sizing: border-box;
+}
+/* declaring color variable */
+:root {
+    --green: #27963C;
+    --dark: #1f2230;
+    --body_font: #444;
+
+}
+/* make a container */
+.container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+/* making default row and column */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.column-six {
+    flex: 0 0 auto;
+    width: 50%;
+    padding-left: 15px;
+    padding-right: 15px;
+
+}
+.column-four {
+    flex: 0 0 auto;
+    width: 33.33333333%;
+    padding-left: 15px;
+    padding-right: 15px;
+
+}
+.column-three {
+    flex: 0 0 auto;
+    width: 25%;
+    padding-left: 15px;
+    padding-right: 15px;
+
+}
+.column-eight {
+    flex: 0 0 auto;
+    width: 66.66666667%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.column-seven {
+    flex: 0 0 auto;
+    width: 75%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* some display css */
+.display-flex{
+    display: flex;
+}
+.align-items-center{
+    align-items: center;
+}
+.justify-content-center{
+    justify-content: center;
+}
+.justify-content-end{
+    justify-content: flex-start;
+}
+.display-none{
+    display: none;
+}
+.text-center{
+    text-align: center;
+}
+.text-left{
+    text-align: left;
+}
+.text-right{
+    text-align: right;
+}
+
+/* header area */
+.logo-area img {
+    max-width: 230px;
+}
