@@ -17,7 +17,7 @@
                 <div class="column-seven text-right">
                     <div class="menu-area">
                         <p>Welcome back! <strong><?php echo $get_current_user_info['full_name']; ?></strong>
-                        | Notifications 
+                        | <a href="#">Notifications</a> 
                         | <a href="../index.php">Visit Site</a>  
                         | <a href="../controller/logout.php">Logout</a>
                         </p>
