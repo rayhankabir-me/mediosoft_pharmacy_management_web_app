@@ -142,6 +142,15 @@ if($action == 'get_data'){
  }
 
 
+  //current data in udpate field
+if($action == 'current_data'){
+    $medicine_id=  $_REQUEST['medicine_id'];
+    $medicine_data = get_all_medicines_data_by_id($medicine_id);
+
+    echo json_encode($medicine_data);
+}
+
+
 
 
 

@@ -31,6 +31,37 @@ function get_all_medicines_data(){
     return $data;
 }
 
+//get all medicines datab by id
+function get_all_medicines_data_by_id($id){
+    $connection = get_connection();
+    $sql = "SELECT m.id, m.image_url, m.medicine_title, m.description, m.medicine_price, m.medicine_quanity, m.added_by, m.manufacturing_date, m.expire_date, m.category_id, m.company_id, c.category_title, com.company_name, u.full_name FROM medicines m JOIN medicines_category c ON m.category_id = c.id JOIN medicines_company com ON m.company_id = com.id JOIN users u ON m.added_by = u.id WHERE m.id = $id";
+
+    $result = mysqli_query($connection, $sql);
+    $data = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $post = [
+            'id'    => $row['id'],
+            'image_url' => $row['image_url'],
+            'medicine_title' => $row['medicine_title'],
+            'description' => $row['description'],
+            'medicine_price' => $row['medicine_price'],
+            'medicine_quanity' => $row['medicine_quanity'],
+            'added_by' => $row['added_by'],
+            'manufacturing_date' => $row['manufacturing_date'],
+            'expire_date' => $row['expire_date'],
+            'category_id' => $row['category_id'],
+            'company_id' => $row['company_id'],
+            'category_title' => $row['category_title'],
+            'company_name' => $row['company_name'],
+            'full_name' => $row['full_name'],
+
+        ];
+        array_push($data, $post);
+    }
+
+    return $data;
+}
+
 
 //get medicine data by medicine name
 function get_medicine_data_by_name($medicine_name){

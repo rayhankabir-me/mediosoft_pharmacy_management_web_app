@@ -24,7 +24,7 @@ if(isset($_GET['id'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Add Medicine Category</title>
+    <title>Update Medicine Category</title>
 </head>
 <body>
 
