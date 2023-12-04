@@ -51,8 +51,13 @@ function get_all_users(){
 
 }
 
+//get user data by id
 function get_user($id){
-
+    $conneciton = get_connection();
+    $sql = "SELECT * FROM users WHERE id = {$id}";
+    $result = mysqli_query($conneciton, $sql);
+    $data = $result->fetch_assoc();
+    return $data;
 
 }
 
@@ -154,5 +159,17 @@ function get_current_user_info(){
     $result = mysqli_query($conneciton, $sql);
     $user_data = $result->fetch_assoc();
     return $user_data;
+}
+
+//edit profile
+function edit_profile($user_id, $data){
+    $conneciton = get_connection();
+    $sql = "UPDATE users SET full_name='{$data['full_name']}', email='{$data['email']}', gender='{$data['gender']}', date_of_birth='{$data['date_of_birth']}', profile_photo='{$data['profile_photo']}' WHERE id = $user_id";
+    $result = mysqli_query($conneciton, $sql);
+    if($result){
+        return true;
+    }else{
+        return false;
+    }
 }
 ?>

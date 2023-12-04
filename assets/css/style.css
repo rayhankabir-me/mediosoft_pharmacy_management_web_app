@@ -465,3 +465,14 @@ th, td {
 .profile-content p strong {
     color: var(--green);
 }
+
+
+/* edit profile page styling */
+.existing-photo h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.existing-photo img {
+    margin-bottom: 20px;
+}

@@ -103,7 +103,6 @@ function get_sidebar(){
         <ul>
             <li><a href="../view/profile.php">View Profile</a></li>
             <li><a href="../view/edit_profile.php">Edit Profile</a></li>
-            <li><a href="../view/change_profile_photo.php">Change Profile Photo</a></li>
             <li><a href="../view/change_password.php">Change Password</a></li>
         </ul>
 
