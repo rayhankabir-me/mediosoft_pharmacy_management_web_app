@@ -1,4 +1,5 @@
 <?php
+$page_title = "Ticket Page - MedioSoft";
 //auth
 include_once('../view/component/dashboard_sidebar.php');
 require_once('../controller/check_login_status.php');
@@ -34,73 +35,51 @@ if(isset($_GET['ticket_id'])){
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>View All Tickets</title>
-</head>
-<body>
+<!-- including header -->
+<?php include_once('../view/component/dashboard_header.php'); ?>
 
-    <table border="1" width="100%">
-    <tr>
-        <td><a href="index.php"><h2>MedioSoft</h2></a></td>
-        <td colspan="2">
-            Welcome back! <strong><?php echo $get_current_user_info['full_name']; ?></strong>
-             | Notifications 
-             | <a href="../index.php">Visit Site</a>  
-             | <a href="../controller/logout.php">Logout</a>
-        </td>
-    </tr>
-
-    <tr>
-
-        <td>
-        <?php echo get_sidebar();?>
-        </td>
-
-
-        <td colspan="2">
-
-            <br>
-                <div class="ticket_details">
-                    <h3>Ticket Details</h3>
-                    <p>Ticket Subject: <strong><?php echo $ticket_data['ticket_subject']; ?></strong></p>
-                    <p>Medicine Title: <strong><?php echo $ticket_data['medicine_title']; ?></strong></p>
-                    <p>Ticket Description: <strong><?php echo $ticket_data['ticket_message']; ?></strong></p>
-                    <p>Requested By: <strong><?php echo $ticket_data['requested_by_name']; ?></strong></p>
-                </div>
-
-                <div class="message_details">
-                    <h3>Ticket Message....</h3>
-
-                        <div id="message_box" class="message_box">
-
+<div class="main-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="column-thirty-three">
+                            <div class="dashboard-sidebar">
+                                <?php echo get_sidebar();?>
+                            </div>
                         </div>
+                        <div class="column-sixty-six">
+                            <div class="medicines-container">
+                                <div class="ticket_details">
+                                    <h3>Ticket Details</h3>
+                                    <p>Ticket Subject: <strong><?php echo $ticket_data['ticket_subject']; ?></strong></p>
+                                    <p>Medicine Title: <strong><?php echo $ticket_data['medicine_title']; ?></strong></p>
+                                    <p>Ticket Description: <strong><?php echo $ticket_data['ticket_message']; ?></strong></p>
+                                </div>
 
-                        <form id="reply_form" action="#" method="post" onsubmit="sendReply()">
-                            <textarea name="reply_message" id="reply_message" placeholder="Type your reply..." cols="60" rows="4"></textarea>
-                            <br>
-                            <input type="submit" value="Send Reply">
+                                <div class="message_details">
+                                        <div id="message_box" class="message_box">
 
-                            <div id="status_messages"></div>
+                                        </div>
 
-                            
-                    
-                        </form>
-                        
+                                        <form id="reply_form" action="#" method="post" onsubmit="sendReply()">
+                                            <textarea name="reply_message" id="reply_message" placeholder="Type your reply..." rows="6"></textarea>
+                                            <br>
+                                            <input type="submit" value="Send Reply">
+
+                                            <div id="status_messages"></div>
+
+                                            
+                                    
+                                        </form>
+                                        
+                                </div>
+                                <div id="status_messages"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+    </div>
 
 
-            <br>
-            <br>
-
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3">Copyright &copy; 2023 MedioSoft. All rights are reserved.</td>
-    </tr>
-
-    </table>
 
         
         <script>
@@ -150,28 +129,8 @@ if(isset($_GET['ticket_id'])){
 
 
         </script>
-        <style>
-            .message_box {
-                max-width: 600px;
-                max-height: 600px;
-                overflow-y: scroll;
-            }
 
-            .message {
-                margin: 10px;
-                padding: 10px;
-                border: 1px solid #ccc;
-            }
 
-            .current-user {
-                background-color: rgba(255, 87, 5, 0.2);
-                text-align: right;
-            }
 
-            .other-user {
-                background-color: rgba(141, 2, 207, 0.2);
-                text-align: left;
-            }
-        </style>
-</body>
-</html>
+<!-- including footer -->
+<?php include_once('../view/component/footer.php'); ?>

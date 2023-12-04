@@ -51,9 +51,10 @@ if($action == 'add_reply'){
         $sender_class = ($reply['sender_id'] == $current_user_id) ? 'current-user' : 'other-user';
         
         echo '<div class="message ' . $sender_class . '">';
-        echo '<strong>' . $reply['sender_name'] . ':</strong>';
+        echo '<img src="'.$reply['profile_photo'].'">';
+        echo '<strong>' . $reply['sender_name'] . '</strong>';
         echo '<p>' . $reply['reply_message'] . '</p>';
-        echo '<small>' . $reply['created_at'] . '</small>';
+        echo '<span>' . $reply['created_at'] . '</span>';
         echo '</div>';
     }
 

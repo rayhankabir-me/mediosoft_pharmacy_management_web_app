@@ -88,6 +88,16 @@ function get_sidebar(){
         <?php
     }
 
+    //showing menu for customers
+    if($get_current_user_type == "Customer"){
+        ?>
+        <ul>
+            <li><a href="../view/my_tickets.php">My Tickets</a></li>
+        </ul>
+
+        <?php
+    }
+
     //showing menu for all users
     ?>
         <ul>

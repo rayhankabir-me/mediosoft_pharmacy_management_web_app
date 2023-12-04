@@ -9,53 +9,78 @@ $get_current_user_info = get_current_user_info();
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Dashboard - MedioSoft</title>
-</head>
-<body>
+<!-- including header -->
+<?php include_once('../view/component/dashboard_header.php'); ?>
 
-    <table border="1" width="100%">
-    <tr>
-        <td><a href="index.php"><h2>MedioSoft</h2></a></td>
-        <td colspan="2">
-            Welcome back! <strong><?php echo $get_current_user_info['full_name']; ?></strong>
-             | Notifications 
-             | <a href="../index.php">Visit Site</a>  
-             | <a href="../controller/logout.php">Logout</a>
-        </td>
-    </tr>
+<div class="main-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="column-thirty-three">
+                            <div class="dashboard-sidebar">
+                                <?php echo get_sidebar();?>
+                            </div>
+                        </div>
+                        <div class="column-sixty-six">
+                            <div class="dashboard-block">
+                                <div class="row">
+                                    <div class="column-twenty-five">
+                                        <div class="single-block">
+                                            <h3>Total Medicines</h3>
+                                            <p>20</p>
+                                        </div>
+                                    </div>
+                                    <div class="column-twenty-five">
+                                        <div class="single-block">
+                                            <h3>Medicines Category</h3>
+                                            <p>20</p>
+                                        </div>
+                                    </div>
+                                    <div class="column-twenty-five">
+                                        <div class="single-block">
+                                            <h3>Medicines Company</h3>
+                                            <p>20</p>
+                                        </div>
+                                    </div>
+                                    <div class="column-twenty-five">
+                                        <div class="single-block">
+                                            <h3>Posts</h3>
+                                            <p>20</p>
+                                        </div>
+                                    </div>
+                                    <div class="column-twenty-five">
+                                        <div class="single-block">
+                                            <h3>Users</h3>
+                                            <p>20</p>
+                                        </div>
+                                    </div>
+                                    <div class="column-twenty-five">
+                                        <div class="single-block">
+                                            <h3>Pharmacists</h3>
+                                            <p>20</p>
+                                        </div>
+                                    </div>
+                                    <div class="column-twenty-five">
+                                        <div class="single-block">
+                                            <h3>Customers</h3>
+                                            <p>20</p>
+                                        </div>
+                                    </div>
+                                    <div class="column-twenty-five">
+                                        <div class="single-block">
+                                            <h3>Orders</h3>
+                                            <p>20</p>
+                                        </div>
+                                    </div>
+                                </div>
 
-    <tr>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+    </div>
 
-        <td>
-        <?php echo get_sidebar();?>
-        </td>
 
 
-        <td colspan="2">
-            <br>
-            <br>
-                <h3>Total Medicines - 20</h3>
-                <h3>Medicines Category - 20</h3>
-                <h3>Medicines Company - 20</h3>
-                <h3>Orders - 20</h3>
-                <h3>Posts - 20</h3>
-                <h3>Users - 20</h3>
-                <h3>Pharmacists - 20</h3>
-                <h3>Customers - 20</h3>
-
-            <br>
-            <br>
-
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3">Copyright &copy; 2023 MedioSoft. All rights are reserved.</td>
-    </tr>
-
-    </table>
-    
-</body>
-</html>
+<!-- including footer -->
+<?php include_once('../view/component/footer.php'); ?>
