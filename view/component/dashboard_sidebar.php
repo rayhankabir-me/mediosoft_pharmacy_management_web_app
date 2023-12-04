@@ -96,9 +96,9 @@ function get_sidebar(){
             <li><a href="../view/change_profile_photo.php">Change Profile Photo</a></li>
             <li><a href="../view/change_password.php">Change Password</a></li>
         </ul>
+
+
     <?php
-
-
 
 }
 

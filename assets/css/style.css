@@ -6,6 +6,7 @@
     --green: #27963C;
     --dark: #1f2230;
     --body_font: #444;
+    --light-green: #80CC28;
 
 }
 /* make a container */
@@ -48,34 +49,34 @@
     margin-right: -15px;
     margin-left: -15px;
 }
-.column-six {
+.column-fifty {
     flex: 0 0 auto;
     width: 50%;
     padding-left: 15px;
     padding-right: 15px;
 
 }
-.column-four {
+.column-thirty-three {
     flex: 0 0 auto;
     width: 33.33333333%;
     padding-left: 15px;
     padding-right: 15px;
 
 }
-.column-three {
+.column-twenty-five {
     flex: 0 0 auto;
     width: 25%;
     padding-left: 15px;
     padding-right: 15px;
 
 }
-.column-eight {
+.column-sixty-six {
     flex: 0 0 auto;
     width: 66.66666667%;
     padding-left: 15px;
     padding-right: 15px;
 }
-.column-seven {
+.column-seventy-seven{
     flex: 0 0 auto;
     width: 75%;
     padding-left: 15px;
@@ -107,8 +108,105 @@
 .text-right{
     text-align: right;
 }
-
+#error_message {
+    background: rgba(231, 76, 60,0.2);
+    padding: 12px 20px;
+    color: #e74c3c;
+    border-radius: 20px;
+    font-size: 15px;
+    margin: 0;
+}
+#success_message {
+    background: rgba(38, 150, 60,0.2);
+    padding: 12px 20px;
+    color: #26963c;
+    border-radius: 20px;
+    font-size: 15px;
+}
 /* header area */
+.dashboard_header {
+    padding: 15px 0px;
+    border-bottom: 1px solid #ddd;
+}
 .logo-area img {
     max-width: 230px;
+}
+
+.main-section {
+    margin-top: 30px;
+}
+/* dashboard side bar styling */
+.dashboard-sidebar {
+    background: var(--light-green);
+}
+.dashboard-sidebar {
+    padding: 25px;
+}
+.dashboard-sidebar ul {
+    padding: 0;
+    margin: 0;
+}
+.dashboard-sidebar ul li {
+    list-style: none;
+    padding: 5px 5px;
+    margin-bottom: 5px;
+}
+
+.dashboard-sidebar ul li a {
+    color: var(--dark);
+    text-decoration: none;
+    background: #fff;
+    padding: 10px 20px;
+    display: block;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+.dashboard-sidebar ul li a:hover {
+    background: var(--green);
+    color: #fff;
+}
+
+.dashboard-sidebar ul li ul li {
+    margin-left: 40px;
+    padding: 0;
+    margin-top: 10px;
+}
+
+
+/* form container and form */
+.form-container {
+    border: 1px solid #ddd;
+    padding: 30px;
+}
+.form-title h3 {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 20px;
+}
+.medio-form label {
+    margin-bottom: 8px;
+    display: block;
+}
+.medio-form input, textarea, select {
+    display: block;
+    width: 100%;
+    padding: 4px 10px;
+    margin-bottom: 18px;
+}
+.medio-form input[type="submit"] {
+    border: 0px;
+    background: var(--light-green);
+    color: #fff;
+    font-size: 15px;
+    padding: 8px 30px;
+    border-radius: 20px;
+    max-width: 140px;
+    display: inline-block !important;
+    margin-right: 15px;
+    margin-top: 25px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.medio-form input[type="submit"]:hover{
+    background: var(--green);
 }
