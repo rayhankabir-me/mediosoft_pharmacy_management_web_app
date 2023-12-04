@@ -1,4 +1,5 @@
 <?php
+$page_title = "Add Medicine";
 //auth
 include_once('../view/component/dashboard_sidebar.php');
 require_once('../controller/check_login_status.php');
@@ -21,101 +22,95 @@ $companies = get_all_medicine_company_data();
 
 ?>
 
+<!-- including header -->
+<?php include_once('../view/component/dashboard_header.php'); ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Add Medicine</title>
-</head>
-<body>
 
-    <table border="1" width="100%">
-    <tr>
-        <td><a href="index.php"><h2>MedioSoft</h2></a></td>
-        <td colspan="2">
-            Welcome back! <strong><?php echo $get_current_user_info['full_name']; ?></strong>
-             | Notifications 
-             | <a href="../index.php">Visit Site</a>  
-             | <a href="../controller/logout.php">Logout</a>
-        </td>
-    </tr>
+<div class="main-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="column-thirty-three">
+                            <div class="dashboard-sidebar">
+                                <?php echo get_sidebar();?>
+                            </div>
+                        </div>
+                        <div class="column-sixty-six">
+                            <div class="form-container">
+                                <div class="form-title">
+                                    <h3>Add Medicine</h3>
+                                </div>
 
-    <tr>
-        <td>
-        <?php echo get_sidebar();?>
-        </td>
-        <td colspan="2">
-            <br>
-            <br>
-                <h3>Add Medicine</h3>
-                <form id="medicine_form" action="#" method="POST" enctype="multipart/form-data" onsubmit="addMedicine()">
+                                <div class="medio-form">
+                                    <form id="medicine_form" action="#" method="POST" enctype="multipart/form-data" onsubmit="addMedicine()">
 
-                <label for="">Upload Medicine Image</label><br>
-                <input type="file" name="image_url" id="image_url"><br>
-                <label for="">Medicine Name </label><br>
-                <input type="text" name="medicine_title" id="medicine_title">
-                <br>
-                <label for="">Description </label>
-                <br>
-                <textarea name="description" id="description" cols="30" rows="10"></textarea>
-                <br>
-                <label for="">Select Category</label>
-                <br>
-                <select name="category_id" id="category_id">
-                    <?php
-                        foreach($catgories as $category){
-                            
-                            ?>
-                                <option value="<?php echo $category['id']; ?>"><?php echo $category['category_title']; ?></option>
-                            <?php
-                        }
-                    ?>
-                </select>
-                <br>
-                <label for="">Select Company</label>
-                <br>
-                <select name="company_id" id="company_id">
-                <?php
-                        foreach($companies as $company){
-                            
-                            ?>
-                                <option value="<?php echo $company['id']; ?>"><?php echo $company['company_name']; ?></option>
-                            <?php
-                        }
-                    ?>
-                </select>
-                <br>
-                <label for="">Medicine Price</label>
-                <br>
-                <input type="text" name="medicine_price" id="medicine_price"><br>
-                <label for="">Medicine Quantity</label>
-                <br>
-                <input type="number" name="medicine_quanity" id="medicine_quanity">
-                <br>
-                <label for="">Manufacturing Data</label>
-                <br>
-                <input type="date" name="manufacturing_date" id="manufacturing_date">
-                <br>
-                <label for="">Expire Date</label>
-                <br>
-                <input type="date" name="expire_date" id="expire_date">
-                <br>
+                                        <label for="">Upload Medicine Image</label>
+                                        <input type="file" name="image_url" id="image_url">
+                                        <label for="">Medicine Name </label>
+                                        <input type="text" name="medicine_title" id="medicine_title">
 
-                <input type="submit" value="Submit" name="submit">
-                <input type="submit" value="Reset" name="reset">
-                </form>
+                                        <label for="">Description </label>
+
+                                        <textarea name="description" id="description" cols="30" rows="10"></textarea>
+
+                                        <label for="">Select Category</label>
+
+                                        <select name="category_id" id="category_id">
+                                            <?php
+                                                foreach($catgories as $category){
+                                                    
+                                                    ?>
+                                                        <option value="<?php echo $category['id']; ?>"><?php echo $category['category_title']; ?></option>
+                                                    <?php
+                                                }
+                                            ?>
+                                        </select>
+
+                                        <label for="">Select Company</label>
+
+                                        <select name="company_id" id="company_id">
+                                        <?php
+                                                foreach($companies as $company){
+                                                    
+                                                    ?>
+                                                        <option value="<?php echo $company['id']; ?>"><?php echo $company['company_name']; ?></option>
+                                                    <?php
+                                                }
+                                            ?>
+                                        </select>
+
+                                        <label for="">Medicine Price</label>
+
+                                        <input type="text" name="medicine_price" id="medicine_price">
+                                        <label for="">Medicine Quantity</label>
+
+                                        <input type="number" name="medicine_quanity" id="medicine_quanity">
+
+                                        <label for="">Manufacturing Data</label>
+
+                                        <input type="date" name="manufacturing_date" id="manufacturing_date">
+
+                                        <label for="">Expire Date</label>
+
+                                        <input type="date" name="expire_date" id="expire_date">
+
+
+                                        <input type="submit" value="Submit" name="submit">
+                                        <input type="submit" value="Reset" name="reset">
+                                    </form>
+                                </div>
+                                <div id="status_messages"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
 
                 <div id="status_messages"></div>
-            <br>
-            <br>
 
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3">Copyright &copy; 2023 MedioSoft. All rights are reserved.</td>
-    </tr>
-
-    </table>
     
 
     <script>
@@ -173,5 +168,5 @@ $companies = get_all_medicine_company_data();
 </script>
 
 
-</body>
-</html>
+<!-- including footer -->
+<?php include_once('../view/component/footer.php'); ?>

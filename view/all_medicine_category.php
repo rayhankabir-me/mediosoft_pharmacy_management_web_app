@@ -1,4 +1,5 @@
 <?php
+$page_title = 'All Medicine Category';
 include_once('../view/component/dashboard_sidebar.php');
 require_once('../controller/check_login_status.php');
 if(!check_login_status()){
@@ -12,50 +13,39 @@ $get_current_user_info = get_current_user_info();
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>All Medicine Category</title>
-</head>
-<body>
-
-    <table border="1" width="100%">
-    <tr>
-        <td><a href="index.php"><h2>MedioSoft</h2></a></td>
-        <td colspan="2">
-            Welcome back! <strong><?php echo $get_current_user_info['full_name']; ?></strong>
-             | Notifications 
-             | <a href="../index.php">Visit Site</a>  
-             | <a href="../controller/logout.php">Logout</a>
-        </td>
-    </tr>
-
-    <tr>
-
-        <td>
-        <?php echo get_sidebar();?>
-        </td>
+<!-- including header -->
+<?php include_once('../view/component/dashboard_header.php'); ?>
 
 
-        <td colspan="2">
-            <br>
-            <br>
-                <table id="show_category" border="1" width="100%">
+<div class="main-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="column-thirty-three">
+                            <div class="dashboard-sidebar">
+                                <?php echo get_sidebar();?>
+                            </div>
+                        </div>
+                        <div class="column-sixty-six">
+                            <div class="medicines-container">
+                                <div class="form-title">
+                                    <h3>All Medicine Category</h3>
+                                </div>
+
+                                <div class="all-medicines">
+                                    <table class="table" id="show_category">
 
 
-                </table>
-                <div id="status_messages"></div>
+                                    </table>
+                                </div>
+                                <div id="status_messages"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
 
-            <br>
-            <br>
 
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3">Copyright &copy; 2023 MedioSoft. All rights are reserved.</td>
-    </tr>
 
-    </table>
     
     <script>
         //showing category with ajax
@@ -94,5 +84,7 @@ $get_current_user_info = get_current_user_info();
 
         }
     </script>
-</body>
-</html>
+
+
+<!-- including footer -->
+<?php include_once('../view/component/footer.php'); ?>

@@ -1,4 +1,5 @@
 <?php
+$page_title = "Request Ticket - MedioSoft";
 include_once('../view/component/dashboard_sidebar.php');
 require_once('../controller/check_login_status.php');
 if(!check_login_status()){
@@ -12,70 +13,55 @@ $medicines = get_all_medicines_data();
 
 ?>
 
+<!-- including header -->
+<?php include_once('../view/component/frontend_header.php'); ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Request Support Ticket</title>
-</head>
-<body>
-    <table border="1" width="100%">
-    <tr>
-        <td><a href="../index.php"><h2>MedioSoft</h2></a></td>
-        <td colspan="2">
-            <a href="../index.php">Home</a>
-             | <a href="view/medicines.php">Medicines</a> 
-             | <a href="view/blog.php">Blog</a> 
-             | <a href="view/contact.php">Contact</a>
-             | <a href="../view/request_support_ticket.php">Request Ticket</a>  
-             | <a href="view/registration.php">Register</a> 
-        </td>
-    </tr>
+<section class="banner-section">
+    <div class="container">
+        <div class="banner-title">
+            <h2>Request Support Ticket</h2>
+        </div>
+    </div>
+</section>
+<section class="main-section">
+    <div class="container">
+        <div class="form-container">
 
-    <tr>
-        <td></td>
-        <td colspan="2">
-            <br>
-            <br>
-            <form action="#" method="post" onsubmit="addTicket()">
-                <label for="">Select Medicine</label>
-                <select name="ticket" id="select_medicine">
+            <div class="medio-form">
+                <form action="#" method="post" onsubmit="addTicket()">
+                    <label for="">Select Medicine</label>
+                    <select name="ticket" id="select_medicine">
 
-                    <?php
-                        foreach($medicines as $medicine){
-                            
-                            ?>
-                                <option value="<?php echo $medicine['id']; ?>"><?php echo $medicine['medicine_title']; ?></option>
                             <?php
-                        }
-                    ?>
+                                foreach($medicines as $medicine){
+                                    
+                                    ?>
+                                        <option value="<?php echo $medicine['id']; ?>"><?php echo $medicine['medicine_title']; ?></option>
+                                    <?php
+                                }
+                            ?>
 
+                            
+                    </select>
+                    <label for="">Ticket Subject</label>
+
+                    <input type="text" name="ticket_subject" id="ticket_subject">
+
+                    <label for="">Support Message</label>
+
+                    <textarea name="support_message" id="support_message" cols="30" rows="10"></textarea>
+
+                    <input type="submit" value="Make Ticket">
                     
-                </select>
-                <br>
-                <hr>
-                <label for="">Ticket Subject</label>
-                <br>
-                <input type="text" name="ticket_subject" id="ticket_subject">
-                <hr>
-                <label for="">Support Message</label>
-                <br>
-                <textarea name="support_message" id="support_message" cols="30" rows="10"></textarea>
-                <hr>
-                <input type="submit" value="Make Ticket">
-                
-                <div id="status_messages"></div>
-            </form>
-            <br>
-            <br>
+                    <div id="status_messages"></div>
+                </form>
+            </div>
+            <div id="status_messages"></div>
+        </div>
+    </div>
+</section>
 
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3">Copyright &copy; 2023 MedioSoft. All rights are reserved.</td>
-    </tr>
 
-    </table>
 
     <!-- javascript validation -->
     <script>
@@ -112,6 +98,5 @@ $medicines = get_all_medicines_data();
 
     </script>
     
-
-</body>
-</html>
+<!-- including footer -->
+<?php include_once('../view/component/footer.php'); ?>

@@ -1,4 +1,5 @@
 <?php
+$page_title = "Add Medicine Company";
 //auth
 include_once('../view/component/dashboard_sidebar.php');
 require_once('../controller/check_login_status.php');
@@ -14,55 +15,43 @@ $user_id = get_current_user_id();
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Add Medicine Company</title>
-</head>
-<body>
-
-    <table border="1" width="100%">
-    <tr>
-        <td><a href="index.php"><h2>MedioSoft</h2></a></td>
-        <td colspan="2">
-            Welcome back! <strong><?php echo $get_current_user_info['full_name']; ?></strong>
-             | Notifications 
-             | <a href="../index.php">Visit Site</a>  
-             | <a href="../controller/logout.php">Logout</a>
-        </td>
-    </tr>
-
-    <tr>
-        <td>
-        <?php echo get_sidebar();?>
-        </td>
-        <td colspan="2">
-            <br>
-            <br>
-                <h3>Add Medicine Company</h3>
-                <form action="#" method="post" onsubmit="addCompany()">
+<!-- including header -->
+<?php include_once('../view/component/dashboard_header.php'); ?>
 
 
-                <label for="">Company Name </label><input type="text" name="company_name" id="company_name">
-                <hr>
-                <label for="">Short Description </label><textarea name="description" id="description" cols="30" rows="10"></textarea>
-                <hr>
+            <div class="main-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="column-thirty-three">
+                            <div class="dashboard-sidebar">
+                                <?php echo get_sidebar();?>
+                            </div>
+                        </div>
+                        <div class="column-sixty-six">
+                            <div class="form-container">
+                                <div class="form-title">
+                                <h3>Add Medicine Company</h3>
+                                </div>
 
-                <br>
-                <div id="status_messages"></div>
-                <input type="submit" value="Submit" name="submit">
-                <input type="submit" value="Reset" name="reset">
-                </form>
-            <br>
-            <br>
+                                <div class="medio-form">
+                                    <form action="#" method="post" onsubmit="addCompany()">
 
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3">Copyright &copy; 2023 MedioSoft. All rights are reserved.</td>
-    </tr>
+                                    <label for="">Company Name </label><input type="text" name="company_name" id="company_name">
 
-    </table>
+                                        <label for="">Short Description </label><textarea name="description" id="description" cols="30" rows="10"></textarea>
+
+
+                                        <input type="submit" value="Submit" name="submit">
+                                        <input type="submit" value="Reset" name="reset">
+                                    </form>
+                                </div>
+                                <div id="status_messages"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
     
     <script>
         function addCompany(){
@@ -93,5 +82,7 @@ $user_id = get_current_user_id();
             }
         }
     </script>
-</body>
-</html>
+
+
+<!-- including footer -->
+<?php include_once('../view/component/footer.php'); ?>

@@ -7,6 +7,8 @@
     --dark: #1f2230;
     --body_font: #444;
     --light-green: #80CC28;
+    --red: #e74c3c;
+    --dark-red: #c0392b;
 
 }
 /* make a container */
@@ -36,9 +38,9 @@
     }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1400px) {
     .container {
-        max-width: 1140px;
+        max-width: 1340px;
     }
 }
 
@@ -115,6 +117,7 @@
     border-radius: 20px;
     font-size: 15px;
     margin: 0;
+    margin-top: 25px;
 }
 #success_message {
     background: rgba(38, 150, 60,0.2);
@@ -122,8 +125,28 @@
     color: #26963c;
     border-radius: 20px;
     font-size: 15px;
+    margin: 0;
+    margin-top: 25px;
 }
-/* header area */
+/* frontend header area styling */
+.frontend_header {
+    padding: 10px 0px;
+}
+.frontend-menu-area ul li {
+    list-style: none;
+    display: inline-block;
+}
+
+.frontend-menu-area ul li a {
+    text-decoration: none;
+    margin-left: 5px;
+    color: var(--black);
+    padding: 15px 8px;
+}
+.frontend-menu-area ul li a:hover {
+    color: var(--green);
+}
+/* dashboard header area */
 .dashboard_header {
     padding: 15px 0px;
     border-bottom: 1px solid #ddd;
@@ -187,12 +210,16 @@
     margin-bottom: 8px;
     display: block;
 }
-.medio-form input, textarea, select {
+.medio-form input,
+.medio-form textarea,
+.medio-form select {
     display: block;
     width: 100%;
     padding: 4px 10px;
     margin-bottom: 18px;
+    border: 1px solid #ddd;
 }
+
 .medio-form input[type="submit"] {
     border: 0px;
     background: var(--light-green);
@@ -201,12 +228,119 @@
     padding: 8px 30px;
     border-radius: 20px;
     max-width: 140px;
-    display: inline-block !important;
+    display: inline-block;
     margin-right: 15px;
-    margin-top: 25px;
+    margin-top: 10px;
+    margin-bottom: 0px;
     transition: 0.3s;
     cursor: pointer;
 }
 .medio-form input[type="submit"]:hover{
     background: var(--green);
+}
+.checkbox-container input {
+    width: auto;
+    display: inline-block;
+    margin-right: 10px;
+
+}
+.medio-form fieldset {
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+}
+
+.checkbox-container label {
+    display: inline-block;
+
+}
+/* button styling */
+.medio-btn {
+    background: var(--light-green);
+    color: #fff;
+    padding: 8px 30px;
+    border-radius: 20px;
+    transition: 0.3s;
+    text-decoration: none;
+}
+.medio-btn:hover{
+    background: var(--green);
+}
+
+.edit-btn {
+    background: var(--light-green);
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 20px;
+    transition: 0.3s;
+    text-decoration: none;
+    font-size: 13px;
+}
+.edit-btn:hover{
+    background: var(--green);
+}
+.delete-btn {
+    background: var(--red);
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 20px;
+    transition: 0.3s;
+    text-decoration: none;
+    font-size: 13px;
+}
+.delete-btn:hover{
+    background: var(--dark-red);
+}
+
+/* notification btn */
+.notification-btn {
+    color: var(--dark);
+    text-decoration: none;
+}
+.notification-btn span {
+    background: rgba(231, 76, 60,0.2);
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    display: inline-block;
+    text-align: center;
+    line-height: 25px;
+    margin-right: 3px;
+    font-size: 14px;
+    color: var(--red);
+}
+
+/* footer styling */
+.footer {
+    padding: 5px 0px;
+    background: #ddd;
+    margin-top: 30px;
+}
+
+/* styling table */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    text-align: center;
+    padding: 10px 0px;
+}
+/* back end medicines table */
+.all-medicines {
+    font-size: 15px;
+}
+
+/* banner section styling */
+.banner-section {
+    background: var(--light-green);
+    padding: 60px 0px;
+    text-align: center;
+    font-size: 25px;
+    color: #fff;
 }

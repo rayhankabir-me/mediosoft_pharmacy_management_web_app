@@ -106,7 +106,6 @@ if($action == 'get_data'){
     echo "<td>Company</td>";
     echo "<td>Price</td>";
     echo "<td>Quantity</td>";
-    echo "<td>Expire Date</td>";
     echo "<td>Added By</td>";
     echo "<td>Action</td>";
     echo "</tr>";
@@ -114,15 +113,14 @@ if($action == 'get_data'){
     foreach ($medicines as $medicine) {
         ?>
          <tr>
-             <td><img width="100px" src="<?php echo $medicine['image_url']; ?>" alt=""></td>
+             <td><img width="80px" src="<?php echo $medicine['image_url']; ?>" alt=""></td>
              <td><?php echo $medicine['medicine_title']; ?></td>
              <td><?php echo $medicine['category_title']; ?></td>
              <td><?php echo $medicine['company_name']; ?></td>
              <td><?php echo $medicine['medicine_price']; ?></td>
              <td><?php echo $medicine['medicine_quanity']; ?></td>
-             <td><?php echo $medicine['expire_date']; ?></td>
              <td><?php echo $medicine['full_name']; ?></td>
-             <td><a href="../view/update_medicine.php?id=<?php echo $medicine['id']; ?>">Edit</a> | <a id="delete_btn" data-medicine-id="<?php echo $medicine['id']; ?>" onclick="deleteMedicine(event)" href="#">Delete</a></td>
+             <td><a class="edit-btn" href="../view/update_medicine.php?id=<?php echo $medicine['id']; ?>">Edit</a> | <a class="delete-btn" id="delete_btn" data-medicine-id="<?php echo $medicine['id']; ?>" onclick="deleteMedicine(event)" href="#">Delete</a></td>
          </tr>
         <?php
      }

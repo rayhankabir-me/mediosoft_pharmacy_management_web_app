@@ -1,4 +1,5 @@
 <?php
+$page_title = "User Registration - MedioSoft";
 include_once('../controller/functions.php');
 require_once('../model/usersModel.php');
 
@@ -82,75 +83,72 @@ if(isset($_REQUEST['submit'])){
 }
 ?>
 
+<!-- including header -->
+<?php include_once('../view/component/frontend_header.php'); ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Registration - MedioSoft</title>
-</head>
-<body>
+<section class="banner-section">
+    <div class="container">
+        <div class="banner-title">
+            <h2>User Registration</h2>
+        </div>
+    </div>
+</section>
 
-    <table border="1" width="100%">
-    <tr>
-        <td><a href="../index.php"><h2>MedioSoft</h2></a></td>
-        <td colspan="2">
-            <a href="../index.php">Home</a>
-             | <a href="medicines.php">Medicines</a> 
-             | <a href="blog.php">Blog</a> 
-             | <a href="contact.php">Contact</a> 
-             | <a href="registration.php">Register</a> 
-             | <a href="login.php">Login</a>
-        </td>
-    </tr>
 
-    <tr>
-        <td></td>
-        <td colspan="2">
-            <br>
-            <br>
-                <h3>User Registration</h3>
+<section class="main-section">
+    <div class="container">
+        <div class="form-container">
+
+            <div class="medio-form">
                 <form action="#" method="post">
 
 
-                <label for="">User Name: </label><input type="text" name="username" id="">
-                <hr>
-                <label for="">Email: </label><input type="email" name="email" id="">
-                <hr>
-                <label for="">Full Name: </label><input type="text" name="full_name" id="">
-                <hr>
-                <label for="">Password: </label><input type="password" name="password" id="">
-                <hr>
-                <label for="">Confirm Password: </label><input type="password" name="c_password" id="">
-                <hr>
-                <fieldset>
-                <legend>Gender</legend>
-                <input type="radio" name="gender" value="male" id=""><label for=""> Male</label>
-                <input type="radio" name="gender" value="female" id=""><label for=""> Female</label>
-                <input type="radio" name="gender" value="other" id=""><label for=""> Other</label>
-                </fieldset>
-                <br>
-                <fieldset>
-                <legend>Date of Birth</legend>
-                <input type="date" name="date_of_birth" id="">
-                </fieldset>
+                    <label for="username">User Name: </label>
+                    <input type="text" name="username" id="username">
 
-                <p><?php if(isset($error_message)){echo $error_message;} ?></p>
-                <p><?php if(isset($success_message)){echo $success_message;} ?></p>
+                    <label for="email">Email: </label>
+                    <input type="email" name="email" id="email">
 
-                <br>
-                <input type="submit" value="Submit" name="submit">
-                <input type="submit" value="Reset" name="reset">
+                    <label for="full_name">Full Name: </label>
+                    <input type="text" name="full_name" id="full_name">
+
+                    <label for="password">Password: </label>
+                    <input type="password" name="password" id="password">
+
+                    <label for="c_password">Confirm Password: </label>
+                    <input type="password" name="c_password" id="c_password">
+
+                    <div class="checkbox-container">
+                        <fieldset>
+                        <legend>Gender</legend>
+                            <input type="radio" name="gender" value="male" id=""><label for=""> Male</label>
+                            <input type="radio" name="gender" value="female" id=""><label for=""> Female</label>
+                            <input type="radio" name="gender" value="other" id=""><label for=""> Other</label>
+                        </fieldset>
+                    </div>
+
+                    <fieldset>
+                    <legend>Date of Birth</legend>
+                    <input type="date" name="date_of_birth" id="">
+                    </fieldset>
+
+
+
+                    <br>
+                    <input type="submit" value="Submit" name="submit">
+                    <input type="submit" value="Reset" name="reset">
                 </form>
-            <br>
-            <br>
+            </div>
+            <div id="status_messages">
+                
+                    <p><?php if(isset($error_message)){echo $error_message;} ?></p>
+                    <p><?php if(isset($success_message)){echo $success_message;} ?></p>
+            </div>
+        </div>
+    </div>
+</section>
 
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3">Copyright &copy; 2023 MedioSoft. All rights are reserved.</td>
-    </tr>
 
-    </table>
-    
-</body>
-</html>
+
+<!-- including footer -->
+<?php include_once('../view/component/footer.php'); ?>

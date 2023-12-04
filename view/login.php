@@ -1,6 +1,6 @@
 <?php
 
-
+$page_title = "User Login - MedioSoft";
  include_once('../controller/functions.php');
  require_once('../model/usersModel.php');
  require_once('../controller/check_login_status.php');
@@ -56,67 +56,52 @@
 ?>
 
 
+<!-- including header -->
+<?php include_once('../view/component/frontend_header.php'); ?>
+
+<section class="banner-section">
+    <div class="container">
+        <div class="banner-title">
+            <h2>Login Here</h2>
+        </div>
+    </div>
+</section>
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<section class="main-section">
+    <div class="container">
+        <div class="form-container">
 
-    <title>Login</title>
-</head>
-<body>
-
-    <table border="1" width="100%">
-    <tr>
-        <td><a href="index.php"><h2>MedioSoft</h2></a></td>
-        <td colspan="2">
-            <a href="index.php">Home</a>
-             | <a href="medicines.php">Medicines</a> 
-             | <a href="blog.php">Blog</a> 
-             | <a href="contact.php">Contact</a> 
-             | <a href="registration.php">Register</a> 
-             | <a href="login.php">Login</a>
-        </td>
-    </tr>
-
-    <tr>
-        <td></td>
-        <td colspan="2">
-            <br>
-            <br>
-            <?php 
-            if(isset($_SESSION['success_message'])){
-                echo $_SESSION['success_message']."<br><br>";
-            }
-            ?>
-                <h3>User Login</h3>
+            <div class="medio-form">
                 <form action="#" method="post">
-                    <fieldset>
-                        <legend>Login</legend>
-                        <label for="">User Name: </label><input type="text" name="username" id="">
-                        <hr>
-                        <label for="">Password: </label><input type="password" name="password" id="">
-                        <hr>
-                        <input type="checkbox" name="remember_me" id=""><label for="">Remember Me </label>
-                        <br>
-                        <br>
+
+                        <label for="username">User Name: </label>
+                        <input type="text" name="username" id="username">
+
+                        <label for="password">Password: </label>
+                        <input type="password" name="password" id="password">
+                        <div class="checkbox-container">
+                            <input type="checkbox" name="remember_me" id="remember_me">
+                            <label for="">Remember Me </label>
+
+                        </div>
+
+
                         <input type="submit" value="Submit" name="submit">
-                        <a href="forgot_password.php">Forgor Password?</a>
-                        <br>
-                        <p><?php if(isset($error_message)){echo $error_message;} ?></p>
-                        <p><?php if(isset($invalid_login)){echo $invalid_login;} ?></p>
-                    </fieldset>
-                </form>
-            <br>
-            <br>
+                        <a href="forgot_password.php">Forgot Password?</a>
 
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3">Copyright &copy; 2023 MedioSoft. All rights are reserved.</td>
-    </tr>
 
-    </table>
-    
-</body>
-</html>
+                    </form>
+            </div>
+            <div id="status_messages">
+                
+                <p><?php if(isset($error_message)){echo $error_message;} ?></p>
+                <p><?php if(isset($invalid_login)){echo $invalid_login;} ?></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- including footer -->
+<?php include_once('../view/component/footer.php'); ?>
