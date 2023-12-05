@@ -12,7 +12,7 @@ $page_title = "Forgot Password - MedioSoft";
     $email = $_REQUEST['email'];
 
     if($email == ''){
-        $error_message .= "Your must fill User Name! <br>";
+        $error_message .= "Your must fill your email address! <br>";
 
     }
     if($error_message === ''){
@@ -57,54 +57,47 @@ $page_title = "Forgot Password - MedioSoft";
 
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
 
-    <title>Forgot Pasword - MedioSoft</title>
-</head>
-<body>
 
-    <table border="1" width="100%">
-    <tr>
-        <td><a href="index.php"><h2>MedioSoft</h2></a></td>
-        <td colspan="2">
-            <a href="index.php">Home</a>
-             | <a href="medicines.php">Medicines</a> 
-             | <a href="blog.php">Blog</a> 
-             | <a href="contact.php">Contact</a> 
-             | <a href="registration.php">Register</a> 
-             | <a href="login.php">Login</a>
-        </td>
-    </tr>
+<!-- including header -->
+<?php include_once('../view/component/frontend_header.php'); ?>
 
-    <tr>
-        <td></td>
-        <td colspan="2">
-            <br>
-            <br>
+<section class="banner-section">
+    <div class="container">
+        <div class="banner-title">
+            <h2>Forgot Password</h2>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="main-section">
+    <div class="container">
+        <div class="form-container">
+
+            <div class="medio-form">
                 <form action="#" method="post">
-                    <fieldset>
-                        <legend>Reset Password</legend>
-                        <label for="">Enter Email </label><input type="email" name="email" id="">
-                        <hr>
-                        <br>
-                        <input type="submit" value="Submit" name="submit">
-                        <br>
-                        <p><?php if(isset($error_message)){echo $error_message;} ?></p>
-                        <p><?php if(isset($invalid_login)){echo $invalid_login;} ?></p>
-                    </fieldset>
-                </form>
-            <br>
-            <br>
+                        <fieldset>
+                            <legend>Reset Password</legend>
+                            <label for="email">Enter Email </label>
+                            <input type="email" name="email" id="email">
 
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3">Copyright &copy; 2023 MedioSoft. All rights are reserved.</td>
-    </tr>
+                            <input type="submit" value="Submit" name="submit">
 
-    </table>
+
+                        </fieldset>
+                    </form>
+            </div>
+            <div id="status_messages">
+                
+                <?php if(isset($error_message)){echo "<p id='error_message'>".$error_message."</p>";} ?>
+                <?php if(isset($invalid_login)){echo "<p id='error_message'>".$invalid_login."</p>";} ?></p>
+            </div>
+        </div>
+    </div>
+</section>
+
     
-</body>
-</html>
+<!-- including footer -->
+<?php include_once('../view/component/footer.php'); ?>

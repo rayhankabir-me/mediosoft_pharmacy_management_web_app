@@ -85,6 +85,7 @@
     padding-right: 15px;
 }
 
+
 /* some display css */
 .display-flex{
     display: flex;
@@ -479,4 +480,9 @@ th, td {
 /* change password page */
 .change_password input[type="submit"] {
     max-width: 180px;
+}
+
+.reset-password-warning {
+    margin: 0 !important;
+    margin-bottom: 20px !important;
 }

@@ -1,5 +1,5 @@
 <?php
-
+$page_title = "Reset Password - MedioSoft";
 
  include_once('../controller/functions.php');
  require_once('../model/usersModel.php');
@@ -15,7 +15,6 @@
 
     }
 
-
     if($error_message === ''){
 
         $check_token = check_reset_token($reset_token);
@@ -27,16 +26,10 @@
             $_SESSION['new_pass'] = $reset_token;
             header('location: new_password.php');
 
-
-
         }else{
                 $invalid_login = "Invalid reset code! try again!";
             } 
     }
-
-
-
-    
 
     
  }
@@ -44,64 +37,53 @@
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Reset Password</title>
-</head>
-<body>
+<!-- including header -->
+<?php include_once('../view/component/frontend_header.php'); ?>
 
-    <table border="1" width="100%">
-    <tr>
-        <td><a href="index.php"><h2>MedioSoft</h2></a></td>
-        <td colspan="2">
-            <a href="index.php">Home</a>
-             | <a href="medicines.php">Medicines</a> 
-             | <a href="blog.php">Blog</a> 
-             | <a href="contact.php">Contact</a> 
-             | <a href="registration.php">Register</a> 
-             | <a href="login.php">Login</a>
-        </td>
-    </tr>
+<section class="banner-section">
+    <div class="container">
+        <div class="banner-title">
+            <h2>Reset Password</h2>
+        </div>
+    </div>
+</section>
 
-    <tr>
-        <td></td>
-        <td colspan="2">
-            <br>
-            <br>
-            <?php
-            session_start();
-            if(isset($_SESSION['reset_password'])){
-            echo $_SESSION['reset_password'];
-            }
-            ?>
-            <br>
-            <br>
+
+<section class="main-section">
+    <div class="container">
+        <div class="form-container">
+
+            <div class="medio-form">
+                <?php
+                session_start();
+                    if(isset($_SESSION['reset_password'])){
+                    echo "<p class='reset-password-warning' id='success_message'>".$_SESSION['reset_password']."</p>";
+                    }
+                ?>
                 <form action="#" method="post">
-                    <fieldset>
-                        <legend>Reset Code</legend>
-                        <label for="">Enter Code </label><input type="text" name="reset_token" id="">
-                        <hr>
-                        <br>
-                        <input type="submit" value="Submit" name="submit">
-                        <br>
-                        <p><?php if(isset($error_message)){echo $error_message;} ?></p>
-                        <p><?php if(isset($invalid_login)){echo $invalid_login;} ?></p>
-                    </fieldset>
-                </form>
-            <br>
-            <br>
+                        <fieldset>
+                            <legend>Reset Code</legend>
+                            <label for="reset_token">Enter Code </label>
+                            <input type="text" name="reset_token" id="reset_token">
 
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3">Copyright &copy; 2023 MedioSoft. All rights are reserved.</td>
-    </tr>
+                            <input type="submit" value="Submit" name="submit">
+                        </fieldset>
+                    </form>
+            </div>
+            <div id="status_messages">
+                
+                <?php if(isset($error_message)){echo "<p id='error_message'>".$error_message."</p>";} ?>
+                <?php if(isset($invalid_login)){echo "<p id='error_message'>".$invalid_login."</p>";} ?></p>
+            </div>
+        </div>
+    </div>
+</section>
 
-    </table>
+
+
     
-</body>
-</html>
+<!-- including footer -->
+<?php include_once('../view/component/footer.php'); ?>
 
 
 

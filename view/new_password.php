@@ -1,4 +1,5 @@
 <?php
+$page_title = "New Password";
  include_once('../controller/functions.php');
  require_once('../model/usersModel.php');
  session_start();
@@ -27,74 +28,57 @@
 
             unset($_SESSION['new_pass']);
             $_SESSION['success_message'] = "Your password has been changed!";
-            header('location: login.php');
+            header('location: ../controller/logout.php');
 
         }else{
                 $invalid_login = "password update failed! try again!";
             } 
     }
 
-
-
-    
-
-    
  }
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Reset Password</title>
-</head>
-<body>
+<!-- including header -->
+<?php include_once('../view/component/frontend_header.php'); ?>
 
-    <table border="1" width="100%">
-    <tr>
-        <td><a href="index.php"><h2>MedioSoft</h2></a></td>
-        <td colspan="2">
-            <a href="index.php">Home</a>
-             | <a href="medicines.php">Medicines</a> 
-             | <a href="blog.php">Blog</a> 
-             | <a href="contact.php">Contact</a> 
-             | <a href="registration.php">Register</a> 
-             | <a href="login.php">Login</a>
-        </td>
-    </tr>
+<section class="banner-section">
+    <div class="container">
+        <div class="banner-title">
+            <h2>New Password</h2>
+        </div>
+    </div>
+</section>
 
-    <tr>
-        <td></td>
-        <td colspan="2">
-            <br>
-            <br>
+
+<section class="main-section">
+    <div class="container">
+        <div class="form-container">
+
+            <div class="medio-form">
                 <form action="#" method="post">
                     <fieldset>
                         <legend>Reset Password</legend>
-                        <label for="">New Password </label><input type="password" name="new_password" id="">
-                        <hr>
-                        <label for="">Confirm Password </label><input type="password" name="c_password" id="">
-                        <hr>
-                        <br>
+                        <label for="new_password">New Password </label>
+                        <input type="password" name="new_password" id="new_password">
+                        <label for="">Confirm Password </label>
+                        <input type="password" name="c_password" id="c_password">
                         <input type="submit" value="Submit" name="submit">
-                        <br>
-                        <p><?php if(isset($error_message)){echo $error_message;} ?></p>
-                        <p><?php if(isset($invalid_login)){echo $invalid_login;} ?></p>
                     </fieldset>
                 </form>
-            <br>
-            <br>
-
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3">Copyright &copy; 2023 MedioSoft. All rights are reserved.</td>
-    </tr>
-
-    </table>
+            </div>
+            <div id="status_messages">
+                
+                <?php if(isset($error_message)){echo "<p id='error_message'>".$error_message."</p>";} ?>
+                <?php if(isset($invalid_login)){echo "<p id='error_message'>".$invalid_login."</p>";} ?></p>
+            </div>
+        </div>
+    </div>
+</section>
     
-</body>
-</html>
+    
+<!-- including footer -->
+<?php include_once('../view/component/footer.php'); ?>
 
 
 
