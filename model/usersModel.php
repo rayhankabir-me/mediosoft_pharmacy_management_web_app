@@ -132,6 +132,18 @@ function get_user_type($username){
     return $result;
     
 }
+//get password by user id
+function get_password($id){
+    $conneciton = get_connection();
+    $sql = "SELECT password FROM users WHERE id = {$id}";
+    $result = mysqli_query($conneciton, $sql);
+    if($result){
+        $row = mysqli_fetch_assoc($result);
+        $password = $row['password'];
+        return $password;
+    }
+    
+}
 //check whether username already exists
 function user_name_exists($username){
 
@@ -165,6 +177,18 @@ function get_current_user_info(){
 function edit_profile($user_id, $data){
     $conneciton = get_connection();
     $sql = "UPDATE users SET full_name='{$data['full_name']}', email='{$data['email']}', gender='{$data['gender']}', date_of_birth='{$data['date_of_birth']}', profile_photo='{$data['profile_photo']}' WHERE id = $user_id";
+    $result = mysqli_query($conneciton, $sql);
+    if($result){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+//change password
+function update_password($id, $password){
+    $conneciton = get_connection();
+    $sql = "UPDATE users SET password='{$password}' WHERE id = $id";
     $result = mysqli_query($conneciton, $sql);
     if($result){
         return true;

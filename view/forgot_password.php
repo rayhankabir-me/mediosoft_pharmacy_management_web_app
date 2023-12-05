@@ -1,5 +1,5 @@
 <?php
-
+$page_title = "Forgot Password - MedioSoft";
 
  include_once('../controller/functions.php');
  require_once('../model/usersModel.php');
