@@ -7,10 +7,18 @@ if(!check_login_status()){
 include_once('../model/usersModel.php');
 $get_current_user_info = get_current_user_info();
 
+$get_current_user_type = get_current_user_type();
 ?>
 
 <!-- including header -->
 <?php include_once('../view/component/dashboard_header.php'); ?>
+
+<?php 
+if($get_current_user_type == "Pharmacist" || $get_current_user_type == "Customer"){
+    header('location: ../view/profile.php');
+}
+
+?>
 
 <div class="main-section">
                 <div class="container">

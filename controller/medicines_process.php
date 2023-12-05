@@ -1,9 +1,5 @@
 <?php
-//auth
-require_once('../controller/check_login_status.php');
-if(!check_login_status()){
-    header('location: login.php');
-}
+
 require_once('../model/medicinesModel.php');
 require_once('../model/usersModel.php');
 $action = $_REQUEST['action'];
@@ -13,7 +9,7 @@ $action = $_REQUEST['action'];
  if($action == 'get_data'){
 
     //get all medicines data
-    $medicines = get_all_medicines_data();
+    $medicines = get_medicines();
     foreach($medicines as $medicine){
                             
         ?>

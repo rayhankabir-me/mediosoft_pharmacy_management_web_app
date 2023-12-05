@@ -1,4 +1,5 @@
 <?php
+$page_title = "Medicines - MedioSoft";
 //requring files
 require_once('../model/medicinesModel.php');
 require_once('../model/medicineCategoryModel.php');
@@ -14,85 +15,67 @@ $medicine_company_data = get_all_medicine_company_data();
 
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>MedioSoft - Medicines</title>
-</head>
-<body>
-    <table border="1" width="100%">
-    <tr>
-        <td><a href="index.php"><h2>MedioSoft</h2></a></td>
-        <td colspan="2">
-            <a href="index.php">Home</a>
-             | <a href="view/medicines.php">Medicines</a> 
-             | <a href="view/blog.php">Blog</a> 
-             | <a href="view/contact.php">Contact</a>
-             | <a href="view/request_support_ticket.php">Request Ticket</a> 
-             | <a href="view/registration.php">Register</a> 
-             | <a href="view/login.php">Login</a>
-        </td>
-    </tr>
+<!-- including header -->
+<?php include_once('../view/component/frontend_header.php'); ?>
 
-    <tr>
-        <!-- sidebar -->
-        <td>
-            <h3>Search Medicine</h3>
-            <form action="#" method="GET" onsubmit="searchMedicine()">
-                <input type="text" name="medicine_name" id="medicine_name" placeholder="Medicine Name">
-                <input type="submit" value="Search Medicine">
-                <div id="status_messages"></div>
-            </form>
+<div class="main-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="column-thirty-three">
+                            <div class="dashboard-sidebar">
+                                <!-- search medincine -->
+                                <h3>Search Medicine</h3>
+                                <form action="#" method="GET" onsubmit="searchMedicine()">
+                                    <input type="text" name="medicine_name" id="medicine_name" placeholder="Medicine Name">
+                                    <input type="submit" value="Search Medicine">
+                                    <div id="status_messages"></div>
+                                </form>
 
-            <h3>Filter By Category</h3>
-                <form action="#" method="GET" onsubmit="filterByCategory()">
-                <select name="medicine_category" id="medicine_category">
-                    <?php 
-                    foreach($medicine_category_data as $data){
-                        ?>
-                            <option value="<?php echo $data['id']; ?>"><?php echo $data['category_title']; ?></option>
-                        <?php
-                    }
-                    ?>
+                                <!-- filter by category -->
+                                <h3>Filter By Category</h3>
+                                <form action="#" method="GET" onsubmit="filterByCategory()">
+                                    <select name="medicine_category" id="medicine_category">
+                                        <?php 
+                                        foreach($medicine_category_data as $data){
+                                            ?>
+                                                <option value="<?php echo $data['id']; ?>"><?php echo $data['category_title']; ?></option>
+                                            <?php
+                                        }
+                                        ?>
 
-                </select>
-                    <input type="submit" value="Filter">
+                                    </select>
+                                    <input type="submit" value="Filter">
 
-                </form>
-            <h3>Filter By Company</h3>
-                <form action="#" method="GET" onsubmit="filterByCompany()">
-                <select name="medicine_company" id="medicine_company">
-                    <?php 
-                    foreach($medicine_company_data as $data){
-                        ?>
-                            <option value="<?php echo $data['id']; ?>"><?php echo $data['company_name']; ?></option>
-                        <?php
-                    }
-                    ?>
+                                </form>
 
-                </select>
-                <input type="submit" value="Filter">
-                </form>
-        </td>
-        <td colspan="2">
-            <br>
-            <br>
 
-                    <div id="all_medicines_box">
+                                <!-- filter by company  -->
+                                <h3>Filter By Company</h3>
+                                <form action="#" method="GET" onsubmit="filterByCompany()">
+                                    <select name="medicine_company" id="medicine_company">
+                                        <?php 
+                                        foreach($medicine_company_data as $data){
+                                            ?>
+                                                <option value="<?php echo $data['id']; ?>"><?php echo $data['company_name']; ?></option>
+                                            <?php
+                                        }
+                                        ?>
 
+                                    </select>
+                                <input type="submit" value="Filter">
+                                </form>
+                            </div>
+                        </div>
+                        <div class="column-sixty-six">
+                            <!-- all medicines box -->
+                            <div id="all_medicines_box">
+
+                            </div>
+                        </div>
                     </div>
+                </div>
+    </div>
 
-
-            <br>
-            <br>
-
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3">Copyright &copy; 2023 MedioSoft. All rights are reserved.</td>
-    </tr>
-
-    </table>
 
 
     <script>
@@ -173,6 +156,6 @@ $medicine_company_data = get_all_medicine_company_data();
 
             }
     </script>
-</body>
-</html>
+<!-- including footer -->
+<?php include_once('../view/component/footer.php'); ?>
 

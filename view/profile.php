@@ -37,6 +37,7 @@ $get_current_user_info = get_current_user_info();
                                 <p>Email Address: <strong><?php echo $get_current_user_info['email'];?></strong></p>
                                 <p>Gender: <strong><?php echo $get_current_user_info['gender'];?></strong></p>
                                 <p>Date Of Birth: <strong><?php echo $get_current_user_info['date_of_birth'];?></strong></p>
+                                <p>User Role: <strong><?php echo $get_current_user_info['user_type'];?></strong></p>
 
                                 </div>
 
