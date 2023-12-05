@@ -48,6 +48,29 @@ function get_current_user_type(){
 
 function get_all_users(){
 
+    $connection = get_connection();
+    $sql = "SELECT * FROM users";
+
+    $result = mysqli_query($connection, $sql);
+    $data = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $users = [
+            'id'    => $row['id'],
+            'user_name' => $row['user_name'],
+            'full_name' => $row['full_name'],
+            'email' => $row['email'],
+            'gender' => $row['gender'],
+            'date_of_birth' => $row['date_of_birth'],
+            'profile_photo' => $row['profile_photo'],
+            'password' => $row['password'],
+            'user_type' => $row['user_type'],
+            'user_status' => $row['user_status'],
+
+        ];
+        array_push($data, $users);
+    }
+
+    return $data;
 
 }
 
@@ -60,7 +83,7 @@ function get_user($id){
     return $data;
 
 }
-
+//register user
 function create_user($user_data){
     $conneciton = get_connection();
     $sql = "INSERT INTO users (user_name, full_name, email, gender, date_of_birth, password, user_type)
@@ -68,15 +91,34 @@ function create_user($user_data){
     $result = mysqli_query($conneciton, $sql);
     return $result;
 }
+//add user
+function add_user($user_data){
+    $conneciton = get_connection();
+    $sql = "INSERT INTO users (user_name, email, full_name, password, gender, date_of_birth, user_type)
+    VALUES ('{$user_data['username']}', '{$user_data['email']}', '{$user_data['full_name']}', '{$user_data['password']}', '{$user_data['gender']}', '{$user_data['date_of_birth']}', '{$user_data['user_type']}')";
+    $result = mysqli_query($conneciton, $sql);
+    if($result){
+        return true;
+    }else{
+        return false;
+    }
+}
 
 function update_user($id){
 
 
 }
 
+//delete user
 function delete_user($id){
-
-
+    $conneciton = get_connection();
+    $sql = "DELETE FROM users WHERE id={$id}";
+    $result = mysqli_query($conneciton, $sql);
+    if($result){
+        return true;
+    }else{
+        return false;
+    }
 }
 //update using token
 function update_password_by_token($new_password, $token){

@@ -53,6 +53,12 @@ function get_sidebar(){
                 <li><a href="../view/all_orders.php">Manage Orders</a></li>
                 <li><a href="../view/all_contacts.php">Contacts</a></li>
                 <li><a href="../view/pages_opitons.php">Pages Options</a></li>
+                <li><a href="../view/all_users.php">Manage Users</a>
+                    <ul>
+                        <li><a href="../view/add_user.php">Add User</a></li>
+                    </ul>
+                </li>
+
             </ul>
         <?php
     }

@@ -26,7 +26,7 @@ $get_current_user_info = get_current_user_info();
                             </div>
                         </div>
                         <div class="column-sixty-six">
-                            <div class="medicines-container">
+                            <div class="table-data">
                                 <div class="form-title">
                                     <h3>All Medicine Category</h3>
                                 </div>

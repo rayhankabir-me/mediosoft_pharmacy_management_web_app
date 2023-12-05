@@ -1,14 +1,13 @@
 <?php
 
-$page_title = 'All Medicines';
+$page_title = 'All Users - MedioSoft';
 include_once('../view/component/dashboard_sidebar.php');
 require_once('../controller/check_login_status.php');
 if(!check_login_status()){
     header('location: login.php');
 }
 include_once('../model/usersModel.php');
-include_once('../model/medicinesModel.php');
-$medicines = get_all_medicines_data();
+
 $get_current_user_info = get_current_user_info();
 
 
@@ -29,11 +28,11 @@ $get_current_user_info = get_current_user_info();
                         <div class="column-sixty-six">
                             <div class="table-data">
                                 <div class="form-title">
-                                    <h3>All Medicines</h3>
+                                    <h3>All Users</h3>
                                 </div>
 
                                 <div class="all-medicines">
-                                    <table class="table" id="show_medicine" width="100%">
+                                    <table class="table" id="show_users" width="100%">
 
 
                                     </table>
@@ -48,39 +47,39 @@ $get_current_user_info = get_current_user_info();
 
     
     <script>
-            showMedicines();
+            showUsers();
             //fetching medicines data using ajax
-            function showMedicines(){
+            function showUsers(){
 
                 let action = 'get_data';
                 let xhttp = new XMLHttpRequest();
-                xhttp.open('GET', '../controller/medicinesController.php?action='+action, true);
+                xhttp.open('GET', '../controller/userController.php?action='+action, true);
 
                 xhttp.send();
                 xhttp.onreadystatechange = function(){
                     if(this.readyState == 4 && this.status == 200){
-                        document.getElementById('show_medicine').innerHTML = this.responseText;
+                        document.getElementById('show_users').innerHTML = this.responseText;
                     }
                 }
 
             }
 
         //delete operation using ajax
-        function deleteMedicine(event){
+        function deleteUser(event){
             event.preventDefault();
-            alert('are you sure to delete this medicine?');
-            let medicine_id = event.target.getAttribute('data-medicine-id');
-            medicine_id = parseInt(medicine_id);
+            alert('are you sure to delete this user?');
+            let user_id = event.target.getAttribute('data-user-id');
+            user_id = parseInt(user_id);
 
-            let action = 'delete_medicine';
+            let action = 'delete_user';
             let xhttp = new XMLHttpRequest();
-            xhttp.open('GET', '../controller/medicinesController.php?action='+action+'&medicine_id='+medicine_id, true);
+            xhttp.open('GET', '../controller/userController.php?action='+action+'&user_id='+user_id, true);
             xhttp.send();
             xhttp.onreadystatechange = function(){
 
                 if(this.readyState == 4 && this.status == 200){
                     document.getElementById('status_messages').innerHTML = this.responseText;
-                    showMedicines();
+                    showUsers();
                 }
             }
 
