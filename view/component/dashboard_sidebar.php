@@ -50,6 +50,7 @@ function get_sidebar(){
     if($get_current_user_type == "Admin"){
         ?>
             <ul>
+                <li><a href="../view/view_all_chats.php">Manage Live Chat</a></li>
                 <li><a href="../view/all_orders.php">Manage Orders</a></li>
                 <li><a href="../view/all_contacts.php">Contacts</a></li>
                 <li><a href="../view/pages_opitons.php">Pages Options</a></li>
@@ -80,6 +81,7 @@ function get_sidebar(){
         ?>
         <ul>
             <li><a href="../view/my_tickets.php">My Tickets</a></li>
+            <li><a href="../view/my_chats.php">Live Chat Lists</a></li>
         </ul>
 
         <?php

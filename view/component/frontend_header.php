@@ -26,6 +26,7 @@ include_once('../controller/check_login_status.php');
                             <li><a href="../view/blog.php">Blog</a></li>
                             <li><a href="../view/contact.php">Contact</a></li>
                             <li><a href="../view/request_support_ticket.php">Request Ticket</a></li>
+                            <li><a href="../view/start_chat.php">Live Chat</a></li>
                             <?php 
                                 if(!check_login_status()){
                                     echo '<li><a href="../view/registration.php">Register</a></li>';
