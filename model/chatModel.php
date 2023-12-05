@@ -70,18 +70,18 @@ function get_chat_data($chat_id){
     return $ticket;
 }
 
-//get replies fot ticket
-function get_replies_by_ticket_id($ticket_id){
+//get messages fot chat id
+function get_messages_by_chat_id($chat_id){
     $connection = get_connection();
-    $sql = "SELECT r.reply_id, r.reply_message, r.sender_id, r.created_at, u.profile_photo, u.full_name AS sender_name FROM replies_ticket r JOIN users u ON r.sender_id = u.id WHERE r.ticket_id = {$ticket_id} ORDER BY r.created_at ASC";
+    $sql = "SELECT m.id, m.message, m.sender_id, m.created_at, u.profile_photo, u.full_name AS sender_name FROM messages m JOIN users u ON m.sender_id = u.id WHERE m.chat_id = {$chat_id} ORDER BY m.created_at ASC";
 
     $result = mysqli_query($connection, $sql);
     $replies = [];
 
     while ($row = mysqli_fetch_assoc($result)) {
         $reply = [
-            'reply_id' => $row['reply_id'],
-            'reply_message' => $row['reply_message'],
+            'id' => $row['id'],
+            'message' => $row['message'],
             'created_at' => $row['created_at'],
             'sender_name' => $row['sender_name'],
             'sender_id' => $row['sender_id'],
@@ -94,9 +94,9 @@ function get_replies_by_ticket_id($ticket_id){
 }
 
 //create reply
-function create_reply($ticket_id, $sender_id, $reply_message) {
+function create_message($chat_id, $sender_id, $chat_message) {
     $connection = get_connection();
-    $sql = "INSERT INTO replies_ticket (ticket_id, sender_id, reply_message) VALUES ({$ticket_id}, {$sender_id}, '{$reply_message}')";
+    $sql = "INSERT INTO messages (chat_id, sender_id, message) VALUES ({$chat_id}, {$sender_id}, '{$chat_message}')";
     $result = mysqli_query($connection, $sql);
     if ($result) {
         return true;

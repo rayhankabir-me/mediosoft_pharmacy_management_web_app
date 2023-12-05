@@ -17,7 +17,7 @@ if($action == 'add_reply'){
     $reply_message = $_REQUEST['reply_message'];
 
     if($reply_message == ''){
-        $reply_message .= '<p id="error_message">you must type something...!</p>';
+        $error_message .= '<p id="error_message">you must type something...!</p>';
     }
 
     if($error_message === ''){

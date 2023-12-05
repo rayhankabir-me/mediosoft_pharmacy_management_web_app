@@ -51,8 +51,8 @@ if(isset($_GET['id'])){
 
                                         </div>
 
-                                        <form id="reply_form" action="#" method="post" onsubmit="sendReply(event)">
-                                            <textarea name="reply_message" id="reply_message" placeholder="Type your reply..." rows="6"></textarea>
+                                        <form id="reply_form" action="#" method="post" onsubmit="sendMessage();">
+                                            <textarea name="chat_message" id="chat_message" placeholder="Type your reply..." rows="6"></textarea>
                                             <br>
                                             <input type="submit" value="Send Reply">
 
@@ -74,20 +74,20 @@ if(isset($_GET['id'])){
 
         
         <script>
-            function sendReply(event) {
+            function sendMessage(){
                 event.preventDefault();
-                let reply_message = document.getElementById('reply_message').value;
-                if(reply_message === ""){
+                let chat_message = document.getElementById('chat_message').value;
+                if(chat_message == ""){
                     document.getElementById('status_messages').innerHTML = '<p id="error_message">you must type something...!</p>';
                 }else{
 
-                    let action = 'add_reply';
-                    let ticketId = <?php echo $ticket_id; ?>;
-                    let senderId = <?php echo $get_current_user_info['id']; ?>;
+                    let action = 'add_message';
+                    let chat_id = <?php echo $chat_id; ?>;
+                    let sender_id = <?php echo $get_current_user_info['id']; ?>;
                     let xhttp = new XMLHttpRequest();
-                    xhttp.open('POST', '../controller/ticket_reply_process.php', true);
+                    xhttp.open('POST', '../controller/chatController.php', true);
                     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                    xhttp.send('action=' + action + '&reply_message='+reply_message + '&ticket_id='+ticketId + '&sender_id='+senderId);
+                    xhttp.send('action=' + action + '&chat_message='+chat_message + '&chat_id='+chat_id + '&sender_id='+sender_id);
                     xhttp.onreadystatechange = function(){
 
                         if(this.readyState == 4 && this.status == 200){
@@ -99,23 +99,24 @@ if(isset($_GET['id'])){
                 }
             }
 
-            // setInterval(showData, 2000);
-            // showData();
-            // //fetching reply data using ajax
-            // function showData(){
-                let ticketId = <?php echo $ticket_id; ?>;
-            //     let action = 'get_data';
-            //     let xhttp = new XMLHttpRequest();
-            //     xhttp.open('GET', '../controller/ticket_reply_process.php?ticket_id='+ticketId+'&action='+action, true);
+            setInterval(showData, 1000);
+            showData();
+            //fetching messages data using ajax
+            function showData(){
+                let chat_id = <?php echo $chat_id; ?>;
+                let action = 'get_messages';
+                let xhttp = new XMLHttpRequest();
+                xhttp.open('GET', '../controller/chatController.php?chat_id='+chat_id+'&action='+action, true);
 
-            //     xhttp.send();
-            //     xhttp.onreadystatechange = function(){
-            //         if(this.readyState == 4 && this.status == 200){
-            //             document.getElementById('message_box').innerHTML = this.responseText;
-            //         }
-            //     }
+                xhttp.send();
+                xhttp.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200){
+                        document.getElementById('message_box').innerHTML = this.responseText;
+                    }
+                }
 
-            // }
+            }
+
 
 
 

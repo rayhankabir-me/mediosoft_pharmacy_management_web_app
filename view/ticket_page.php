@@ -108,7 +108,7 @@ if(isset($_GET['ticket_id'])){
                 }
             }
 
-            setInterval(showData, 2000);
+            setInterval(showData, 1000);
             showData();
             //fetching reply data using ajax
             function showData(){
