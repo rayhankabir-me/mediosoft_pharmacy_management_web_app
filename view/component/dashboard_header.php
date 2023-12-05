@@ -18,7 +18,7 @@
                     <div class="menu-area">
                         <p>Welcome back! <strong><?php echo $get_current_user_info['full_name']; ?></strong>
                         | <a class="notification-btn" href="#"><span>2</span>Notifications</a> 
-                        | <a class="medio-btn" href="../index.php">Visit Site</a>  
+                        | <a class="medio-btn" href="../index.php" target="_blank">Visit Site</a>  
                         | <a class="medio-btn" href="../controller/logout.php">Logout</a>
                         </p>
                     </div>

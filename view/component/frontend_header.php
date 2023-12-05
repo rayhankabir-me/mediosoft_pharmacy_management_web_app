@@ -1,3 +1,7 @@
+<?php
+include_once('../controller/check_login_status.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,8 +26,24 @@
                             <li><a href="../view/blog.php">Blog</a></li>
                             <li><a href="../view/contact.php">Contact</a></li>
                             <li><a href="../view/request_support_ticket.php">Request Ticket</a></li>
-                            <li><a href="../view/registration.php">Register</a></li>
-                            <li><a href="../view/login.php">Login</a></li>
+                            <?php 
+                                if(!check_login_status()){
+                                    echo '<li><a href="../view/registration.php">Register</a></li>';
+                                }
+                            ?>
+                            <?php 
+                                if(!check_login_status()){
+                                    echo '<li><a href="../view/login.php">Login</a></li>';
+                                }
+                            ?>
+                            
+                            <?php 
+                                if(check_login_status()){
+                                    echo '<li><a href="../view/dashboard.php">Dashboard</a></li>';
+                                }
+                            ?>
+
+
                         </ul>
                     </div>
                 </div>

@@ -3,11 +3,11 @@
 $page_title = "User Login - MedioSoft";
  include_once('../controller/functions.php');
  require_once('../model/usersModel.php');
- require_once('../controller/check_login_status.php');
+ include_once('../controller/check_login_status.php');
 
-// if(check_login_status()){
-//     header('location: dashboard.php');
-// }
+if(check_login_status()){
+    header('location: dashboard.php');
+}
 
 
  if(isset($_REQUEST['submit'])){
