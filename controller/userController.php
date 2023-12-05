@@ -239,4 +239,97 @@ if($action == 'get_data'){
  }
 
 
+
+
+ // edit user data operations using ajax
+
+if($action == 'edit_user'){
+
+    $user_id = $_REQUEST['user_id'];
+
+    $error_message = '';
+
+    $profile_photo = $_FILES['profile_photo'];
+    $username = $_REQUEST['username'];
+    $email = $_REQUEST['email'];
+    $full_name = $_REQUEST['full_name'];
+    $password = $_REQUEST['password'];
+    $c_password = $_REQUEST['c_password'];
+ 
+    if(isset($_REQUEST['gender'])){
+        $gender = $_REQUEST['gender'];
+    }
+ 
+    $date_of_birth = $_REQUEST['date_of_birth'];
+    $user_type = $_REQUEST['user_type'];
+    $user_status = $_REQUEST['user_status'];
+    
+    if($profile_photo == ''){
+        $error_message .= "<p id='error_message'>Your must upload a profile photo!</p>";
+    }else if($username == ''){
+        $error_message .= "<p id='error_message'>Your must fill User Name!</p>";
+    }elseif (username_validation($username) === false) {
+        $error_message .= "<p id='error_message'>Invalid User Name Format!</p>";
+    }elseif (user_name_exists($username) == true) {
+     $error_message .= "<p id='error_message'>This User Name Already Exists. Try Another!</p>";
+    }else if($full_name == ''){
+        $error_message .= "<p id='error_message'>Your must fill Full Name!</p>";
+    }else if($email == ''){
+        $error_message .= "<p id='error_message'>Your must fill Email!</p>";
+    }else if(email_validation($email) === false){
+        $error_message .= "<p id='error_message'>Invalid Email Format!</p>";
+    }else if($password == ''){
+        $error_message .= "<p id='error_message'>Your must fill Password!</p>";
+    }else if(password_validation($password) === false){
+        $error_message .= "<p id='error_message'>Wrong Password Format!</p>";
+    }else if($c_password !== $password){
+        $error_message .= "<p id='error_message'>Passwords Doesn't Match!</p>";
+    }else if($gender == ''){
+        $error_message .= "<p id='error_message'>Your must fill Gender!</p>";
+    }else if($date_of_birth == ''){
+        $error_message .= "<p id='error_message'>You must fill Date of Birth! </p>";
+    }
+
+ 
+
+ 
+    // file info
+    $source = $profile_photo['tmp_name'];
+    $destination = '../assets/image/users/'.$profile_photo['name'];
+
+    //data array
+    $submited_data = [
+        'profile_photo' => $destination,
+        'username' => $username,
+        'email' => $email,
+        'full_name' => $full_name,
+        'password' => $password,
+        'gender' => $gender,
+        'date_of_birth' => $date_of_birth,
+        'user_type' => $user_type,
+        'user_status' => $user_status
+    ];
+ 
+ 
+     if($error_message === ''){
+ 
+         $result = update_user($user_id, $submited_data);
+     
+         if($result === true){
+             
+             if (!file_exists($destination)) {
+                 if(move_uploaded_file($source, $destination)){
+                 }
+             }
+             echo '<p id="success_message">user udpated successfully!</p>';
+         }elseif ($result === false) {
+            echo '<p id="error_message">user updated failed... try again!</p>';
+         }
+         
+        }else{
+            echo $error_message;
+        }
+}
+
+
 ?>
