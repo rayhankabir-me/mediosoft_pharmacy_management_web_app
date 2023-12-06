@@ -602,3 +602,12 @@ th, td {
 .medicine-extra-info p strong {
     color: var(--green);
 }
+
+/* pages options form styling */
+.medio-form.page-options-form input[type="submit"] {
+    max-width: 180px;
+    margin-bottom: 10px;
+}
+.page-options-form {
+    margin-bottom: 30px;
+}
