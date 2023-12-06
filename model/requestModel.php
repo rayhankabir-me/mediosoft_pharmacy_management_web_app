@@ -13,4 +13,31 @@ function add_request($data){
         return false;
     }
 }
+
+
+//get all requests
+function get_all_requests(){
+    $conneciton = get_connection();
+    $sql = "SELECT * FROM medicine_requests";
+    $result = mysqli_query($conneciton, $sql);
+    $data = [];
+    while($row = mysqli_fetch_assoc($result)){
+        array_push($data, $row);
+    }
+
+    return $data;
+}
+
+
+//delete rquest
+function delete_request($id){
+    $conneciton = get_connection();
+    $sql = "DELETE FROM medicine_requests WHERE id={$id}";
+    $result = mysqli_query($conneciton, $sql);
+    if($result){
+        return true;
+    }else{
+        return false;
+    }
+}
 ?>

@@ -67,34 +67,51 @@ if($action == 'make_request'){
 }
 
 //for get data action, show request by ajax
-if($action == 'get_data'){
+if($action == 'get_request'){
 
-    //get all medicines data
-    $medicines = get_all_medicines_data();
+    //get all requests data
+    $requests = get_all_requests();
     echo "<tr>";
-    echo "<td>Image</td>";
     echo "<td>Medicine Name</td>";
-    echo "<td>Category</td>";
-    echo "<td>Company</td>";
-    echo "<td>Price</td>";
-    echo "<td>Quantity</td>";
-    echo "<td>Added By</td>";
+    echo "<td>Category Name</td>";
+    echo "<td>Company Name</td>";
+    echo "<td>Medicine Country</td>";
+    echo "<td>Name</td>";
+    echo "<td>Email</td>";
+    echo "<td>Message</td>";
     echo "<td>Action</td>";
     echo "</tr>";
 
-    foreach ($medicines as $medicine) {
+    foreach ($requests as $request) {
         ?>
          <tr>
-             <td><img width="80px" src="<?php echo $medicine['image_url']; ?>" alt=""></td>
-             <td><?php echo $medicine['medicine_title']; ?></td>
-             <td><?php echo $medicine['category_title']; ?></td>
-             <td><?php echo $medicine['company_name']; ?></td>
-             <td><?php echo $medicine['medicine_price']; ?></td>
-             <td><?php echo $medicine['medicine_quanity']; ?></td>
-             <td><?php echo $medicine['full_name']; ?></td>
-             <td><a class="edit-btn" href="../view/update_medicine.php?id=<?php echo $medicine['id']; ?>">Edit</a> | <a class="delete-btn" id="delete_btn" data-medicine-id="<?php echo $medicine['id']; ?>" onclick="deleteMedicine(event)" href="#">Delete</a></td>
+             <td><?php echo $request['medicine_name']; ?></td>
+             <td><?php echo $request['medicine_category']; ?></td>
+             <td><?php echo $request['company_name']; ?></td>
+             <td><?php echo $request['medicine_country']; ?></td>
+             <td><?php echo $request['name']; ?></td>
+             <td><?php echo $request['email']; ?></td>
+             <td><?php echo $request['message']; ?></td>
+             <td><a class="delete-btn" id="delete_btn" data-request-id="<?php echo $request['id']; ?>" onclick="deleteRequest(event)" href="#">Delete</a></td>
          </tr>
         <?php
      }
 
  }
+
+
+  //delete operations
+  if($action == 'delete_request'){
+    $request_id = $_REQUEST['request_id'];
+    $delete_request = delete_request($request_id);
+    if($delete_request == true){
+        echo '<p id="success_message">request deleted successfully!</p>';
+    }elseif ($delete_request == false) {
+        echo '<p id="error_message">request delete failed... try again!</p>';
+    }
+
+ }
+
+
+
+ ?>
