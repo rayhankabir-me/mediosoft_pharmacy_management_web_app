@@ -11,6 +11,10 @@
     --dark-red: #c0392b;
 
 }
+
+textarea#description {
+    height: 200px;
+}
 /* make a container */
 .container {
     width: 100%;
@@ -262,6 +266,7 @@
     border-radius: 20px;
     transition: 0.3s;
     text-decoration: none;
+    border: 0px;
 }
 .medio-btn:hover{
     background: var(--green);
@@ -543,4 +548,57 @@ th, td {
     margin-top: -5px;
     font-size: 14px;
     padding: 8px 20px;
+}
+
+/* single medicine page description */
+.medicine-img-desc img {
+    width: 100%;
+}
+
+.buy-now-form form label {
+    margin-right: 8px;
+}
+
+.buy-now-form form input[type="number"] {
+    max-width: 60px;
+    padding: 5px;
+    margin-right: 8px;
+}
+
+.medicine-buy-area h2 {
+    margin: 0;
+    margin-bottom: 25px;
+}
+
+.medicine-buy-area p {
+    margin: 0px;
+    margin-bottom: 10px;
+}
+
+.medicine-buy-area p strong {
+    color: var(--green);
+}
+
+.buy-now-form {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    display: inline-block;
+}
+
+.medicine-desc {
+    margin-top: 30px;
+}
+
+.medicine-desc strong {
+    color: var(--green);
+}
+
+.medicine-extra-info p {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.medicine-extra-info p strong {
+    color: var(--green);
 }

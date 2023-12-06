@@ -1,64 +1,68 @@
 <?php
-//requring files
-require_once('../model/medicinesModel.php');
-$medicines = get_all_medicines_data();
 
-$medicine_id = '';
+require_once('../model/medicinesModel.php');
+
 if(isset($_GET['id'])){
     $medicine_id = $_GET['id'];
 }
 
+$medicines = get_all_medicines_data_by_id($medicine_id);
+
+$page_title = $medicines[0]['medicine_title']." - MedioSoft";
+
+
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title></title>
-</head>
-<body>
-    <table border="1" width="100%">
-    <tr>
-        <td><a href="index.php"><h2>MedioSoft</h2></a></td>
-        <td colspan="2">
-            <a href="index.php">Home</a>
-             | <a href="view/medicines.php">Medicines</a> 
-             | <a href="view/blog.php">Blog</a> 
-             | <a href="view/contact.php">Contact</a>
-             | <a href="view/request_support_ticket.php">Request Ticket</a> 
-             | <a href="view/registration.php">Register</a> 
-             | <a href="view/login.php">Login</a>
-        </td>
-    </tr>
+<!-- including header -->
+<?php include_once('../view/component/frontend_header.php'); ?>
 
-    <tr>
-        <td>
-            <br>
-            <br>
-            <!-- medicine details -->
-            <h2>Medicine Title</h2>
-            <img src="" alt="">
-            <p>lorem ipsum</p>
-            <p>Category: <strong>ABC</strong></p>
-            <p>Company: <strong>ABC</strong></p>
-            <p>Price: <strong>20.00</strong></p>
-            <p>Manufacturing Date: <strong>2023-10-10</strong></p>
-            <p>Expiry Date: <strong>2023-10-10</strong></p>
+<section class="banner-section">
+    <div class="container">
+        <div class="banner-title">
+            <h2><?php echo $medicines[0]['medicine_title'];?></h2>
+        </div>
+    </div>
+</section>
 
-            <form action="">
-                <label for="">Quantity: </label><input type="number">
-                <input type="submit" value="Buy Now">
-            </form>
-            <br>
-            <br>
-        </td>
 
-    </tr>
-    <tr>
-        <td colspan="3">Copyright &copy; 2023 MedioSoft. All rights are reserved.</td>
-    </tr>
+<section class="main-section">
+    <div class="container">
+        <div class="row">
+            <div class="column-fifty">
+                <div class="medicine-img-desc">
+                    <img src="<?php echo $medicines[0]['image_url'];?>" alt="">
+                    <div class="medicine-desc">
+                        <p><strong>About this Medicine: </strong><?php echo $medicines[0]['description']; ?></p>
+                    </div>
+                    <div class="medicine-extra-info">
+                        <p>Manufacturing Date: <strong><?php echo $medicines[0]['manufacturing_date']; ?></strong></p>
+                        <p>Expire Date: <strong><?php echo $medicines[0]['expire_date']; ?></strong></p>
+                        <p>Seller: <strong><?php echo $medicines[0]['full_name']; ?></strong></p>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="column-fifty">
+                <div class="medicine-buy-area">
+                    <h2><?php echo $medicines[0]['medicine_title'];?></h2>
+                    <p>Category: <strong><?php echo $medicines[0]['category_title'];?></strong></p>
+                    <p>Company: <strong><?php echo $medicines[0]['company_name'];?></strong></p>
+                    <p>Stock: <strong><?php echo $medicines[0]['medicine_quanity'];?></strong></p>
+                    <p>Price: <strong><?php echo $medicines[0]['medicine_price']." $";?></strong></p>
 
-    </table>
-</body>
-</html>
+                    <div class="buy-now-form">
+                        <form action="">
+                            <label for="quantity">Quantity: </label><input value="1" id="quantity" name="quantity" type="number">
+                            <input class="medio-btn" type="submit" value="Buy Now">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- including footer -->
+<?php include_once('../view/component/footer.php'); ?>
 

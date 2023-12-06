@@ -55,7 +55,7 @@ if(isset($_GET['id'])){
 
                                         <label for="description">Description </label>
 
-                                        <textarea name="description" id="description" cols="30" rows="10"></textarea>
+                                        <textarea name="description" id="description"></textarea>
 
                                         <label for="category_id">Select Category</label>
 
