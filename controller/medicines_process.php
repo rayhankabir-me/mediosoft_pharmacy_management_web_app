@@ -13,14 +13,18 @@ $action = $_REQUEST['action'];
     foreach($medicines as $medicine){
                             
         ?>
-            <div class="medicine_box">
-                <a href="single_medicines.php?id=<?php echo $medicine['id']; ?>"><img width="200px" src="<?php echo $medicine['image_url']; ?>" alt=""></a>
-                <h2><a href="single_medicines.php?id=<?php echo $medicine['id']; ?>"><?php echo $medicine['medicine_title']; ?></a></h2>
-                
-                <p>Category: <strong><?php echo $medicine['category_title']; ?></strong></p>   
-                <p>Company: <strong><?php echo $medicine['company_name']; ?></strong></p>
-                <p>Price: <strong><?php echo $medicine['medicine_price']; ?></strong></p>
-                <a href="single_medicines.php?id=<?php echo $medicine['id']; ?>">Details</a>
+            <div class="medicine_box column-thirty-three">
+                <div class="medicine-content">
+                    <a href="single_medicines.php?id=<?php echo $medicine['id']; ?>"><img width="200px" src="<?php echo $medicine['image_url']; ?>" alt=""></a>
+                    <div class="medicine-description">
+                        <h2><a href="single_medicines.php?id=<?php echo $medicine['id']; ?>"><?php echo $medicine['medicine_title']; ?></a></h2>
+                        
+                        <p>Category: <strong><?php echo $medicine['category_title']; ?></strong></p>   
+                        <p>Company: <strong><?php echo $medicine['company_name']; ?></strong></p>
+                        <p>Price: <strong><?php echo $medicine['medicine_price']." $"; ?></strong></p>
+                        <a class="medio-btn" href="single_medicines.php?id=<?php echo $medicine['id']; ?>">Details</a>
+                    </div>
+                </div>
 
 
             </div>
@@ -42,15 +46,18 @@ $action = $_REQUEST['action'];
         foreach($medicines as $medicine){
                             
             ?>
-                <div class="medicine_box">
-                    <a href="single_medicines.php?id=<?php echo $medicine['id']; ?>"><img width="200px" src="<?php echo $medicine['image_url']; ?>" alt=""></a>
-                    <h2><a href="single_medicines.php?id=<?php echo $medicine['id']; ?>"><?php echo $medicine['medicine_title']; ?></a></h2>
-                    
-                    <p>Category: <strong><?php echo $medicine['category_title']; ?></strong></p>   
-                    <p>Company: <strong><?php echo $medicine['company_name']; ?></strong></p>
-                    <p>Price: <strong><?php echo $medicine['medicine_price']; ?></strong></p>
-                    <a href="single_medicines.php?id=<?php echo $medicine['id']; ?>">Details</a>
-    
+                <div class="medicine_box column-thirty-three">
+                    <div class="medicine-content">
+                        <a href="single_medicines.php?id=<?php echo $medicine['id']; ?>"><img width="200px" src="<?php echo $medicine['image_url']; ?>" alt=""></a>
+                        <div class="medicine-description">
+                            <h2><a href="single_medicines.php?id=<?php echo $medicine['id']; ?>"><?php echo $medicine['medicine_title']; ?></a></h2>
+                            
+                            <p>Category: <strong><?php echo $medicine['category_title']; ?></strong></p>   
+                            <p>Company: <strong><?php echo $medicine['company_name']; ?></strong></p>
+                            <p>Price: <strong><?php echo $medicine['medicine_price']." $"; ?></strong></p>
+                            <a class="medio-btn" href="single_medicines.php?id=<?php echo $medicine['id']; ?>">Details</a>
+                        </div>
+                    </div>
     
                 </div>
             <?php
@@ -74,15 +81,18 @@ $action = $_REQUEST['action'];
         foreach($medicines as $medicine){
                             
             ?>
-                <div class="medicine_box">
-                    <a href="single_medicines.php?id=<?php echo $medicine['id']; ?>"><img width="200px" src="<?php echo $medicine['image_url']; ?>" alt=""></a>
-                    <h2><a href="single_medicines.php?id=<?php echo $medicine['id']; ?>"><?php echo $medicine['medicine_title']; ?></a></h2>
-                    
-                    <p>Category: <strong><?php echo $medicine['category_title']; ?></strong></p>   
-                    <p>Company: <strong><?php echo $medicine['company_name']; ?></strong></p>
-                    <p>Price: <strong><?php echo $medicine['medicine_price']; ?></strong></p>
-                    <a href="single_medicines.php?id=<?php echo $medicine['id']; ?>">Details</a>
-    
+                <div class="medicine_box column-thirty-three">
+                    <div class="medicine-content">
+                        <a href="single_medicines.php?id=<?php echo $medicine['id']; ?>"><img width="200px" src="<?php echo $medicine['image_url']; ?>" alt=""></a>
+                        <div class="medicine-description">
+                            <h2><a href="single_medicines.php?id=<?php echo $medicine['id']; ?>"><?php echo $medicine['medicine_title']; ?></a></h2>
+                            
+                            <p>Category: <strong><?php echo $medicine['category_title']; ?></strong></p>   
+                            <p>Company: <strong><?php echo $medicine['company_name']; ?></strong></p>
+                            <p>Price: <strong><?php echo $medicine['medicine_price']." $"; ?></strong></p>
+                            <a class="medio-btn" href="single_medicines.php?id=<?php echo $medicine['id']; ?>">Details</a>
+                        </div>
+                    </div>
     
                 </div>
             <?php
@@ -104,15 +114,18 @@ $action = $_REQUEST['action'];
         foreach($medicines as $medicine){
                             
             ?>
-                <div class="medicine_box">
-                    <a href="single_medicines.php?id=<?php echo $medicine['id']; ?>"><img width="200px" src="<?php echo $medicine['image_url']; ?>" alt=""></a>
-                    <h2><a href="single_medicines.php?id=<?php echo $medicine['id']; ?>"><?php echo $medicine['medicine_title']; ?></a></h2>
-                    
-                    <p>Category: <strong><?php echo $medicine['category_title']; ?></strong></p>   
-                    <p>Company: <strong><?php echo $medicine['company_name']; ?></strong></p>
-                    <p>Price: <strong><?php echo $medicine['medicine_price']; ?></strong></p>
-                    <a href="single_medicines.php?id=<?php echo $medicine['id']; ?>">Details</a>
-    
+                <div class="medicine_box column-thirty-three">
+                    <div class="medicine-content">
+                        <a href="single_medicines.php?id=<?php echo $medicine['id']; ?>"><img width="200px" src="<?php echo $medicine['image_url']; ?>" alt=""></a>
+                        <div class="medicine-description">
+                            <h2><a href="single_medicines.php?id=<?php echo $medicine['id']; ?>"><?php echo $medicine['medicine_title']; ?></a></h2>
+                            
+                            <p>Category: <strong><?php echo $medicine['category_title']; ?></strong></p>   
+                            <p>Company: <strong><?php echo $medicine['company_name']; ?></strong></p>
+                            <p>Price: <strong><?php echo $medicine['medicine_price']." $"; ?></strong></p>
+                            <a class="medio-btn" href="single_medicines.php?id=<?php echo $medicine['id']; ?>">Details</a>
+                        </div>
+                    </div>
     
                 </div>
             <?php
