@@ -31,7 +31,7 @@ $all_data = get_all_current_data();
 
 <section class="medicines_loop">
     <div class="container">
-        <h2>Our Latest Medicine</h2>
+        <h1>Our Latest Medicine</h1>
         <!-- all medicines box -->
         <div class="row" id="all_medicines_box">
     </div>
