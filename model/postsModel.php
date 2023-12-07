@@ -10,10 +10,10 @@ function add_post($data){
     return $result;
 }
 
-//get all posts data
+// get all posts data
 function get_all_posts_data() {
     $connection = get_connection();
-    $sql = "SELECT p.id, p.image, p.title, p.description, c.category_name, p.added_by, p.date FROM posts p JOIN posts_category c ON p.category = c.id";
+    $sql = "SELECT p.id, p.image, p.title, p.description, p.added_by, p.date, c.category_name, u.full_name FROM posts p JOIN posts_category c ON p.category = c.id JOIN users u ON p.added_by = u.id";
     $result = mysqli_query($connection, $sql);
     $data = [];
     while ($row = mysqli_fetch_assoc($result)) {
@@ -23,7 +23,7 @@ function get_all_posts_data() {
             'title' => $row['title'],
             'description' => $row['description'],
             'category_name' => $row['category_name'],
-            'added_by' => $row['added_by'],
+            'full_name' => $row['full_name'],
             'date' => $row['date']
         ];
         array_push($data, $post);

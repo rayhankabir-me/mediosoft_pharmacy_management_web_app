@@ -6,8 +6,8 @@ if(!check_login_status()){
 }
 include_once('../model/usersModel.php');
 include_once('../model/postsModel.php');
-$get_current_user_info = get_current_user_info();
 $posts = get_all_posts_data();
+$get_current_user_info = get_current_user_info();
 
 ?>
 
@@ -35,35 +35,13 @@ $posts = get_all_posts_data();
         <?php echo get_sidebar();?>
         </td>
 
-
         <td colspan="2">
             <br>
             <br>
-                <table border="1" width="100%">
-                    <tr>
-                        <td>Post Image</td>
-                        <td>Post Title</td>
-                        <td>Category</td>
-                        <td>Date</td>
-                        <td>Action</td>
-                    </tr>
+            <table id="show_post" border="1" width="100%">
 
-                    <?php
-                        foreach ($posts as $data) {
-                           ?>
-                            <tr>
-                                <td><img width="120px" src="<?php echo $data['image']; ?>" alt=""></td>
-                                <td><?php echo $data['title']; ?></td>
-                                <td><?php echo $data['category_name']; ?></td>
-                                <td><?php echo $data['date']; ?></td>
-                                <td><a href="../view/edit_post.php?id=<?php echo $data['id']; ?>">Edit</a> | <a href="../view/delete_post.php?id=<?php echo $data['id']; ?>">Delete</a></td>
-                            </tr>
-                           <?php
-                        }
-
-                    ?>
-
-                </table>
+            </table>
+            <div id="status_messages"></div>
 
             <br>
             <br>
@@ -75,6 +53,45 @@ $posts = get_all_posts_data();
     </tr>
 
     </table>
+
+    <script>
+            showPosts();
+            //fetching posts data using ajax
+            function showPosts(){
+
+                let action = 'get_data';
+                let xhttp = new XMLHttpRequest();
+                xhttp.open('GET', '../controller/postsController.php?action='+action, true);
+
+                xhttp.send();
+                xhttp.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200){
+                        document.getElementById('show_post').innerHTML = this.responseText;
+                    }
+                }
+            }
+
+        //delete operation using ajax
+        function deletePost(event){
+            event.preventDefault();
+            alert('Are you sure to delete this Post?');
+            let post_id = event.target.getAttribute('data-post-id');
+            post_id = parseInt(post_id);
+
+            let action = 'delete_post';
+            let xhttp = new XMLHttpRequest();
+            xhttp.open('GET', '../controller/postsController.php?action='+action+'&post_id='+post_id, true);
+            xhttp.send();
+            xhttp.onreadystatechange = function(){
+
+                if(this.readyState == 4 && this.status == 200){
+                    document.getElementById('status_messages').innerHTML = this.responseText;
+                    showPosts();
+                }
+            }
+
+        }
+    </script>
     
 </body>
 </html>
