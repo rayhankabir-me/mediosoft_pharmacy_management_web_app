@@ -33,6 +33,35 @@ $action = $_REQUEST['action'];
 
  }
 
+
+//for get data action, show medicines by ajax
+ if($action == 'get_data_for_homepage'){
+
+    //get all medicines data
+    $medicines = get_medicines();
+    foreach($medicines as $medicine){
+                            
+        ?>
+            <div class="medicine_box column-twenty-five ">
+                <div class="medicine-content">
+                    <a href="single_medicines.php?id=<?php echo $medicine['id']; ?>"><img width="200px" src="<?php echo $medicine['image_url']; ?>" alt=""></a>
+                    <div class="medicine-description">
+                        <h2><a href="single_medicines.php?id=<?php echo $medicine['id']; ?>"><?php echo $medicine['medicine_title']; ?></a></h2>
+                        
+                        <p>Category: <strong><?php echo $medicine['category_title']; ?></strong></p>   
+                        <p>Company: <strong><?php echo $medicine['company_name']; ?></strong></p>
+                        <p>Price: <strong><?php echo $medicine['medicine_price']." $"; ?></strong></p>
+                        <a class="medio-btn" href="single_medicines.php?id=<?php echo $medicine['id']; ?>">Details</a>
+                    </div>
+                </div>
+
+
+            </div>
+        <?php
+    }
+
+ }
+
  //for search medicine action, search medicine by ajax
  if($action == 'search_medicine'){
 

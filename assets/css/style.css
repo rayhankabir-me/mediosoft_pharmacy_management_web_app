@@ -611,3 +611,32 @@ th, td {
 .page-options-form {
     margin-bottom: 30px;
 }
+
+/* landing page styling  */
+.banner_section {
+    background: rgba(38, 150, 60,0.2);
+}
+.banner-img img {
+    width: 100%;
+}
+.banner-info h2 {
+    font-size: 35px;
+    line-height: 1.2em;
+}
+
+.banner-info p {
+    margin-bottom: 45px;
+    font-size: 18px;
+    line-height: 1.5em;
+}
+
+.banner_section {
+    background: rgba(38, 150, 60,0.2);
+    padding: 60px 0px;
+    margin-bottom: 60px;
+}
+
+.medicines_loop h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
