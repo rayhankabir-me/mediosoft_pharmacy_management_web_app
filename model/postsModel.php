@@ -32,6 +32,28 @@ function get_all_posts_data() {
     return $data;
 }
 
+// get all posts data
+function get_all_posts_data_by($id) {
+    $connection = get_connection();
+    $sql = "SELECT p.id, p.image, p.title, p.description, p.added_by, p.date, c.category_name, u.full_name FROM posts p JOIN posts_category c ON p.category = c.id JOIN users u ON p.added_by = u.id WHERE p.id = $id";
+    $result = mysqli_query($connection, $sql);
+    $data = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $post = [
+            'id'    => $row['id'],
+            'image' => $row['image'],
+            'title' => $row['title'],
+            'description' => $row['description'],
+            'category_name' => $row['category_name'],
+            'full_name' => $row['full_name'],
+            'date' => $row['date']
+        ];
+        array_push($data, $post);
+    }
+
+    return $data;
+}
+
 
 
 
@@ -53,6 +75,8 @@ function update_post($id, $data){
     }
 
 }
+
+
 
 
 //delete post
@@ -90,4 +114,70 @@ function get_all_post_data(){
     return $data;
 
 }
+
+
+
+//for posts_process
+//get post data by post name
+function get_post_data_by_name($post_name){
+    $connection = get_connection();
+    $sql = "SELECT p.id, p.image, p.title, p.description, p.added_by, p.date, c.category_name FROM posts p JOIN posts_category c ON p.category = c.id WHERE p.title LIKE '%$post_name%'";
+
+    $result = mysqli_query($connection, $sql);
+    $data = [];
+    if(mysqli_num_rows($result) > 0){
+        while ($row = mysqli_fetch_assoc($result)) {
+            $post = [
+                'id'    => $row['id'],
+                'image' => $row['image'],
+                'title' => $row['title'],
+                'description' => $row['description'],
+                'added_by' => $row['added_by'],
+                'date' => $row['date'],
+                'category_name' => $row['category_name'],
+                
+            ];
+            array_push($data, $post);
+        }
+    }else{
+        $data = ['no_item' => 'No results found....!'];
+    }
+
+    return $data;
+}
+
+//for posts_process
+//get post data by category id
+function get_post_data_by_category($category){
+    $connection = get_connection();
+    $sql = "SELECT p.id, p.image, p.title, p.description, p.added_by, p.date, c.category_name FROM posts p JOIN posts_category c ON p.category = c.id WHERE p.category = $category";
+
+    $result = mysqli_query($connection, $sql);
+    $data = [];
+    if(mysqli_num_rows($result) > 0){
+        while ($row = mysqli_fetch_assoc($result)) {
+            $post = [
+                'id'    => $row['id'],
+                'image' => $row['image'],
+                'title' => $row['title'],
+                'description' => $row['description'],
+                'added_by' => $row['added_by'],
+                'date' => $row['date'],
+                'category_name' => $row['category_name'],
+                
+            ];
+            array_push($data, $post);
+        }
+    }else{
+        $data = ['no_item' => 'No results found....!'];
+    }
+
+    return $data;
+}
+
+
+
+
+
+
 ?>

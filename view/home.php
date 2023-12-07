@@ -37,6 +37,15 @@ $all_data = get_all_current_data();
     </div>
 </section>
 
+<!-- showing posts -->
+<section class="medicines_loop">
+    <div class="container">
+        <h1>Our Latest Posts</h1>
+        <!-- all posts box -->
+        <div class="row" id="all_posts_box">
+    </div>
+</section>
+
 <script>
         showMedicines();
             //fetching medicines data using ajax
@@ -50,6 +59,25 @@ $all_data = get_all_current_data();
                 xhttp.onreadystatechange = function(){
                     if(this.readyState == 4 && this.status == 200){
                         document.getElementById('all_medicines_box').innerHTML = this.responseText;
+                    }
+                }
+
+            }
+
+
+            //showing posts
+            showPosts();
+            //fetching posts data using ajax
+            function showPosts(){
+
+                let action = 'get_data_for_homepage';
+                let xhttp = new XMLHttpRequest();
+                xhttp.open('GET', '../controller/posts_process.php?action='+action, true);
+
+                xhttp.send();
+                xhttp.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200){
+                        document.getElementById('all_posts_box').innerHTML = this.responseText;
                     }
                 }
 
