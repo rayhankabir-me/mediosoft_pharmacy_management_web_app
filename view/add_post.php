@@ -1,4 +1,5 @@
 <?php
+$page_title = "Add Post - MedioSoft";
 //auth
 include_once('../view/component/dashboard_sidebar.php');
 require_once('../controller/check_login_status.php');
@@ -17,76 +18,67 @@ $category_data = get_all_category_data();
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Add Post</title>
-</head>
-<body>
+<!-- including header -->
+<?php include_once('../view/component/dashboard_header.php'); ?>
 
-    <table border="1" width="100%">
-    <tr>
-        <td><a href="index.php"><h2>MedioSoft</h2></a></td>
-        <td colspan="2">
-            Welcome back! <strong><?php echo $get_current_user_info['full_name']; ?></strong>
-             | Notifications 
-             | <a href="../index.php">Visit Site</a>  
-             | <a href="../controller/logout.php">Logout</a>
-        </td>
-    </tr>
 
-    <tr>
-        <td>
-        <?php echo get_sidebar();?>
-        </td>
-        <td colspan="2">
-            <br>
-            <br>
-                <h3>Add Post</h3>
-                <form id="post_form" action="#" method="POST" enctype="multipart/form-data" onsubmit="addPost()">
+<div class="main-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="column-thirty-three">
+                            <div class="dashboard-sidebar">
+                                <?php echo get_sidebar();?>
+                            </div>
+                        </div>
+                        <div class="column-sixty-six">
+                            <div class="form-container">
+                                <div class="form-title">
+                                    <h3>Add Post</h3>
+                                </div>
 
-                <label for="">Upload Post Image</label>
-                <input type="file" name="image" id="image">
-                <label for="">Post Title </label><br>
-                <input type="text" name="title" id="title">
-                <br>
-                <label for="">Description </label>
-                <br>
-                <textarea name="description" id="description" cols="30" rows="10"></textarea>
-                <br>
-                <label for="">Select a Category</label>
-                <br>
-                <select name="category" id="category">
-                    <?php
-                        foreach($category_data as $category){
-                            
-                            ?>
-                                <option value="<?php echo $category['id']; ?>"><?php echo $category['category_name']; ?></option>
-                            <?php
-                        }
-                    ?>
-                </select>
-                <br>
-                <label for="">Date</label>
-                <br>
-                <input type="date" name="date" id="date">
-                <br>
+                                <div class="medio-form">
+                                    <form id="post_form" action="#" method="POST" enctype="multipart/form-data" onsubmit="addPost()">
 
-                <input type="submit" value="Submit" name="submit">
+                                        <label for="image">Upload Post Image</label>
+                                        <input type="file" name="image" id="image">
+                                        <label for="title">Post Title </label>
+                                        <input type="text" name="title" id="title">
+                                        <label for="description">Description </label>
 
-                </form>
+                                        <textarea name="description" id="description" cols="30" rows="10"></textarea>
 
-                <div id="status_messages"></div>
-            <br>
-            <br>
+                                        <label for="category">Select a Category</label>
 
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3">Copyright &copy; 2023 MedioSoft. All rights are reserved.</td>
-    </tr>
+                                        <select name="category" id="category">
+                                            <?php
+                                                foreach($category_data as $category){
+                                                    
+                                                    ?>
+                                                        <option value="<?php echo $category['id']; ?>"><?php echo $category['category_name']; ?></option>
+                                                    <?php
+                                                }
+                                            ?>
+                                        </select>
 
-    </table>
+                                        <label for="date">Date</label>
+
+                                        <input type="date" name="date" id="date">
+
+
+                                        <input type="submit" value="Submit" name="submit">
+
+                                    </form>
+                                </div>
+                                <div id="status_messages"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
     
     <script>
     function addPost() {
@@ -127,5 +119,5 @@ $category_data = get_all_category_data();
     }
 </script>
 
-</body>
-</html>
+<!-- including footer -->
+<?php include_once('../view/component/footer.php'); ?>

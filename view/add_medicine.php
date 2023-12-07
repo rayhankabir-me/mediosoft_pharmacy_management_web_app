@@ -109,8 +109,6 @@ $companies = get_all_medicine_company_data();
 
 
 
-                <div id="status_messages"></div>
-
     
 
     <script>
