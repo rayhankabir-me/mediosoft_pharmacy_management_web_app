@@ -130,7 +130,7 @@ if(!check_login_status()){
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById('status_messages').innerHTML = this.responseText;
-                document.getElementById('user_form').reset();
+
             }
         }
 

@@ -1,6 +1,6 @@
 <?php
 
-$page_title = 'All Medicines';
+$page_title = 'All Medicines - MedioSoft';
 include_once('../view/component/dashboard_sidebar.php');
 require_once('../controller/check_login_status.php');
 if(!check_login_status()){

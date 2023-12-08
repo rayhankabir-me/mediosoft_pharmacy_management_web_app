@@ -1,86 +1,7 @@
 <?php
 $page_title = "User Registration - MedioSoft";
-include_once('../controller/functions.php');
-require_once('../model/usersModel.php');
-
-if(isset($_REQUEST['submit'])){
-
-   $error_message = '';
-   $success_message = '';
-   $username = $_REQUEST['username'];
-   $email = $_REQUEST['email'];
-   $full_name = $_REQUEST['full_name'];
-   $password = $_REQUEST['password'];
-   $c_password = $_REQUEST['c_password'];
-
-   if(isset($_REQUEST['gender'])){
-       $gender = $_REQUEST['gender'];
-   }else{
-       $gender = '';
-   }
-
-   $date_of_birth = $_REQUEST['date_of_birth'];
-
-   if($full_name == ''){
-       $error_message .= "Your must fill Full Name! <br>";
-   }elseif (name_validation($full_name) === false) {
-       $error_message .= "Invalid Name Format! <br>";
-   }
-   if($email == ''){
-       $error_message .= "Your must fill Email! <br>";
-   }elseif (email_validation($email) === false) {
-       $error_message .= "Invalid Email Format! <br>";
-   }
-   if($username == ''){
-       $error_message .= "Your must fill User Name! <br>";
-   }elseif (username_validation($username) === false) {
-       $error_message .= "Invalid User Name Format! <br>";
-   }elseif (user_name_exists($username) == true) {
-    $error_message .= "This User Name Already Exists. Try Another! <br>";
-   }
-   if($password == ''){
-       $error_message .= "Your must fill Password! <br>";
-   }elseif (password_validation($password) === false) {
-       $error_message .= "Wrong Password Format! <br>";
-   }elseif ($c_password !== $password) {
-       $error_message .= "Password Doesn't Match! <br>";
-   }
-   if($gender == ''){
-       $error_message .= "Your must fill Gender! <br>";
-   }
-   if ($date_of_birth == '') {
-       $error_message .= "You must fill Date of Birth! <br>";
-   }
 
 
-   //data array
-   $submited_data = [
-    'user_name' => $username,
-    'full_name' => $full_name,
-    'email' => $email,
-    'gender' => $gender,
-    'date_of_birth' => $date_of_birth,
-    'password' => $password,
-    'user_type' => 'Customer'
-    ];
-
-   if($error_message === ''){
-
-    $result = create_user($submited_data);
-    if($result){
-        $error_message .= "Registration Success! <a href='login.php'>Login Now</a> <br>";
-    }
-    
-   }
-
-
-   
-
-
-   
-
-   
-}
 ?>
 
 <!-- including header -->
@@ -100,7 +21,7 @@ if(isset($_REQUEST['submit'])){
         <div class="form-container">
 
             <div class="medio-form">
-                <form action="#" method="post">
+                <form action="#" method="POST" id="registration_form" enctype="multipart/form-data" onsubmit="registerUser()">
 
 
                     <label for="username">User Name: </label>
@@ -121,34 +42,91 @@ if(isset($_REQUEST['submit'])){
                     <div class="checkbox-container">
                         <fieldset>
                         <legend>Gender</legend>
-                            <input type="radio" name="gender" value="male" id=""><label for=""> Male</label>
-                            <input type="radio" name="gender" value="female" id=""><label for=""> Female</label>
-                            <input type="radio" name="gender" value="other" id=""><label for=""> Other</label>
+                            <input type="radio" name="gender" value="male" id="male"><label for=""> Male</label>
+                            <input type="radio" name="gender" value="female" id="female"><label for=""> Female</label>
+                            <input type="radio" name="gender" value="other" id="other"><label for=""> Other</label>
                         </fieldset>
                     </div>
 
                     <fieldset>
                     <legend>Date of Birth</legend>
-                    <input type="date" name="date_of_birth" id="">
+                    <input type="date" name="date_of_birth" id="date_of_birth">
                     </fieldset>
 
 
 
-                    <br>
+
                     <input type="submit" value="Submit" name="submit">
-                    <input type="submit" value="Reset" name="reset">
+
                 </form>
             </div>
             <div id="status_messages">
                 
-                    <p><?php if(isset($error_message)){echo $error_message;} ?></p>
-                    <p><?php if(isset($success_message)){echo $success_message;} ?></p>
             </div>
         </div>
     </div>
 </section>
 
 
+<script>
+        function registerUser() {
+        event.preventDefault();
 
+        let username = document.getElementById('username').value;
+        let email = document.getElementById('email').value;
+        let full_name = document.getElementById('full_name').value;
+        let password = document.getElementById('password').value;
+        let c_password = document.getElementById('c_password').value;
+
+        //declaring gender
+        let genders = document.getElementsByName('gender');
+        let genderCheck = false;
+        for (let i = 0; i < genders.length; i++) {
+            if (genders[i].checked) {
+                genderCheck = true;
+                break;
+            }
+        }
+
+        let date_of_birth = document.getElementById('date_of_birth').value;
+
+
+        if(username === ''){
+            document.getElementById('status_messages').innerHTML = '<p id="error_message">You must enter user name!</p>';
+        }else if(email === ''){
+            document.getElementById('status_messages').innerHTML = '<p id="error_message">You must enter an email!</p>';
+        }else if(full_name === ''){
+            document.getElementById('status_messages').innerHTML = '<p id="error_message">You must enter full name!</p>';
+        }else if(password === ''){
+            document.getElementById('status_messages').innerHTML = '<p id="error_message">You must enter password!</p>';
+        }else if(c_password === ''){
+            document.getElementById('status_messages').innerHTML = '<p id="error_message">You must enter confirm password!</p>';
+        }else if(password != c_password){
+            document.getElementById('status_messages').innerHTML = '<p id="error_message">password and confirm password do not match!</p>';
+        }else if(!genderCheck){
+            document.getElementById('status_messages').innerHTML = '<p id="error_message">You must enter gender!</p>';
+        }else if(date_of_birth===''){
+            document.getElementById('status_messages').innerHTML = '<p id="error_message">You must enter data of birth!</p>';
+        }else{
+        let formData = new FormData(document.getElementById('registration_form'));
+
+        formData.append('action', 'user_registration');
+
+        let xhttp = new XMLHttpRequest();
+        xhttp.open('POST', '../controller/userController.php', true);
+
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById('status_messages').innerHTML = this.responseText;
+  
+            }
+        }
+
+        xhttp.send(formData);
+        }
+
+
+    }
+</script>
 <!-- including footer -->
 <?php include_once('../view/component/footer.php'); ?>
