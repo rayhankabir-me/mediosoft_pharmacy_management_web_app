@@ -399,5 +399,51 @@ if($action == 'user_registration'){
         }
  }
 
+ if($action == 'user_login'){
+
+
+        $error_message = '';
+        $username = $_REQUEST['username'];
+        $password = $_REQUEST['password'];
+    
+        if($username == ''){
+            $error_message .= "Your must fill User Name! <br>";
+    
+        }
+        if($password == ''){
+            $error_message .= "Your must fill Password! <br>";
+        }
+        if($error_message === ''){
+    
+            $login = user_login($username, $password);
+            $user_data = get_user_type($username);
+            $user_type = $user_data->fetch_assoc();
+            if ($login == true){
+                session_start();
+                $_SESSION["user_login"] = $username;
+    
+                if (isset($_POST["remember_me"])) {
+                    $cookie_name = "remember_user";
+                    $cookie_value = $username;
+                    $cookie_expire = time() + 30 * 24 * 60 * 60;
+                    setcookie($cookie_name, $cookie_value, $cookie_expire, "/");
+                }
+                header('location: dashboard.php');
+    
+            }else{
+                    $invalid_login = "Invalid login details! Try Again!";
+                } 
+        }else{
+            echo "<p id='error_message'>".$error_message."</p>";
+        }
+    
+    
+    
+        
+    
+        
+   
+ }
+
 
 ?>

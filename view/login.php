@@ -10,47 +10,7 @@ if(check_login_status()){
 }
 
 
- if(isset($_REQUEST['submit'])){
 
-    $error_message = '';
-    $username = $_REQUEST['username'];
-    $password = $_REQUEST['password'];
-
-    if($username == ''){
-        $error_message .= "Your must fill User Name! <br>";
-
-    }
-    if($password == ''){
-        $error_message .= "Your must fill Password! <br>";
-    }
-    if($error_message === ''){
-
-        $login = user_login($username, $password);
-        $user_data = get_user_type($username);
-        $user_type = $user_data->fetch_assoc();
-        if ($login == true){
-            session_start();
-            $_SESSION["user_login"] = $username;
-
-            if (isset($_POST["remember_me"])) {
-                $cookie_name = "remember_user";
-                $cookie_value = $username;
-                $cookie_expire = time() + 30 * 24 * 60 * 60;
-                setcookie($cookie_name, $cookie_value, $cookie_expire, "/");
-            }
-            header('location: dashboard.php');
-
-        }else{
-                $invalid_login = "Invalid login details! Try Again!";
-            } 
-    }
-
-
-
-    
-
-    
- }
 
 
 ?>
@@ -73,7 +33,7 @@ if(check_login_status()){
         <div class="form-container">
 
             <div class="medio-form">
-                <form action="#" method="post">
+                <form action="#" method="POST" id="login_form" enctype="multipart/form-data" onsubmit="loginUser()">
 
                         <label for="username">User Name: </label>
                         <input type="text" name="username" id="username">
@@ -94,13 +54,46 @@ if(check_login_status()){
                     </form>
             </div>
             <div id="status_messages">
-                
-                <p><?php if(isset($error_message)){echo $error_message;} ?></p>
-                <p><?php if(isset($invalid_login)){echo $invalid_login;} ?></p>
+
             </div>
         </div>
     </div>
 </section>
+
+
+<script>
+        function loginUser() {
+        event.preventDefault();
+
+        let username = document.getElementById('username').value;
+        let password = document.getElementById('password').value;
+
+
+        if(username === ''){
+            document.getElementById('status_messages').innerHTML = '<p id="error_message">You must enter user name!</p>';
+        }else if(password === ''){
+            document.getElementById('status_messages').innerHTML = '<p id="error_message">You must enter password!</p>';
+        }else{
+        let formData = new FormData(document.getElementById('login_form'));
+
+        formData.append('action', 'user_login');
+
+        let xhttp = new XMLHttpRequest();
+        xhttp.open('POST', '../controller/userController.php', true);
+
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById('status_messages').innerHTML = this.responseText;
+  
+            }
+        }
+
+        xhttp.send(formData);
+        }
+
+
+    }
+</script>
 
 
 <!-- including footer -->
