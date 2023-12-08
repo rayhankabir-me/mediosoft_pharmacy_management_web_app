@@ -75,4 +75,14 @@ function update_category($id, $data){
 
 }
 
+
+//count total medicine category
+function count_total_medicine_category(){
+    $conneciton = get_connection();
+    $sql = "SELECT * FROM medicines_category";
+    $result = mysqli_query($conneciton, $sql);
+    $count = mysqli_num_rows($result);
+    return $count;
+}
+
 ?>

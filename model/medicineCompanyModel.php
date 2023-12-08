@@ -76,4 +76,14 @@ function update_company($id, $data){
 
 }
 
+
+//count total medicine company
+function count_total_medicine_company(){
+    $conneciton = get_connection();
+    $sql = "SELECT * from medicines_company";
+    $result = mysqli_query($conneciton, $sql);
+    $count = mysqli_num_rows($result);
+    return $count;
+}
+
 ?>

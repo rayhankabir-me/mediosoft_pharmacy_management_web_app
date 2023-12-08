@@ -56,4 +56,6 @@ function get_all_category_data(){
     return $data;
 
 }
+
+
 ?>

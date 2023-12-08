@@ -244,7 +244,14 @@ function update_medicine($id, $data){
 }
 
 
-
+//count total medicines
+function count_total_medicines(){
+    $conneciton = get_connection();
+    $sql = "SELECT * FROM medicines";
+    $result = mysqli_query($conneciton, $sql);
+    $count = mysqli_num_rows($result);
+    return $count;
+}
 
 ?>
 

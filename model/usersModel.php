@@ -244,4 +244,30 @@ function update_password($id, $password){
         return false;
     }
 }
+
+
+//count total users
+function count_total_users(){
+    $conneciton = get_connection();
+    $sql = "SELECT * FROM users";
+    $result = mysqli_query($conneciton, $sql);
+    $count = mysqli_num_rows($result);
+    return $count;
+}
+//count total pharmacists
+function count_total_pharmacists(){
+    $conneciton = get_connection();
+    $sql = "SELECT * FROM users WHERE user_type = 'Pharmacist'";
+    $result = mysqli_query($conneciton, $sql);
+    $count = mysqli_num_rows($result);
+    return $count;
+}
+//count total customers
+function count_total_customers(){
+    $conneciton = get_connection();
+    $sql = "SELECT * FROM users WHERE user_type = 'Customer'";
+    $result = mysqli_query($conneciton, $sql);
+    $count = mysqli_num_rows($result);
+    return $count;
+}
 ?>

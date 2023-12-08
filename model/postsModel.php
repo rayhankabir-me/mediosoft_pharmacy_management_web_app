@@ -177,6 +177,16 @@ function get_post_data_by_category($category){
 
 
 
+//count total posts
+function count_total_posts(){
+    $conneciton = get_connection();
+    $sql = "SELECT * FROM posts";
+    $result = mysqli_query($conneciton, $sql);
+    $count = mysqli_num_rows($result);
+    return $count;
+}
+
+
 
 
 
