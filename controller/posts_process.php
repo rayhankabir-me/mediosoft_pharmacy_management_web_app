@@ -1,9 +1,6 @@
 <?php
-//auth
-require_once('../controller/check_login_status.php');
-if(!check_login_status()){
-    header('location: login.php');
-}
+
+
 require_once('../model/postsModel.php');
 require_once('../model/usersModel.php');
 $action = $_REQUEST['action'];
