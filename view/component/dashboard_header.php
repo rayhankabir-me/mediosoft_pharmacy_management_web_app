@@ -1,3 +1,9 @@
+<?php
+include_once('../model/usersModel.php');
+$get_current_user_info = get_current_user_info();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

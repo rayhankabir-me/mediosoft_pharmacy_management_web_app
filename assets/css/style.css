@@ -1,6 +1,9 @@
 *{
     box-sizing: border-box;
 }
+b {
+    display: none;
+}
 /* declaring color variable */
 :root {
     --green: #27963C;
