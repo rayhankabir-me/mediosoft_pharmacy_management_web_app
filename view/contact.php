@@ -63,6 +63,7 @@ $all_data = get_all_current_data();
                 <div class="address-and-phone">
                     <h2>Our Office Address</h2>
                     <p><?php echo $all_data[0]['office_address'];?></p>
+                    <p><?php echo $all_data[0]['phone_number'];?></p>
                 </div>
             </div>
 
