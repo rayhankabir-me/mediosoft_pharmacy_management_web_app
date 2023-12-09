@@ -95,7 +95,7 @@ $companies = get_all_medicine_company_data();
 
 
                                         <input type="submit" value="Submit" name="submit">
-                                        <input type="submit" value="Reset" name="reset">
+                                      
                                     </form>
                                 </div>
                                 <div id="status_messages"></div>
@@ -154,7 +154,7 @@ $companies = get_all_medicine_company_data();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById('status_messages').innerHTML = this.responseText;
-                document.getElementById('medicine_form').reset();
+       
             }
         }
 
