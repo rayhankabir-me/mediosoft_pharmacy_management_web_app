@@ -64,7 +64,7 @@ if($action == 'add_company'){
          <tr>
              <td><?php echo $company['company_name']; ?></td>
              <td><?php echo $company['description']; ?></td>
-             <td><a href="../view/update_medicine_company.php?id=<?php echo $company['id']; ?>">Edit</a> | <a id="delete_btn" data-company-id="<?php echo $company['id']; ?>" onclick="deleteCompany(event)" href="#">Delete</a></td>
+             <td><a class="edit-btn" href="../view/update_medicine_company.php?id=<?php echo $company['id']; ?>">Edit</a> | <a class="delete-btn" id="delete_btn" data-company-id="<?php echo $company['id']; ?>" onclick="deleteCompany(event)" href="#">Delete</a></td>
          </tr>
         <?php
      }

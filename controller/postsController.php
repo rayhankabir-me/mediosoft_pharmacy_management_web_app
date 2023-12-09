@@ -106,7 +106,7 @@ if($action == 'get_data'){
              <td><?php echo $post['full_name']; ?></td>
              <td><?php echo $post['date']; ?></td>
 
-             <td><a href="../view/update_post.php?id=<?php echo $post['id']; ?>">Edit</a> | <a id="delete_btn" data-post-id="<?php echo $post['id']; ?>" onclick="deletePost(event)" href="#">Delete</a></td>
+             <td><a class="edit-btn" href="../view/update_post.php?id=<?php echo $post['id']; ?>">Edit</a> | <a class="delete-btn" id="delete_btn" data-post-id="<?php echo $post['id']; ?>" onclick="deletePost(event)" href="#">Delete</a></td>
          </tr>
         <?php
      }

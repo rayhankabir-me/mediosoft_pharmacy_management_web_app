@@ -295,6 +295,8 @@ textarea#description {
     transition: 0.3s;
     text-decoration: none;
     font-size: 13px;
+    margin-top: 8px;
+    display: inline-block;
 }
 .delete-btn:hover{
     background: var(--dark-red);
