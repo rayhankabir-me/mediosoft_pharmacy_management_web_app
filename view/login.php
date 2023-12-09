@@ -83,7 +83,14 @@ if(check_login_status()){
 
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById('status_messages').innerHTML = this.responseText;
+                if(this.responseText == 1){
+                    document.getElementById('status_messages').innerHTML = '<p id="success_message">login successful..!</p>';
+                    setTimeout(function () {
+                        window.location.href = ('../view/dashboard.php');
+                    }, 2000);
+                }else{
+                    document.getElementById('status_messages').innerHTML = this.responseText;
+                }
   
             }
         }

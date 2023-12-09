@@ -92,7 +92,7 @@ if(isset($_GET['id'])){
 
                         if(this.readyState == 4 && this.status == 200){
                             document.getElementById('status_messages').innerHTML = this.responseText;
-                            document.getElementById('reply_message').value = '';
+                            document.getElementById('chat_message').value = '';
                             showData();
                         }
                     }

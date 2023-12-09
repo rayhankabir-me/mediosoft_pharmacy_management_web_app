@@ -38,7 +38,7 @@ if($action == 'add_chat'){
          $result = add_chat($data);
      
          if($result === true){
-             echo '<p id="success_message">chat created successfully! go to <a class="medio-btn" href="../view/live_chat.php">Live Page"</a></p>';
+             echo '<p id="success_message">chat created successfully! go to <a class="medio-btn" href="../view/my_chats.php">Live Page"</a></p>';
          }elseif ($result === false) {
              echo '<p id="error_message">ticket created failed... try again!</p>';
          }

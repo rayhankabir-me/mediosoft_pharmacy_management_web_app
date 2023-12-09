@@ -8,6 +8,9 @@ if(!check_login_status()){
 include_once('../model/usersModel.php');
 $get_current_user_info = get_current_user_info();
 
+$get_current_user_type = get_current_user_type();
+
+
 
 ?>
 
@@ -25,21 +28,32 @@ $get_current_user_info = get_current_user_info();
     <div class="container">
         <div class="form-container">
 
-            <div class="medio-form">
-                <form action="#" method="post" onsubmit="addChat()">
-                    <label for="chat_subject">Chat Subject</label>
+            <?php
+            if($get_current_user_type == "Admin"){
+                echo "<p id='error_message'>This feature isn't available for you!</p>";
+            }else{
+                ?>
+                    <div class="medio-form">
+                        <form action="#" method="post" onsubmit="addChat()">
+                            <label for="chat_subject">Chat Subject</label>
 
-                    <input type="text" name="chat_subject" id="chat_subject">
+                            <input type="text" name="chat_subject" id="chat_subject">
 
-                    <label for="chat_message">Tell something about the chat</label>
+                            <label for="chat_message">Tell something about the chat</label>
 
-                    <textarea name="chat_message" id="chat_message" cols="30" rows="10"></textarea>
+                            <textarea name="chat_message" id="chat_message" cols="30" rows="10"></textarea>
 
-                    <input type="submit" value="Start Chat">
-                    
+                            <input type="submit" value="Start Chat">
+                            
 
-                </form>
-            </div>
+                        </form>
+                    </div>
+                <?php
+
+            }
+
+            ?>
+
             <div id="status_messages"></div>
         </div>
     </div>

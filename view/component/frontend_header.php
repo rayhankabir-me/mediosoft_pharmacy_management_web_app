@@ -1,5 +1,8 @@
 <?php
 include_once('../controller/check_login_status.php');
+
+
+
 ?>
 
 <!DOCTYPE html>

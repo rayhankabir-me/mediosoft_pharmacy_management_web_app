@@ -11,6 +11,8 @@ $get_current_user_info = get_current_user_info();
 include_once('../model/medicinesModel.php');
 $medicines = get_all_medicines_data();
 
+$get_current_user_type = get_current_user_type();
+
 ?>
 
 <!-- including header -->
@@ -27,35 +29,48 @@ $medicines = get_all_medicines_data();
     <div class="container">
         <div class="form-container">
 
-            <div class="medio-form">
-                <form action="#" method="post" onsubmit="addTicket()">
-                    <label for="">Select Medicine</label>
-                    <select name="ticket" id="select_medicine">
+            <?php
+                if($get_current_user_type == "Admin" || $get_current_user_type == "Pharmacist"){
+                    echo "<p id='error_message'>this feature isn't available for you! </p>";
+                }else{
 
-                            <?php
-                                foreach($medicines as $medicine){
-                                    
-                                    ?>
-                                        <option value="<?php echo $medicine['id']; ?>"><?php echo $medicine['medicine_title']; ?></option>
-                                    <?php
-                                }
-                            ?>
+                    ?>
 
-                            
-                    </select>
-                    <label for="">Ticket Subject</label>
+                        <div class="medio-form">
+                                        <form action="#" method="post" onsubmit="addTicket()">
+                                            <label for="">Select Medicine</label>
+                                            <select name="ticket" id="select_medicine">
 
-                    <input type="text" name="ticket_subject" id="ticket_subject">
+                                                    <?php
+                                                        foreach($medicines as $medicine){
+                                                            
+                                                            ?>
+                                                                <option value="<?php echo $medicine['id']; ?>"><?php echo $medicine['medicine_title']; ?></option>
+                                                            <?php
+                                                        }
+                                                    ?>
 
-                    <label for="">Support Message</label>
+                                                    
+                                            </select>
+                                            <label for="">Ticket Subject</label>
 
-                    <textarea name="support_message" id="support_message" cols="30" rows="10"></textarea>
+                                            <input type="text" name="ticket_subject" id="ticket_subject">
 
-                    <input type="submit" value="Make Ticket">
-                    
-                    <div id="status_messages"></div>
-                </form>
-            </div>
+                                            <label for="">Support Message</label>
+
+                                            <textarea name="support_message" id="support_message" cols="30" rows="10"></textarea>
+
+                                            <input type="submit" value="Make Ticket">
+                                            
+                                            <div id="status_messages"></div>
+                                        </form>
+                                    </div>
+
+                    <?php
+                }
+            ?>
+
+
             <div id="status_messages"></div>
         </div>
     </div>

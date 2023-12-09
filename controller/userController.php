@@ -407,12 +407,13 @@ if($action == 'user_registration'){
         $password = $_REQUEST['password'];
     
         if($username == ''){
-            $error_message .= "Your must fill User Name! <br>";
+            $error_message .= "<p id='error_message'>Your must fill User Name! </p>";
     
+        }else if($password == ''){
+            $error_message .= "<p id='error_message'>Your must fill Password! </p>";
         }
-        if($password == ''){
-            $error_message .= "Your must fill Password! <br>";
-        }
+
+
         if($error_message === ''){
     
             $login = user_login($username, $password);
@@ -428,13 +429,13 @@ if($action == 'user_registration'){
                     $cookie_expire = time() + 30 * 24 * 60 * 60;
                     setcookie($cookie_name, $cookie_value, $cookie_expire, "/");
                 }
-                header('location: dashboard.php');
+                echo 1;
     
             }else{
-                    $invalid_login = "Invalid login details! Try Again!";
+                    echo "<p id='error_message'>Invalid login details! Try Again!</p>";
                 } 
         }else{
-            echo "<p id='error_message'>".$error_message."</p>";
+            echo $error_message;
         }
     
     

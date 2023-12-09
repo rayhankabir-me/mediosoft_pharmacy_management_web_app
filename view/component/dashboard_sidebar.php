@@ -69,6 +69,7 @@ function get_sidebar(){
 
         <ul>
             <li><a href="../view/view_all_tickets.php">View Support Tickets</a></li>
+            <li><a href="../view/my_chats.php">Live Chat Lists</a></li>
         </ul>
 
         <?php
