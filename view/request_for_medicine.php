@@ -2,7 +2,10 @@
 $page_title = "Request for Medicine - MedioSoft";
 include_once('../view/component/dashboard_sidebar.php');
 
-
+require_once('../controller/check_login_status.php');
+if(!check_login_status()){
+    header('location: login.php');
+}
 
 
 ?>

@@ -63,7 +63,7 @@ if($action == 'add_category'){
          <tr>
              <td><?php echo $category['category_name']; ?></td>
              <td><?php echo $category['short_description']; ?></td>
-             <td><a href="../view/update_post_category.php?id=<?php echo $category['id']; ?>">Edit</a> | <a id="delete_btn" data-category-id="<?php echo $category['id']; ?>" onclick="deleteCategory(event)" href="#">Delete</a></td>
+             <td><a class="edit-btn" href="../view/update_post_category.php?id=<?php echo $category['id']; ?>">Edit</a> | <a class="delete-btn" id="delete_btn" data-category-id="<?php echo $category['id']; ?>" onclick="deleteCategory(event)" href="#">Delete</a></td>
          </tr>
         <?php
      }
