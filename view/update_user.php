@@ -68,12 +68,13 @@ if(isset($_REQUEST['id'])){
                                         <legend>Date of Birth</legend>
                                         <input type="date" name="date_of_birth" id="date_of_birth">
                                         </fieldset>
-
+                                        <label for="user_type">User Type</label>
                                         <select name="user_type" id="user_type">
                                             <option value="Customer">Customer</option>
                                             <option value="Pharmacist">Pharmacist</option>
                                             <option value="Admin">Admin</option>
                                         </select>
+                                        <label for="user_status">User Status</label>
                                         <select name="user_status" id="user_status">
                                             <option value="1">Active</option>
                                             <option value="0">Inactive</option>

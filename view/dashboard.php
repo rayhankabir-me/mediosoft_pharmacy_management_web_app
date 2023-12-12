@@ -101,7 +101,7 @@ if($get_current_user_type == "Pharmacist" || $get_current_user_type == "Customer
                                     <div class="column-twenty-five">
                                         <div class="single-block">
                                             <h3>Orders</h3>
-                                            <p>20</p>
+                                            <p>0</p>
                                         </div>
                                     </div>
                                 </div>
