@@ -106,7 +106,7 @@ function add_user($user_data){
 
 function update_user($id, $data){
     $conneciton = get_connection();
-    $sql = "UPDATE users SET user_name='{$data['username']}', full_name='{$data['full_name']}', email='{$data['email']}', gender='{$data['gender']}', date_of_birth='{$data['date_of_birth']}', profile_photo='{$data['profile_photo']}', password='{$data['password']}', user_type='{$data['user_type']}', user_status='{$data['user_status']}' WHERE id = $id";
+    $sql = "UPDATE users SET full_name='{$data['full_name']}', email='{$data['email']}', gender='{$data['gender']}', date_of_birth='{$data['date_of_birth']}', profile_photo='{$data['profile_photo']}', password='{$data['password']}', user_type='{$data['user_type']}', user_status='{$data['user_status']}' WHERE id = $id";
     $result = mysqli_query($conneciton, $sql);
     if($result){
         return true;

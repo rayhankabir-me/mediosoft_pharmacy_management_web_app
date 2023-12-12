@@ -247,7 +247,7 @@ if($action == 'edit_user'){
     $error_message = '';
 
     $profile_photo = $_FILES['profile_photo'];
-    $username = $_REQUEST['username'];
+
     $email = $_REQUEST['email'];
     $full_name = $_REQUEST['full_name'];
     $password = $_REQUEST['password'];
@@ -263,12 +263,6 @@ if($action == 'edit_user'){
     
     if($profile_photo == ''){
         $error_message .= "<p id='error_message'>Your must upload a profile photo!</p>";
-    }else if($username == ''){
-        $error_message .= "<p id='error_message'>Your must fill User Name!</p>";
-    }elseif (username_validation($username) === false) {
-        $error_message .= "<p id='error_message'>Invalid User Name Format!</p>";
-    }elseif (user_name_exists($username) == true) {
-     $error_message .= "<p id='error_message'>This User Name Already Exists. Try Another!</p>";
     }else if($full_name == ''){
         $error_message .= "<p id='error_message'>Your must fill Full Name!</p>";
     }else if($email == ''){
@@ -297,7 +291,7 @@ if($action == 'edit_user'){
     //data array
     $submited_data = [
         'profile_photo' => $destination,
-        'username' => $username,
+
         'email' => $email,
         'full_name' => $full_name,
         'password' => $password,

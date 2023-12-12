@@ -40,9 +40,6 @@ if(isset($_REQUEST['id'])){
                                         <label for="profile_photo">Upload New Photo</label>
                                         <input type="file" name="profile_photo" id="profile_photo">
 
-                                        <label for="username">User Name: </label>
-                                        <input type="text" name="username" id="username">
-
                                         <label for="email">Email: </label>
                                         <input type="email" name="email" id="email">
 
@@ -109,7 +106,7 @@ if(isset($_REQUEST['id'])){
                     let data = JSON.parse(this.responseText);
 
                     document.getElementById('current_image').src = data.profile_photo;
-                    document.getElementById('username').value = data.user_name;
+
                     document.getElementById('email').value = data.email;
                     document.getElementById('full_name').value = data.full_name;
                     document.getElementById('date_of_birth').value = data.date_of_birth;
@@ -137,7 +134,7 @@ if(isset($_REQUEST['id'])){
             let user_id = <?php echo $user_id;?>;
 
             let profile_photo = document.getElementById('profile_photo').value;
-            let username = document.getElementById('username').value;
+
             let email = document.getElementById('email').value;
             let full_name = document.getElementById('full_name').value;
             let password = document.getElementById('password').value;
@@ -157,8 +154,6 @@ if(isset($_REQUEST['id'])){
             }
             if(profile_photo == ''){
                 document.getElementById('status_messages').innerHTML = '<p id="error_message">You must upload new photo!</p>';
-            }else if(username === ''){
-                document.getElementById('status_messages').innerHTML = '<p id="error_message">You must enter user name!</p>';
             }else if(email === ''){
                 document.getElementById('status_messages').innerHTML = '<p id="error_message">You must enter an email!</p>';
             }else if(full_name === ''){
